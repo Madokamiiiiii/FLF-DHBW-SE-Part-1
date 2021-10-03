@@ -1,0 +1,258 @@
+<br>
+<p><span style="font-family: Arial, Helvetica, sans-serif; color: rgb(166, 10, 8); font-size: 22px;">Query</span></p>
+<br>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="font-weight: bold">import</span> <span style="font-weight: bold">java.io.BufferedWriter</span>;
+<span style="font-weight: bold">import</span> <span style="font-weight: bold">java.io.FileWriter</span>;
+<span style="font-weight: bold">import</span> <span style="font-weight: bold">java.io.IOException</span>;
+<span style="font-weight: bold">import</span> <span style="font-weight: bold">java.sql.*</span>;
+
+<span style="font-weight: bold">public</span> <span style="font-weight: bold">class</span> <span style="font-weight: bold">Query</span> <span style="font-weight: bold">implements</span> IQuery {
+    <span style="font-weight: bold">private</span> Connection connection;
+    <span style="font-weight: bold">private</span> BufferedWriter bufferedWriter;
+
+    <span style="font-weight: bold">public</span> <span style="font-weight: bold">static</span> <span style="font-weight: bold">void</span> main(String... args) {
+        Query query = <span style="font-weight: bold">new</span> Query();
+        query.startup();
+
+        query.executeSQL01();
+        query.executeSQL02();
+        query.executeSQL03();
+        query.executeSQL04();
+        query.executeSQL05();
+        query.executeSQL06();
+        query.executeSQL07();
+        query.executeSQL08();
+        query.executeSQL09();
+        query.executeSQL10();
+        query.executeSQL11();
+        query.executeSQL12();
+        query.executeSQL13();
+        query.executeSQL14();
+
+        query.shutdown();
+    }
+
+    <span style="font-weight: bold">public</span> <span style="font-weight: bold">void</span> startup() {
+        <span style="font-weight: bold">try</span> {
+            Class.forName(<span style="font-style: italic">&quot;org.hsqldb.jdbcDriver&quot;</span>);
+            String driverName = <span style="font-style: italic">&quot;jdbc:hsqldb:&quot;</span>;
+            String databaseURL = driverName + Configuration.instance.dataPath + <span style="font-style: italic">&quot;customer.db&quot;</span>;
+            String username = <span style="font-style: italic">&quot;sa&quot;</span>;
+            String password = <span style="font-style: italic">&quot;&quot;</span>;
+            connection = DriverManager.getConnection(databaseURL, username, password);
+
+            bufferedWriter = <span style="font-weight: bold">new</span> BufferedWriter(<span style="font-weight: bold">new</span> FileWriter(Configuration.instance.logPath + <span style="font-style: italic">&quot;query.log&quot;</span>));
+        } <span style="font-weight: bold">catch</span> (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    <span style="font-weight: bold">public</span> <span style="font-weight: bold">void</span> writeLogfile(String message) {
+        <span style="font-weight: bold">try</span> {
+            bufferedWriter.append(message).append(<span style="font-style: italic">&quot;\n&quot;</span>);
+        } <span style="font-weight: bold">catch</span> (IOException ioe) {
+            System.out.println(ioe.getMessage());
+        }
+    }
+
+    <span style="font-weight: bold">public</span> String dump(ResultSet resultSet) {
+        StringBuilder stringBuilder = <span style="font-weight: bold">new</span> StringBuilder();
+
+        <span style="font-weight: bold">try</span> {
+            ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
+            <span style="font-weight: bold">int</span> maximumNumberColumns = resultSetMetaData.getColumnCount();
+            <span style="font-weight: bold">int</span> i;
+            Object object;
+
+            <span style="font-weight: bold">while</span> (resultSet.next()) {
+                <span style="font-weight: bold">for</span> (i = 0; i &lt; maximumNumberColumns; ++i) {
+                    object = resultSet.getObject(i + 1);
+                    stringBuilder.append(object.toString()).append(<span style="font-style: italic">&quot; &quot;</span>);
+                }
+                stringBuilder.append(<span style="font-style: italic">&quot; \n&quot;</span>);
+            }
+
+            <span style="font-weight: bold">return</span> stringBuilder.toString();
+        } <span style="font-weight: bold">catch</span> (SQLException sqle) {
+            System.out.println(sqle.getMessage());
+        }
+
+        <span style="font-weight: bold">return</span> <span style="font-style: italic">&quot;-1&quot;</span>;
+    }
+
+    <span style="font-style: italic">// count</span>
+    <span style="font-style: italic">// count, where</span>
+    <span style="font-style: italic">// count, where, in</span>
+    <span style="font-style: italic">// count, where, not in</span>
+    <span style="font-style: italic">// sum, where, in</span>
+    <span style="font-style: italic">// avg, where, not in</span>
+    <span style="font-style: italic">// id, where, in, order by desc limit</span>
+    <span style="font-style: italic">// id, where, in, order by desc, order by asc</span>
+    <span style="font-style: italic">// count, group by</span>
+    <span style="font-style: italic">// count, where, group by</span>
+    <span style="font-style: italic">// count, where, in, group by</span>
+    <span style="font-style: italic">// count, where, not in, group by</span>
+    <span style="font-style: italic">// sum, where, not in, in, group by</span>
+    <span style="font-style: italic">// avg, where, in, in, group by</span>
+
+    <span style="font-weight: bold">public</span> <span style="font-weight: bold">synchronized</span> <span style="font-weight: bold">void</span> queryDump(String sqlStatement) {
+        <span style="font-weight: bold">try</span> {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sqlStatement);
+            writeLogfile(sqlStatement);
+            writeLogfile(dump(resultSet));
+            statement.close();
+        } <span style="font-weight: bold">catch</span> (SQLException sqle) {
+            System.out.println(sqle.getMessage());
+        }
+    }
+
+    <span style="font-style: italic">// count</span>
+    <span style="font-weight: bold">public</span> <span style="font-weight: bold">void</span> executeSQL01() {
+        writeLogfile(<span style="font-style: italic">&quot;--- query 01 (count)&quot;</span>);
+        String sqlStatement = <span style="font-style: italic">&quot;SELECT COUNT(*) FROM data&quot;</span>;
+        queryDump(sqlStatement);
+    }
+
+    <span style="font-style: italic">// count, where</span>
+    <span style="font-weight: bold">public</span> <span style="font-weight: bold">void</span> executeSQL02() {
+        writeLogfile(<span style="font-style: italic">&quot;--- query 02 (count, where)&quot;</span>);
+        String sqlStatement = <span style="font-style: italic">&quot;SELECT COUNT(*) FROM data &quot;</span> +
+                <span style="font-style: italic">&quot;WHERE region = &#39;A&#39; AND type = &#39;S&#39;&quot;</span>;
+        queryDump(sqlStatement);
+    }
+
+    <span style="font-style: italic">// count, where, in</span>
+    <span style="font-weight: bold">public</span> <span style="font-weight: bold">void</span> executeSQL03() {
+        writeLogfile(<span style="font-style: italic">&quot;--- query 03 (count, where, in)&quot;</span>);
+        String sqlStatement = <span style="font-style: italic">&quot;SELECT COUNT(*) FROM data &quot;</span> +
+                <span style="font-style: italic">&quot;WHERE region = &#39;A&#39; &quot;</span> +
+                <span style="font-style: italic">&quot;AND type IN (&#39;S&#39;,&#39;L&#39;) &quot;</span> +
+                <span style="font-style: italic">&quot;AND energyConsumption0To6 &gt;= 25 AND energyConsumption0To6 &lt;= 50&quot;</span>;
+        queryDump(sqlStatement);
+    }
+
+    <span style="font-style: italic">// count, where, not in</span>
+    <span style="font-weight: bold">public</span> <span style="font-weight: bold">void</span> executeSQL04() {
+        writeLogfile(<span style="font-style: italic">&quot;--- query 04 (count, where, not in)&quot;</span>);
+        String sqlStatement = <span style="font-style: italic">&quot;SELECT COUNT(*) FROM data &quot;</span> +
+                <span style="font-style: italic">&quot;WHERE type NOT IN (&#39;L&#39;,&#39;M&#39;) AND region = &#39;B&#39; AND bonusLevel &gt;= 2 &quot;</span> +
+                <span style="font-style: italic">&quot;AND hasSmartTechnology = &#39;true&#39; AND energyConsumption12To18 &lt;= 25&quot;</span>;
+        queryDump(sqlStatement);
+    }
+
+    <span style="font-style: italic">// sum, where, in</span>
+    <span style="font-weight: bold">public</span> <span style="font-weight: bold">void</span> executeSQL05() {
+        writeLogfile(<span style="font-style: italic">&quot;--- query 05 (sum, where, in)&quot;</span>);
+        String sqlStatement = <span style="font-style: italic">&quot;SELECT SUM(energyConsumption6To12) FROM data &quot;</span> +
+                <span style="font-style: italic">&quot;WHERE region = &#39;C&#39; &quot;</span> +
+                <span style="font-style: italic">&quot;AND type IN (&#39;S&#39;,&#39;K&#39;) &quot;</span> +
+                <span style="font-style: italic">&quot;AND bonusLevel &lt;= 2 &quot;</span> +
+                <span style="font-style: italic">&quot;AND hasSmartTechnology = &#39;true&#39; &quot;</span>;
+        queryDump(sqlStatement);
+    }
+
+    <span style="font-style: italic">// avg, where, not in</span>
+    <span style="font-weight: bold">public</span> <span style="font-weight: bold">void</span> executeSQL06() {
+        writeLogfile(<span style="font-style: italic">&quot;--- query 06 (avg, where, not in)&quot;</span>);
+        String sqlStatement = <span style="font-style: italic">&quot;SELECT AVG(energyConsumption6To12) FROM data &quot;</span> +
+                <span style="font-style: italic">&quot;WHERE region = &#39;A&#39; &quot;</span> +
+                <span style="font-style: italic">&quot;AND type NOT IN (&#39;K&#39;,&#39;L&#39;) &quot;</span> +
+                <span style="font-style: italic">&quot;AND bonusLevel &gt;= 2 &quot;</span> +
+                <span style="font-style: italic">&quot;AND hasSmartTechnology = &#39;false&#39; &quot;</span>;
+        queryDump(sqlStatement);
+    }
+
+    <span style="font-style: italic">// id, where, in, order by desc limit</span>
+    <span style="font-weight: bold">public</span> <span style="font-weight: bold">void</span> executeSQL07() {
+        writeLogfile(<span style="font-style: italic">&quot;--- query 07 (id, where, in, order by desc limit)&quot;</span>);
+        String sqlStatement = <span style="font-style: italic">&quot;SELECT id FROM data &quot;</span> +
+                <span style="font-style: italic">&quot;WHERE region = &#39;A&#39; &quot;</span> +
+                <span style="font-style: italic">&quot;AND type IN (&#39;S&#39;,&#39;L&#39;) &quot;</span> +
+                <span style="font-style: italic">&quot;AND energyConsumption0To6 &gt;= 25 AND energyConsumption0To6 &lt;= 30 &quot;</span> +
+                <span style="font-style: italic">&quot;AND id &lt;= 1000 &quot;</span> +
+                <span style="font-style: italic">&quot;ORDER BY energyConsumption0To6 DESC LIMIT 3&quot;</span>;
+        queryDump(sqlStatement);
+    }
+
+    <span style="font-style: italic">// id, where, in, order by desc, order by asc</span>
+    <span style="font-weight: bold">public</span> <span style="font-weight: bold">void</span> executeSQL08() {
+        writeLogfile(<span style="font-style: italic">&quot;--- query 08 (id, where, in, order by desc, order by asc)&quot;</span>);
+        String sqlStatement = <span style="font-style: italic">&quot;SELECT id FROM data &quot;</span> +
+                <span style="font-style: italic">&quot;WHERE region = &#39;C&#39; &quot;</span> +
+                <span style="font-style: italic">&quot;AND type IN (&#39;K&#39;,&#39;L&#39;) &quot;</span> +
+                <span style="font-style: italic">&quot;AND bonusLevel &lt;= 2 &quot;</span> +
+                <span style="font-style: italic">&quot;AND hasSmartTechnology = &#39;true&#39; &quot;</span> +
+                <span style="font-style: italic">&quot;AND energyConsumption0To6 &lt;= 5 &quot;</span> +
+                <span style="font-style: italic">&quot;AND energyConsumption6To12 &gt;= 10 AND energyConsumption6To12 &lt;= 15 &quot;</span> +
+                <span style="font-style: italic">&quot;ORDER BY bonusLevel DESC,energyConsumption6To12&quot;</span>;
+        queryDump(sqlStatement);
+    }
+
+    <span style="font-style: italic">// count, group by</span>
+    <span style="font-weight: bold">public</span> <span style="font-weight: bold">void</span> executeSQL09() {
+        writeLogfile(<span style="font-style: italic">&quot;--- query 09 (count, group by)&quot;</span>);
+        String sqlStatement = <span style="font-style: italic">&quot;SELECT hasSmartTechnology,COUNT(*) FROM data &quot;</span> +
+                <span style="font-style: italic">&quot;GROUP BY hasSmartTechnology&quot;</span>;
+        queryDump(sqlStatement);
+    }
+
+    <span style="font-style: italic">// count, where, group by</span>
+    <span style="font-weight: bold">public</span> <span style="font-weight: bold">void</span> executeSQL10() {
+        writeLogfile(<span style="font-style: italic">&quot;--- query 10 (count, where, group by)&quot;</span>);
+        String sqlStatement = <span style="font-style: italic">&quot;SELECT region,COUNT(*) FROM data &quot;</span> +
+                <span style="font-style: italic">&quot;WHERE energyConsumption0To6 &lt;= 50 &quot;</span> +
+                <span style="font-style: italic">&quot;GROUP BY region&quot;</span>;
+        queryDump(sqlStatement);
+    }
+
+    <span style="font-style: italic">// count, where, in, group by</span>
+    <span style="font-weight: bold">public</span> <span style="font-weight: bold">void</span> executeSQL11() {
+        writeLogfile(<span style="font-style: italic">&quot;--- query 11 (count, where, in, group by)&quot;</span>);
+        String sqlStatement = <span style="font-style: italic">&quot;SELECT bonusLevel,COUNT(*) FROM data &quot;</span> +
+                <span style="font-style: italic">&quot;WHERE TYPE IN (&#39;L&#39;,&#39;M&#39;) &quot;</span> +
+                <span style="font-style: italic">&quot;GROUP BY bonusLevel&quot;</span>;
+        queryDump(sqlStatement);
+    }
+
+    <span style="font-style: italic">// count, where, not in, group by</span>
+    <span style="font-weight: bold">public</span> <span style="font-weight: bold">void</span> executeSQL12() {
+        writeLogfile(<span style="font-style: italic">&quot;--- query 12 (count, where, not in, group by)&quot;</span>);
+        String sqlStatement = <span style="font-style: italic">&quot;SELECT region,COUNT(*) FROM data &quot;</span> +
+                <span style="font-style: italic">&quot;WHERE region NOT IN (&#39;A&#39;,&#39;B&#39;) AND hasSmartTechnology = &#39;true&#39; &quot;</span> +
+                <span style="font-style: italic">&quot;GROUP BY region&quot;</span>;
+        queryDump(sqlStatement);
+    }
+
+    <span style="font-style: italic">// sum, where, not in, in, group by</span>
+    <span style="font-weight: bold">public</span> <span style="font-weight: bold">void</span> executeSQL13() {
+        writeLogfile(<span style="font-style: italic">&quot;--- query 13 (sum, where, not in, in, group by)&quot;</span>);
+        String sqlStatement = <span style="font-style: italic">&quot;SELECT hasSmartTechnology,SUM(energyConsumption6To12) FROM data &quot;</span> +
+                <span style="font-style: italic">&quot;WHERE region NOT IN (&#39;B&#39;,&#39;C&#39;) AND bonusLevel IN (1,3) AND type = &#39;M&#39; &quot;</span> +
+                <span style="font-style: italic">&quot;GROUP BY hasSmartTechnology&quot;</span>;
+        queryDump(sqlStatement);
+    }
+
+    <span style="font-style: italic">// avg, where, in, in, group by</span>
+    <span style="font-weight: bold">public</span> <span style="font-weight: bold">void</span> executeSQL14() {
+        writeLogfile(<span style="font-style: italic">&quot;--- query 14 (avg, where, in, in, group by)&quot;</span>);
+        String sqlStatement = <span style="font-style: italic">&quot;SELECT region,AVG(energyConsumption6To12) FROM data &quot;</span> +
+                <span style="font-style: italic">&quot;WHERE region IN (&#39;A&#39;,&#39;C&#39;) AND type IN (&#39;L&#39;,&#39;M&#39;) AND hasSmartTechnology = &#39;false&#39; &quot;</span> +
+                <span style="font-style: italic">&quot;GROUP BY region&quot;</span>;
+        queryDump(sqlStatement);
+    }
+
+    <span style="font-weight: bold">public</span> <span style="font-weight: bold">void</span> shutdown() {
+        <span style="font-weight: bold">try</span> {
+            Statement statement = connection.createStatement();
+            statement.execute(<span style="font-style: italic">&quot;SHUTDOWN&quot;</span>);
+            connection.close();
+            bufferedWriter.close();
+        } <span style="font-weight: bold">catch</span> (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
+</pre></div>
+<br>
+<p><span style="font-family: Arial, Helvetica, sans-serif; font-size: 11px;">Prof. Dr. Carsten M&uuml;ller <span style="color: rgb(166, 10, 8);">|</span> Software Engineering</span></p>
