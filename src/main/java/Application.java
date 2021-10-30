@@ -51,8 +51,8 @@ public class Application implements IApplication {
                 int energyConsumption12To18 = Integer.parseInt(entries[8]);
                 int energyConsumption18To24 = Integer.parseInt(entries[9]);
                 customerList.add(new Customer(id, town, bonusLevel, hasSmartTechnology, type, energyConsumption0To6, energyConsumption6To12, energyConsumption12To18, energyConsumption18To24));
-                bufferedReader.close();
             }
+            bufferedReader.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
