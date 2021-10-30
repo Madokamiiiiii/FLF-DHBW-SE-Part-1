@@ -51,6 +51,7 @@ public class Application implements IApplication {
                 int energyConsumption12To18 = Integer.parseInt(entries[8]);
                 int energyConsumption18To24 = Integer.parseInt(entries[9]);
                 customerList.add(new Customer(id, town, bonusLevel, hasSmartTechnology, type, energyConsumption0To6, energyConsumption6To12, energyConsumption12To18, energyConsumption18To24));
+                bufferedReader.close();
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -84,11 +85,24 @@ public class Application implements IApplication {
 
     public void executeQuery04() {
         System.out.println("--- executeQuery04 ---");
+        System.out.println(customerList.stream()
+                .filter(x -> !(x.getType().equals("L")||x.getType().equals("M")))
+                .filter(x -> x.getTown().getRegion().equals("B"))
+                .filter(x -> x.getBonusLevel() >= 2)
+                .filter(Customer::isHasSmartTechnology)
+                .filter(x -> x.getEnergyConsumption12To18() <= 25)
+                .count()
+        );
         System.out.println();
     }
 
     public void executeQuery05() {
         System.out.println("--- executeQuery05 ---");
+        System.out.println((Integer) customerList.stream()
+                .filter(x -> x.getTown().getRegion().equals("C"))
+                .filter(x -> x.getType().equals("S") || x.getType().equals("K"))
+                .filter(x -> x.getBonusLevel() <= 2)
+                .filter(Customer::isHasSmartTechnology).mapToInt(Customer::getEnergyConsumption6To12).sum());
         System.out.println();
     }
 
@@ -105,12 +119,21 @@ public class Application implements IApplication {
 
     public void executeQuery07() {
         System.out.println("--- executeQuery07 ---");
+        customerList.stream()
+                .filter(x -> x.getTown().getRegion().equals("A"))
+                .filter(x -> x.getType().equals("S") || x.getType().equals("L"))
+                .filter(x -> x.getEnergyConsumption0To6() >= 25 && x.getEnergyConsumption0To6() <= 30)
+                .filter(x -> x.getId() <= 1000)
+                .sorted(Comparator.comparing(Customer::getEnergyConsumption0To6).reversed())
+                .limit(3)
+                .map(Customer::getId)
+                .forEach(System.out::println);
         System.out.println();
     }
 
     public void executeQuery08() {
         System.out.println("--- executeQuery08 ---");
-        System.out.println(customerList.stream()
+        customerList.stream()
                 .filter(c -> c.getTown().getRegion().equals("C"))
                 .filter(c -> c.getType().equals("K") || c.getType().equals("L"))
                 .filter(c -> c.getBonusLevel() <= 2)
@@ -121,44 +144,61 @@ public class Application implements IApplication {
                 .sorted(Comparator.comparing(Customer::getBonusLevel).reversed())
                 .sorted(Comparator.comparingInt(Customer::getEnergyConsumption6To12))
                 .map(Customer::getId)
-        );
+                .forEach(System.out::println);
     }
 
     public void executeQuery09() {
         System.out.println("--- executeQuery09 ---");
+        customerList.stream()
+                .collect(Collectors.groupingBy(Customer::isHasSmartTechnology, Collectors.counting()))
+                .forEach((key, value) -> System.out.println(key + " " + value));
         System.out.println();
     }
 
     public void executeQuery10() {
         System.out.println("--- executeQuery10 ---");
-        System.out.println(customerList.stream()
+        customerList.stream()
                 .filter(customer -> customer.getEnergyConsumption0To6() <= 50)
-                .collect(Collectors.groupingBy(customer -> customer.getTown().getRegion(), Collectors.counting())));
+                .collect(Collectors.groupingBy(customer -> customer.getTown().getRegion(), Collectors.counting()))
+                .forEach((key, value) -> System.out.println(key + " " + value));
     }
 
     public void executeQuery11() {
         System.out.println("--- executeQuery11 ---");
-        System.out.println(customerList.stream()
+        customerList.stream()
                 .filter(c -> c.getType().equals("L") || c.getType().equals("M"))
-                .collect(Collectors.groupingBy(Customer::getBonusLevel, Collectors.counting())));
+                .collect(Collectors.groupingBy(Customer::getBonusLevel, Collectors.counting()))
+                .forEach((key, value) -> System.out.println(key + " " + value));
     }
 
     public void executeQuery12() {
         System.out.println("--- executeQuery12 ---");
+        customerList.stream()
+                .filter(x -> !(x.getTown().getRegion().equals("A") || x.getTown().getRegion().equals("B")))
+                .filter(Customer::isHasSmartTechnology)
+                .collect(Collectors.groupingBy(x -> x.getTown().getRegion(),Collectors.counting()))
+                .forEach((key,value) -> System.out.println(key + " " + value));
         System.out.println();
     }
 
     public void executeQuery13() {
         System.out.println("--- executeQuery13 ---");
+        customerList.stream()
+                .filter(x -> !(x.getTown().getRegion().equals("B") || x.getTown().getRegion().equals("C")))
+                .filter(x -> x.getBonusLevel() == 1 || x.getBonusLevel() == 3)
+                .filter(x -> x.getType().equals("M"))
+                .collect(Collectors.groupingBy(Customer::isHasSmartTechnology, Collectors.summingInt(Customer::getEnergyConsumption6To12)))
+                .forEach((key,value) -> System.out.println(key + " " + value));
         System.out.println();
     }
 
     public void executeQuery14() {
         System.out.println("--- executeQuery14 ---");
-        System.out.println(customerList.stream()
+        customerList.stream()
                 .filter(c -> c.getTown().getRegion().equals("C") || c.getTown().getRegion().equals("A"))
                 .filter(c -> c.getType().equals("L") || c.getType().equals("M"))
                 .filter(c -> !c.isHasSmartTechnology())
-                .collect(Collectors.groupingBy(customer -> customer.getTown().getRegion(), Collectors.averagingInt(Customer::getEnergyConsumption6To12))));
+                .collect(Collectors.groupingBy(customer -> customer.getTown().getRegion(), Collectors.averagingInt(Customer::getEnergyConsumption6To12)))
+                .forEach((key,value) -> System.out.println(key + " " + value));
     }
 }
