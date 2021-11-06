@@ -110,7 +110,7 @@ public class Application implements IApplication {
         System.out.println("--- executeQuery06 ---");
         System.out.println(customerList.stream()
                 .filter(c -> c.getTown().getRegion().equals("A"))
-                .filter(c -> !c.getType().equals("K") || !c.getType().equals("L"))
+                .filter(c -> !(c.getType().equals("K") || c.getType().equals("L")))
                 .filter(c -> c.getBonusLevel() >= 2)
                 .filter(c -> !c.isHasSmartTechnology())
                 .collect(Collectors.averagingInt(Customer::getEnergyConsumption6To12))
