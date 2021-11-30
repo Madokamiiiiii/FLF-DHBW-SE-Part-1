@@ -17,6 +17,7 @@ import airportfiretruck.thrower.RoofThrower;
 import airportfiretruck.wheels.Axle;
 import airportfiretruck.wheels.FrontAxle;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AirportFireTruck {
@@ -83,12 +84,40 @@ public class AirportFireTruck {
     }
 
     public AirportFireTruck(Builder builder) {
-
+        cunit = builder.cunit;
+        //          .
+        //          .
+        //          .
     }
 
     public class Builder {
+        private final CentralUnit cunit;
+        private final Cabin cabin;
+        private final RoofThrower rthrower;
+        private final FrontThrower fthrower;
+        private final List<IEngine> e = new ArrayList<>();
+        private final List<FloorSprayNozzle> fnozzles = new ArrayList<>();
+        private final List<Axle> axles = new ArrayList<>();
+        private final List<FrontAxle> faxles = new ArrayList<>();
+        private final List<FrontLight> fl = new ArrayList<>();
+        private final List<WarningLight> wl = new ArrayList<>();
+        private final List<SideLight> sl = new ArrayList<>();
+        private final List<HeadLight> hl = new ArrayList<>();
+        private final List<BrakeLight> bl = new ArrayList<>();
+        private final List<BlueLight> bul = new ArrayList<>();
+        private final List<DirectionIndicatorLight> dl = new ArrayList<>();
+
+        public Builder() {
+            cunit = new CentralUnit();
+            cabin = new Cabin();
+            rthrower = new RoofThrower();
+            fthrower = new FrontThrower();
+
+            // genaue Implementation für schlaflose Nächte
+        }
+
         public AirportFireTruck build() {
-            return null;
+            return new AirportFireTruck(this);
         }
     }
 }
