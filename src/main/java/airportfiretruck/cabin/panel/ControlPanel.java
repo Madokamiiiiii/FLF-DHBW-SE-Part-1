@@ -16,6 +16,6 @@ public class ControlPanel {
 
     }
     public void pswitch(RelatedDevice rdevice, boolean isOn) {
-
+        cunit.pswitch(rdevice, isOn);
     }
 }

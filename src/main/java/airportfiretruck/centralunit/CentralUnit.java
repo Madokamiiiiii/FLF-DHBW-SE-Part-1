@@ -9,6 +9,11 @@ import airportfiretruck.engine.Engine;
 import airportfiretruck.engine.IEngine;
 import airportfiretruck.lights.BrakeLight;
 import airportfiretruck.lights.DirectionIndicatorLight;
+import airportfiretruck.lights.HeadLight;
+import airportfiretruck.lights.SideLight;
+import airportfiretruck.lights.led.BlueLight;
+import airportfiretruck.lights.led.WarningLight;
+import airportfiretruck.lights.position.FrontLight;
 import airportfiretruck.lights.position.LeftRightSide;
 
 public class CentralUnit implements IPedalCentralUnit, ISteeringCentralUnit, IThrowerCentralUnit, IControlPanelCentralUnit{
@@ -44,7 +49,62 @@ public class CentralUnit implements IPedalCentralUnit, ISteeringCentralUnit, ITh
 
     @Override
     public void pswitch(RelatedDevice device, boolean isOn) {
-
+        switch (device) {
+            case ENGINES -> {
+                for (IEngine engine: flf.getEngine()) {
+                        if (isOn) {
+                            engine.off();
+                            continue;
+                        }
+                        engine.on();
+                }
+            }
+            case BLUE_LIGHTS -> {
+                for (BlueLight bl: flf.getBulights()) {
+                    if (isOn) {
+                        bl.off();
+                        continue;
+                    }
+                    bl.on();
+                }
+            }
+            case ROOF_LIGHTS -> {
+                for (HeadLight hl: flf.getHlights()) {
+                    if (isOn) {
+                        hl.off();
+                        continue;
+                    }
+                    hl.on();
+                }
+            }
+            case SIDE_LIGHTS -> {
+                for (SideLight sl: flf.getSlights()) {
+                    if (isOn) {
+                        sl.off();
+                        continue;
+                    }
+                    sl.on();
+                }
+            }
+            case FRONT_LIGHTS -> {
+                for (FrontLight fl: flf.getFlights()) {
+                    if (isOn) {
+                        fl.off();
+                        continue;
+                    }
+                    fl.on();
+                }
+            }
+            case WARNING_LIGHTS -> {
+                for (WarningLight wl: flf.getWlights()) {
+                    if (isOn) {
+                        wl.off();
+                        continue;
+                    }
+                    wl.on();
+                }
+            }
+        }
     }
 
     @Override

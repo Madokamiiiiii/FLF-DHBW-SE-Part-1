@@ -10,6 +10,7 @@ import airportfiretruck.lights.HeadLight;
 import airportfiretruck.lights.SideLight;
 import airportfiretruck.lights.led.BlueLight;
 import airportfiretruck.lights.led.WarningLight;
+import airportfiretruck.lights.position.FrontLight;
 import airportfiretruck.thrower.FloorSprayNozzle;
 import airportfiretruck.thrower.FrontThrower;
 import airportfiretruck.thrower.RoofThrower;
@@ -33,6 +34,7 @@ public class AirportFireTruck {
     private List<SideLight> slights;
     private List<BlueLight> bulights;
     private List<WarningLight> wlights;
+    private List<FrontLight> flights;
 
     public Cabin getCabin() {
         return cabin;
@@ -56,8 +58,28 @@ public class AirportFireTruck {
         return engine;
     }
 
+    public List<BlueLight> getBulights() {
+        return bulights;
+    }
+
     public List<BrakeLight> getBlights() {
         return blights;
+    }
+
+    public List<HeadLight> getHlights() {
+        return hlights;
+    }
+
+    public List<SideLight> getSlights() {
+        return slights;
+    }
+
+    public List<WarningLight> getWlights() {
+        return wlights;
+    }
+
+    public List<FrontLight> getFlights() {
+        return flights;
     }
 
     public AirportFireTruck(Builder builder) {
