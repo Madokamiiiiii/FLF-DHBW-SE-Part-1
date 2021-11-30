@@ -6,12 +6,12 @@ public enum BatteryManagement {
     private BatteryBox bbox;
 
     public void charge (int amount) {
-
+        bbox.charge(amount);
     }
     public int takeOut (int amount) {
-        return 0;
+        return bbox.takeOut(amount);
     }
     public double getRemainingBatteryLevel() {
-        return 0.0;
+        return bbox.getRemainingBatteryLevel();
     }
 }

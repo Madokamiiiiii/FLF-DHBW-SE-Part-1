@@ -5,7 +5,7 @@ public class Battery {
     private int[][][] capacity;
 
     public Battery() {
-
+        capacity = new int[100][10][100];
     }
     public void charge(int amount) {
 

@@ -5,4 +5,12 @@ public class FrontAxle extends Axle{
     public FrontAxle() {
 
     }
+
+    public void setSangle(int sangle) {
+        this.sangle = sangle;
+    }
+
+    public int getSangle() {
+        return sangle;
+    }
 }

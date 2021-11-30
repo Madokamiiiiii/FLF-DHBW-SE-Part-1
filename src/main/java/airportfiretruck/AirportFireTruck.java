@@ -2,6 +2,7 @@ package airportfiretruck;
 
 import airportfiretruck.cabin.Cabin;
 import airportfiretruck.centralunit.CentralUnit;
+import airportfiretruck.engine.ElectroEngine;
 import airportfiretruck.engine.IEngine;
 import airportfiretruck.lights.BrakeLight;
 import airportfiretruck.lights.DirectionIndicatorLight;
@@ -32,6 +33,32 @@ public class AirportFireTruck {
     private List<SideLight> slights;
     private List<BlueLight> bulights;
     private List<WarningLight> wlights;
+
+    public Cabin getCabin() {
+        return cabin;
+    }
+
+    public CentralUnit getCunit() {
+        return cunit;
+    }
+
+    public RoofThrower getRthrower() {
+        return rthrower;
+    }
+
+    public List<FrontAxle> getFaxles() {
+        return faxles;
+    }
+    public List<DirectionIndicatorLight> getDlights() {
+        return dlights;
+    }
+    public List<IEngine> getEngine() {
+        return engine;
+    }
+
+    public List<BrakeLight> getBlights() {
+        return blights;
+    }
 
     public AirportFireTruck(Builder builder) {
 

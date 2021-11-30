@@ -11,6 +11,10 @@ public abstract class Light {
     protected FrontRearSide frside;
     protected LeftRightSide lrside;
 
+    public LeftRightSide getLrside() {
+        return lrside;
+    }
+
     public void on() {
 
     }

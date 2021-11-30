@@ -10,10 +10,21 @@ public class SteeringWheel {
     public SteeringWheel() {
         position = 0;
     }
-    public void turnLeft() {
 
+    public int getPosition() {
+        return position;
     }
-    public void turnRight() {
 
+    public void turnLeft(int degree) {
+        if (position > -40) {
+            position -= degree;
+            cunit.steer();
+        }
+    }
+    public void turnRight(int degree) {
+        if (position < 40) {
+            position += degree;
+            cunit.steer();
+        }
     }
 }

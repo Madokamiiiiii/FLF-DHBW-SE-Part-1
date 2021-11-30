@@ -17,4 +17,15 @@ public class Cabin {
     private SteeringWheel swheel;
     private ControlPanel cpanel;
 
+    public Cabin() {
+
+    }
+
+    public List<IDisplay> getDisplays() {
+        return displays;
+    }
+
+    public SteeringWheel getSwheel() {
+        return swheel;
+    }
 }
