@@ -8,8 +8,8 @@ public class BatteryBox {
     }
 
     public void charge(int amount) {
-        for (int i = 2; i > 0; i--) {
-            for (int j = 2; j > 0; j--) {
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 2; j++) {
                 int free = (int) battery[i][j].getRemainingBatteryLevel() - 100000;
                 switch (free) {
                     case 0:
