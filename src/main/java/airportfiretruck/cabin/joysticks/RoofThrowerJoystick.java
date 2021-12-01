@@ -1,8 +1,16 @@
 package airportfiretruck.cabin.joysticks;
 
-public class RoofThrowerJoystick implements IJoystick{
-    public RoofThrowerJoystick() {
+import airportfiretruck.buttons.ButtonPosition;
+import airportfiretruck.buttons.PushButton;
+import airportfiretruck.thrower.IThrowerMixer;
+import airportfiretruck.thrower.RoofThrower;
 
+public class RoofThrowerJoystick extends Joystick {
+
+    protected RoofThrower thrower;
+
+    public RoofThrowerJoystick() {
+        super();
     }
 
     @Override

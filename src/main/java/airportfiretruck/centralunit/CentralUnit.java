@@ -34,6 +34,7 @@ public class CentralUnit implements IPedalCentralUnit, ISteeringCentralUnit, ITh
         for (IEngine engine : flf.getEngines()) {
             engine.setVelocity(newVelocity);
             engine.rotate(newVelocity);
+            flf.getCabin().getDisplays().get(0).setValue(engine.getBatteryManagement().getRemainingBatteryLevel());
         }
         for (BrakeLight blight : flf.getBrakeLights()) {
             if (sign < 0) {

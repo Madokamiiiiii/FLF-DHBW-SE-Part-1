@@ -1,5 +1,7 @@
 package airportfiretruck.engine;
 
+import airportfiretruck.battery.BatteryManagement;
+
 public interface IEngine {
     void on();
 

@@ -1,8 +1,13 @@
 package airportfiretruck.cabin.joysticks;
 
-public class FrontThrowerJoystick implements IJoystick {
-    public FrontThrowerJoystick() {
+import airportfiretruck.buttons.ButtonPosition;
+import airportfiretruck.buttons.PushButton;
+import airportfiretruck.thrower.FrontThrower;
+import airportfiretruck.thrower.IThrowerMixer;
 
+public class FrontThrowerJoystick extends Joystick {
+    public FrontThrowerJoystick() {
+        super();
     }
 
     public FrontThrower thrower;

@@ -1,11 +1,13 @@
 package airportfiretruck.cabin.joysticks;
 
-import airportfiretruck.buttons.JoystickButton;
 import airportfiretruck.buttons.PushButton;
-
-import java.util.List;
+import airportfiretruck.thrower.IThrowerMixer;
 
 public interface IJoystick {
-    List<PushButton> pushButtons = null;
-    JoystickButton joystickButton = null;
+
+    void pushButtonPressed(PushButton pushButton);
+
+    void joystickButtonPressed();
+
+    void assignThrower(IThrowerMixer thrower);
 }
