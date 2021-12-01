@@ -1,9 +1,8 @@
 package airportfiretruck.cabin.panel.switches;
 
 import airportfiretruck.cabin.panel.ControlPanel;
-import airportfiretruck.centralunit.IControlPanelCentralUnit;
 
-public class PanelSwitch extends Switch{
+public class PanelSwitch extends Switch {
     private RelatedDevice device;
     private ControlPanel panel;
 
@@ -13,7 +12,7 @@ public class PanelSwitch extends Switch{
 
     @Override
     public void pressed() {
-        panel.pswitch(device,isOn());
+        panel.panelSwitch(device, isOn());
         super.pressed();
     }
 }

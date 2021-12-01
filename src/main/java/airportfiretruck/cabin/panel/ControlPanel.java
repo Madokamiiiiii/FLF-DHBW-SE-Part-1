@@ -5,17 +5,22 @@ import airportfiretruck.cabin.panel.switches.RelatedDevice;
 import airportfiretruck.centralunit.IControlPanelCentralUnit;
 
 public class ControlPanel {
-    private IControlPanelCentralUnit cunit;
+
+    private IControlPanelCentralUnit centralUnit;
+
     public ControlPanel() {
 
     }
-    public void throww (IRotaryKnob tknob) {
+
+    public void thrower(IRotaryKnob rotaryKnob) {
 
     }
+
     public void build() {
 
     }
-    public void pswitch(RelatedDevice rdevice, boolean isOn) {
-        cunit.pswitch(rdevice, isOn);
+
+    public void panelSwitch(RelatedDevice relatedDevice, boolean isOn) {
+        centralUnit.panelSwitch(relatedDevice, isOn);
     }
 }

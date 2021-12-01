@@ -1,8 +1,9 @@
 package airportfiretruck.buttons;
 
-public class BusDoorButton extends Button{
-    @Override
-    public void pressed() {
-        super.pressed();
-    }
+import airportfiretruck.cabin.BusDoor;
+
+public class BusDoorButton extends Button {
+
+    private BusDoor busDoor;
+
 }

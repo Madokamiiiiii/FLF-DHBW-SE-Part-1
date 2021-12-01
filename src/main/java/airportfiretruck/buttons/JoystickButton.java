@@ -1,4 +1,5 @@
 package airportfiretruck.buttons;
 
-public class JoystickButton extends Button{
+public class JoystickButton extends Button {
+    
 }

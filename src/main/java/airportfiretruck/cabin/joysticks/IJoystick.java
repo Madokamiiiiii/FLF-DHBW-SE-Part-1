@@ -6,6 +6,6 @@ import airportfiretruck.buttons.PushButton;
 import java.util.List;
 
 public interface IJoystick {
-    List<PushButton> pbuttons = null;
-    JoystickButton jbutton = null;
+    List<PushButton> pushButtons = null;
+    JoystickButton joystickButton = null;
 }

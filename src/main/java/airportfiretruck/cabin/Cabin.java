@@ -9,13 +9,14 @@ import airportfiretruck.cabin.seats.Seat;
 import java.util.List;
 
 public class Cabin {
+
     private List<Pedal> pedals;
     private List<BusDoor> doors;
     private List<Seat> seats;
     private List<IDisplay> displays;
     private List<IJoystick> joysticks;
-    private SteeringWheel swheel;
-    private ControlPanel cpanel;
+    private SteeringWheel steeringWheel;
+    private ControlPanel controlPanel;
 
     public Cabin() {
 
@@ -26,6 +27,6 @@ public class Cabin {
     }
 
     public SteeringWheel getSwheel() {
-        return swheel;
+        return steeringWheel;
     }
 }

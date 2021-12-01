@@ -3,6 +3,7 @@ package airportfiretruck.thrower;
 public class FrontThrower implements IThrowerMixer {
     private int degree;
     private int level;
+
     public FrontThrower() {
 
     }

@@ -2,17 +2,18 @@ package airportfiretruck.cabin.pedals;
 
 import airportfiretruck.centralunit.IPedalCentralUnit;
 
-public class Pedal implements IPedal{
-    private IPedalCentralUnit cunit;
-    private PedalType ptype;
+public class Pedal implements IPedal {
+    private IPedalCentralUnit centralUnit;
+    private PedalType pedalType;
+
     public Pedal() {
 
     }
 
     @Override
     public void pressed() {
-        if (ptype == PedalType.GAS) {
-            cunit.pedal(ptype);
+        if (pedalType == PedalType.GAS) {
+            centralUnit.pedal(pedalType);
         }
     }
 }

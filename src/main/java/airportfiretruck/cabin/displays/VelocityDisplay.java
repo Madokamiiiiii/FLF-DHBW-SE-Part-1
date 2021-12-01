@@ -1,7 +1,9 @@
 package airportfiretruck.cabin.displays;
 
-public class VelocityDisplay implements IDisplay{
+public class VelocityDisplay implements IDisplay {
+
     private int velocity;
+
     public VelocityDisplay() {
         velocity = 0;
     }
@@ -13,6 +15,7 @@ public class VelocityDisplay implements IDisplay{
     public int getVelocity() {
         return velocity;
     }
+
     @Override
     public String display() {
         return velocity + "km/h";

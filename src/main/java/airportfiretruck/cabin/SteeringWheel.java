@@ -5,7 +5,8 @@ import airportfiretruck.centralunit.ISteeringCentralUnit;
 
 public class SteeringWheel {
     private int position;
-    private ISteeringCentralUnit cunit;
+
+    private ISteeringCentralUnit centralUnit;
 
     public SteeringWheel() {
         position = 0;
@@ -18,13 +19,14 @@ public class SteeringWheel {
     public void turnLeft(int degree) {
         if (position > -40) {
             position -= degree;
-            cunit.steer();
+            centralUnit.steer();
         }
     }
+
     public void turnRight(int degree) {
         if (position < 40) {
             position += degree;
-            cunit.steer();
+            centralUnit.steer();
         }
     }
 }

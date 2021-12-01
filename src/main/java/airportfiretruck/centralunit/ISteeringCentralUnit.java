@@ -1,5 +1,5 @@
 package airportfiretruck.centralunit;
 
-public interface ISteeringCentralUnit extends IBaseCentralUnit{
-    public void steer();
+public interface ISteeringCentralUnit extends IBaseCentralUnit {
+    void steer();
 }

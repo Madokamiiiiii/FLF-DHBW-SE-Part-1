@@ -5,20 +5,22 @@ import airportfiretruck.lights.position.LeftRightSide;
 import airportfiretruck.lights.position.Position;
 
 public abstract class Light {
+
     private boolean isOn;
 
-    protected Position pos;
-    protected FrontRearSide frside;
-    protected LeftRightSide lrside;
+    protected Position position;
+    protected FrontRearSide frontRearSide;
+    protected LeftRightSide leftRightSide;
 
-    public LeftRightSide getLrside() {
-        return lrside;
+    public LeftRightSide getLeftRightSide() {
+        return leftRightSide;
     }
 
     public void on() {
-
+        isOn = true;
     }
-    public void off() {
 
+    public void off() {
+        isOn = false;
     }
 }

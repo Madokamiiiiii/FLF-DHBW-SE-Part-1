@@ -6,18 +6,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Mixer {
+
     private int foamRatio;
-    private IThrowerMixer itm;
-    private List<Tank> tanks;
+    private IThrowerMixer throwerMixer;
+    private final List<Tank> tanks;
 
     public Mixer() {
         tanks = new ArrayList<>();
         tanks.add(0, new Tank(ExtinguishingAgent.WATER));
         tanks.add(1, new Tank(ExtinguishingAgent.FOAM));
     }
+
     public void mixFoam(boolean moreFoam) {
 
     }
+
     public int getLiquid(int amount) {
 
         return 0;

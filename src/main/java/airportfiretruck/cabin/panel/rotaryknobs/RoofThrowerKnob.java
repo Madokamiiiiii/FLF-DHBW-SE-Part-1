@@ -2,9 +2,10 @@ package airportfiretruck.cabin.panel.rotaryknobs;
 
 import airportfiretruck.thrower.RoofThrowerLevel;
 
-public class RoofThrowerKnob implements IRotaryKnob{
+public class RoofThrowerKnob implements IRotaryKnob {
+
     private RoofThrowerLevel level;
-    private ThrowerType type;
+    private final ThrowerType type;
 
     @Override
     public ThrowerType getType() {
@@ -23,7 +24,8 @@ public class RoofThrowerKnob implements IRotaryKnob{
     @Override
     public void turnLeft() {
         switch (level) {
-            case A -> { }
+            case A -> {
+            }
             case B -> level = RoofThrowerLevel.A;
             case C -> level = RoofThrowerLevel.B;
         }
@@ -34,7 +36,8 @@ public class RoofThrowerKnob implements IRotaryKnob{
         switch (level) {
             case A -> level = RoofThrowerLevel.B;
             case B -> level = RoofThrowerLevel.C;
-            case C -> { }
+            case C -> {
+            }
         }
     }
 }

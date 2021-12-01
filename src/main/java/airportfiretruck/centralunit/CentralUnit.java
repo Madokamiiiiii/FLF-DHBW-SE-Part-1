@@ -7,23 +7,18 @@ import airportfiretruck.cabin.panel.rotaryknobs.IRotaryKnob;
 import airportfiretruck.cabin.panel.rotaryknobs.RoofThrowerKnob;
 import airportfiretruck.cabin.panel.switches.RelatedDevice;
 import airportfiretruck.cabin.pedals.PedalType;
-import airportfiretruck.engine.Engine;
 import airportfiretruck.engine.IEngine;
-import airportfiretruck.lights.BrakeLight;
-import airportfiretruck.lights.DirectionIndicatorLight;
-import airportfiretruck.lights.HeadLight;
-import airportfiretruck.lights.SideLight;
+import airportfiretruck.lights.*;
 import airportfiretruck.lights.led.BlueLight;
 import airportfiretruck.lights.led.WarningLight;
-import airportfiretruck.lights.position.FrontLight;
 import airportfiretruck.lights.position.LeftRightSide;
-import airportfiretruck.thrower.FrontThrower;
 
-public class CentralUnit implements IPedalCentralUnit, ISteeringCentralUnit, IThrowerCentralUnit, IControlPanelCentralUnit{
+public class CentralUnit implements IPedalCentralUnit, ISteeringCentralUnit, IThrowerCentralUnit, IControlPanelCentralUnit {
     private AirportFireTruck flf;
-    public CentralUnit() {
 
+    public CentralUnit() {
     }
+
     @Override
     public void pedal(PedalType ptype) {
         int sign = 4;
@@ -37,11 +32,11 @@ public class CentralUnit implements IPedalCentralUnit, ISteeringCentralUnit, ITh
         }
         ((VelocityDisplay) flf.getCabin().getDisplays().get(1)).setVelocity(newVelocity);
 
-        for (IEngine engine :flf.getEngine()) {
+        for (IEngine engine : flf.getEngines()) {
             engine.setVelocity(newVelocity);
             engine.rotate(newVelocity);
         }
-        for (BrakeLight blight : flf.getBlights()) {
+        for (BrakeLight blight : flf.getBrakeLights()) {
             if (sign < 0) {
                 blight.on();
                 continue;
@@ -51,19 +46,19 @@ public class CentralUnit implements IPedalCentralUnit, ISteeringCentralUnit, ITh
     }
 
     @Override
-    public void pswitch(RelatedDevice device, boolean isOn) {
+    public void panelSwitch(RelatedDevice device, boolean isOn) {
         switch (device) {
             case ENGINES -> {
-                for (IEngine engine: flf.getEngine()) {
-                        if (isOn) {
-                            engine.off();
-                            continue;
-                        }
-                        engine.on();
+                for (IEngine engine : flf.getEngines()) {
+                    if (isOn) {
+                        engine.off();
+                        continue;
+                    }
+                    engine.on();
                 }
             }
             case BLUE_LIGHTS -> {
-                for (BlueLight bl: flf.getBulights()) {
+                for (BlueLight bl : flf.getBlueLights()) {
                     if (isOn) {
                         bl.off();
                         continue;
@@ -72,7 +67,7 @@ public class CentralUnit implements IPedalCentralUnit, ISteeringCentralUnit, ITh
                 }
             }
             case ROOF_LIGHTS -> {
-                for (HeadLight hl: flf.getHlights()) {
+                for (HeadLight hl : flf.getHeadLights()) {
                     if (isOn) {
                         hl.off();
                         continue;
@@ -81,7 +76,7 @@ public class CentralUnit implements IPedalCentralUnit, ISteeringCentralUnit, ITh
                 }
             }
             case SIDE_LIGHTS -> {
-                for (SideLight sl: flf.getSlights()) {
+                for (SideLight sl : flf.getSideLights()) {
                     if (isOn) {
                         sl.off();
                         continue;
@@ -90,7 +85,7 @@ public class CentralUnit implements IPedalCentralUnit, ISteeringCentralUnit, ITh
                 }
             }
             case FRONT_LIGHTS -> {
-                for (FrontLight fl: flf.getFlights()) {
+                for (FrontLight fl : flf.getFrontLights()) {
                     if (isOn) {
                         fl.off();
                         continue;
@@ -99,7 +94,7 @@ public class CentralUnit implements IPedalCentralUnit, ISteeringCentralUnit, ITh
                 }
             }
             case WARNING_LIGHTS -> {
-                for (WarningLight wl: flf.getWlights()) {
+                for (WarningLight wl : flf.getWarningLights()) {
                     if (isOn) {
                         wl.off();
                         continue;
@@ -113,16 +108,16 @@ public class CentralUnit implements IPedalCentralUnit, ISteeringCentralUnit, ITh
     @Override
     public void steer() {
         int position = flf.getCabin().getSwheel().getPosition();
-        flf.getFaxles().get(0).setSangle(position);
-        flf.getFaxles().get(1).setSangle(position);
+        flf.getFrontAxles().get(0).setSteeringAngle(position);
+        flf.getFrontAxles().get(1).setSteeringAngle(position);
         if (position == 0) {
-            for (DirectionIndicatorLight dlight: flf.getDlights()) {
+            for (DirectionIndicatorLight dlight : flf.getDirectionIndicatorLights()) {
                 dlight.off();
             }
         }
         if (position < 0) {
-            for (DirectionIndicatorLight dlight: flf.getDlights()) {
-                if (dlight.getLrside() == LeftRightSide.LEFT) {
+            for (DirectionIndicatorLight dlight : flf.getDirectionIndicatorLights()) {
+                if (dlight.getLeftRightSide() == LeftRightSide.LEFT) {
                     dlight.on();
                     continue;
                 }
@@ -130,8 +125,8 @@ public class CentralUnit implements IPedalCentralUnit, ISteeringCentralUnit, ITh
             }
         }
         if (position > 0) {
-            for (DirectionIndicatorLight dlight: flf.getDlights()) {
-                if (dlight.getLrside() == LeftRightSide.RIGHT) {
+            for (DirectionIndicatorLight dlight : flf.getDirectionIndicatorLights()) {
+                if (dlight.getLeftRightSide() == LeftRightSide.RIGHT) {
                     dlight.on();
                     continue;
                 }
@@ -141,10 +136,14 @@ public class CentralUnit implements IPedalCentralUnit, ISteeringCentralUnit, ITh
     }
 
     @Override
-    public void throww(IRotaryKnob tknob) {
+    public void thrower(IRotaryKnob tknob) {
         switch (tknob.getType()) {
-            case ROOF -> flf.getRthrower().setLevel(((RoofThrowerKnob)tknob).getLevel());
-            case FRONT -> flf.getFthrower().setLevel(((FrontThrowerKnob)tknob).getLevel());
+            case ROOF -> flf.getRoofThrower().setLevel(((RoofThrowerKnob) tknob).getLevel());
+            case FRONT -> flf.getFrontThrower().setLevel(((FrontThrowerKnob) tknob).getLevel());
         }
+    }
+
+    public void setFlf(AirportFireTruck flf) {
+        this.flf = flf;
     }
 }

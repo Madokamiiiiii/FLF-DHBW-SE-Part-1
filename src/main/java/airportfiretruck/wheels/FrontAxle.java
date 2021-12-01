@@ -1,16 +1,17 @@
 package airportfiretruck.wheels;
 
-public class FrontAxle extends Axle{
-    private int sangle;
+public class FrontAxle extends Axle {
+    private int steeringAngle;
+
     public FrontAxle() {
 
     }
 
-    public void setSangle(int sangle) {
-        this.sangle = sangle;
+    public void setSteeringAngle(int steeringAngle) {
+        this.steeringAngle = steeringAngle;
     }
 
-    public int getSangle() {
-        return sangle;
+    public int getSteeringAngle() {
+        return steeringAngle;
     }
 }

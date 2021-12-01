@@ -2,15 +2,10 @@ package airportfiretruck;
 
 import airportfiretruck.cabin.Cabin;
 import airportfiretruck.centralunit.CentralUnit;
-import airportfiretruck.engine.ElectroEngine;
 import airportfiretruck.engine.IEngine;
-import airportfiretruck.lights.BrakeLight;
-import airportfiretruck.lights.DirectionIndicatorLight;
-import airportfiretruck.lights.HeadLight;
-import airportfiretruck.lights.SideLight;
+import airportfiretruck.lights.*;
 import airportfiretruck.lights.led.BlueLight;
 import airportfiretruck.lights.led.WarningLight;
-import airportfiretruck.lights.position.FrontLight;
 import airportfiretruck.thrower.FloorSprayNozzle;
 import airportfiretruck.thrower.FrontThrower;
 import airportfiretruck.thrower.RoofThrower;
@@ -21,101 +16,104 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AirportFireTruck {
-    private List<IEngine> engine;
-    private CentralUnit cunit;
+    private List<IEngine> engines;
+    private final CentralUnit centralUnit;
     private Cabin cabin;
-    private RoofThrower rthrower;
-    private FrontThrower fthrower;
-    private List<FloorSprayNozzle> fnozzles;
+    private RoofThrower roofThrower;
+    private FrontThrower frontThrower;
+    private List<FloorSprayNozzle> floorSprayNozzles;
     private List<Axle> axles;
-    private List<FrontAxle> faxles;
-    private List<DirectionIndicatorLight> dlights;
-    private List<BrakeLight> blights;
-    private List<HeadLight> hlights;
-    private List<SideLight> slights;
-    private List<BlueLight> bulights;
-    private List<WarningLight> wlights;
-    private List<FrontLight> flights;
+    private List<FrontAxle> frontAxles;
+    private List<DirectionIndicatorLight> directionIndicatorLights;
+    private List<BrakeLight> brakeLights;
+    private List<HeadLight> headLights;
+    private List<SideLight> sideLights;
+    private List<BlueLight> blueLights;
+    private List<WarningLight> warningLights;
+    private List<FrontLight> frontLights;
 
     public Cabin getCabin() {
         return cabin;
     }
 
-    public CentralUnit getCunit() {
-        return cunit;
+    public CentralUnit getCentralUnit() {
+        return centralUnit;
     }
 
-    public RoofThrower getRthrower() {
-        return rthrower;
+    public RoofThrower getRoofThrower() {
+        return roofThrower;
     }
 
-    public FrontThrower getFthrower() {
-        return fthrower;
+    public FrontThrower getFrontThrower() {
+        return frontThrower;
     }
 
-    public List<FrontAxle> getFaxles() {
-        return faxles;
-    }
-    public List<DirectionIndicatorLight> getDlights() {
-        return dlights;
-    }
-    public List<IEngine> getEngine() {
-        return engine;
+    public List<FrontAxle> getFrontAxles() {
+        return frontAxles;
     }
 
-    public List<BlueLight> getBulights() {
-        return bulights;
+    public List<DirectionIndicatorLight> getDirectionIndicatorLights() {
+        return directionIndicatorLights;
     }
 
-    public List<BrakeLight> getBlights() {
-        return blights;
+    public List<IEngine> getEngines() {
+        return engines;
     }
 
-    public List<HeadLight> getHlights() {
-        return hlights;
+    public List<BlueLight> getBlueLights() {
+        return blueLights;
     }
 
-    public List<SideLight> getSlights() {
-        return slights;
+    public List<BrakeLight> getBrakeLights() {
+        return brakeLights;
     }
 
-    public List<WarningLight> getWlights() {
-        return wlights;
+    public List<HeadLight> getHeadLights() {
+        return headLights;
     }
 
-    public List<FrontLight> getFlights() {
-        return flights;
+    public List<SideLight> getSideLights() {
+        return sideLights;
+    }
+
+    public List<WarningLight> getWarningLights() {
+        return warningLights;
+    }
+
+    public List<FrontLight> getFrontLights() {
+        return frontLights;
     }
 
     public AirportFireTruck(Builder builder) {
-        cunit = builder.cunit;
+        centralUnit = builder.centralUnit;
+        centralUnit.setFlf(this);
         //          .
         //          .
         //          .
     }
 
     public class Builder {
-        private final CentralUnit cunit;
+        private final CentralUnit centralUnit;
         private final Cabin cabin;
-        private final RoofThrower rthrower;
-        private final FrontThrower fthrower;
-        private final List<IEngine> e = new ArrayList<>();
-        private final List<FloorSprayNozzle> fnozzles = new ArrayList<>();
+        private final RoofThrower roofThrower;
+        private final FrontThrower frontThrower;
+        private final List<IEngine> engines = new ArrayList<>();
+        private final List<FloorSprayNozzle> floorSprayNozzles = new ArrayList<>();
         private final List<Axle> axles = new ArrayList<>();
-        private final List<FrontAxle> faxles = new ArrayList<>();
-        private final List<FrontLight> fl = new ArrayList<>();
-        private final List<WarningLight> wl = new ArrayList<>();
-        private final List<SideLight> sl = new ArrayList<>();
-        private final List<HeadLight> hl = new ArrayList<>();
-        private final List<BrakeLight> bl = new ArrayList<>();
-        private final List<BlueLight> bul = new ArrayList<>();
-        private final List<DirectionIndicatorLight> dl = new ArrayList<>();
+        private final List<FrontAxle> frontAxles = new ArrayList<>();
+        private final List<FrontLight> frontLights = new ArrayList<>();
+        private final List<WarningLight> warningLights = new ArrayList<>();
+        private final List<SideLight> sideLights = new ArrayList<>();
+        private final List<HeadLight> headLights = new ArrayList<>();
+        private final List<BrakeLight> brakeLights = new ArrayList<>();
+        private final List<BlueLight> blueLights = new ArrayList<>();
+        private final List<DirectionIndicatorLight> directionIndicatorLights = new ArrayList<>();
 
         public Builder() {
-            cunit = new CentralUnit();
+            centralUnit = new CentralUnit();
             cabin = new Cabin();
-            rthrower = new RoofThrower();
-            fthrower = new FrontThrower();
+            roofThrower = new RoofThrower();
+            frontThrower = new FrontThrower();
 
             // genaue Implementation für schlaflose Nächte
         }
