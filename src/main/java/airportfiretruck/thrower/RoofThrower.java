@@ -8,6 +8,10 @@ public class RoofThrower implements IThrowerMixer{
 
     }
 
+    public void setLevel(RoofThrowerLevel level) {
+        this.level = level;
+    }
+
     @Override
     public void spray() {
 

@@ -2,8 +2,19 @@ package airportfiretruck.cabin.panel.rotaryknobs;
 
 public class FrontThrowerKnob implements IRotaryKnob{
     private int level;
+    private ThrowerType type;
     public FrontThrowerKnob() {
         level = 0;
+        type = ThrowerType.FRONT;
+    }
+
+    @Override
+    public ThrowerType getType() {
+        return type;
+    }
+
+    public int getLevel() {
+        return level;
     }
 
     @Override

@@ -4,8 +4,19 @@ import airportfiretruck.thrower.RoofThrowerLevel;
 
 public class RoofThrowerKnob implements IRotaryKnob{
     private RoofThrowerLevel level;
+    private ThrowerType type;
+
+    @Override
+    public ThrowerType getType() {
+        return type;
+    }
+
+    public RoofThrowerLevel getLevel() {
+        return level;
+    }
 
     public RoofThrowerKnob() {
+        type = ThrowerType.ROOF;
         level = RoofThrowerLevel.A;
     }
 

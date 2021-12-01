@@ -2,7 +2,9 @@ package airportfiretruck.centralunit;
 
 import airportfiretruck.AirportFireTruck;
 import airportfiretruck.cabin.displays.VelocityDisplay;
+import airportfiretruck.cabin.panel.rotaryknobs.FrontThrowerKnob;
 import airportfiretruck.cabin.panel.rotaryknobs.IRotaryKnob;
+import airportfiretruck.cabin.panel.rotaryknobs.RoofThrowerKnob;
 import airportfiretruck.cabin.panel.switches.RelatedDevice;
 import airportfiretruck.cabin.pedals.PedalType;
 import airportfiretruck.engine.Engine;
@@ -15,6 +17,7 @@ import airportfiretruck.lights.led.BlueLight;
 import airportfiretruck.lights.led.WarningLight;
 import airportfiretruck.lights.position.FrontLight;
 import airportfiretruck.lights.position.LeftRightSide;
+import airportfiretruck.thrower.FrontThrower;
 
 public class CentralUnit implements IPedalCentralUnit, ISteeringCentralUnit, IThrowerCentralUnit, IControlPanelCentralUnit{
     private AirportFireTruck flf;
@@ -139,6 +142,9 @@ public class CentralUnit implements IPedalCentralUnit, ISteeringCentralUnit, ITh
 
     @Override
     public void throww(IRotaryKnob tknob) {
-
+        switch (tknob.getType()) {
+            case ROOF -> flf.getRthrower().setLevel(((RoofThrowerKnob)tknob).getLevel());
+            case FRONT -> flf.getFthrower().setLevel(((FrontThrowerKnob)tknob).getLevel());
+        }
     }
 }

@@ -49,6 +49,10 @@ public class AirportFireTruck {
         return rthrower;
     }
 
+    public FrontThrower getFthrower() {
+        return fthrower;
+    }
+
     public List<FrontAxle> getFaxles() {
         return faxles;
     }
