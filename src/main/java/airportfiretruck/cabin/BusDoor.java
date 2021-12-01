@@ -7,8 +7,12 @@ import java.util.List;
 public class BusDoor {
 
     private boolean isOpen;
-    
-    private List<BusDoorButton> buttons;
+
+    private final List<BusDoorButton> buttons;
+
+    public void openClose() {
+        isOpen = !isOpen;
+    }
 
     public BusDoor() {
 

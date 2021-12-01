@@ -1,11 +1,11 @@
 package airportfiretruck.thrower;
 
-public class FrontThrower implements IThrowerMixer {
+public class FrontThrower extends ThrowerMixer {
     private int degree;
     private int level;
 
     public FrontThrower() {
-
+        joystick.assignThrower(this);
     }
 
     public void setDegree(int degree) {

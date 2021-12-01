@@ -1,5 +1,7 @@
 package airportfiretruck.cabin.displays;
 
 public interface IDisplay {
-    public String display();
+    void setValue(double value);
+
+    String display();
 }

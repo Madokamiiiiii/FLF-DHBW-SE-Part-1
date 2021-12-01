@@ -7,4 +7,12 @@ public class FrontSeat extends Seat {
     public FrontSeat() {
 
     }
+
+    public void setOccupied(boolean occupied) {
+        isOccupied = occupied;
+    }
+
+    public boolean isOccupied() {
+        return isOccupied;
+    }
 }

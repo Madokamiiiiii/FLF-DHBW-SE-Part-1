@@ -8,12 +8,9 @@ public class VelocityDisplay implements IDisplay {
         velocity = 0;
     }
 
-    public void setVelocity(int velocity) {
-        this.velocity = velocity;
-    }
-
-    public int getVelocity() {
-        return velocity;
+    @Override
+    public void setValue(double velocity) {
+        this.velocity = (int) velocity;
     }
 
     @Override

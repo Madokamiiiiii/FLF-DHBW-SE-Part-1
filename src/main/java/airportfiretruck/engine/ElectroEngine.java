@@ -3,7 +3,7 @@ package airportfiretruck.engine;
 import airportfiretruck.battery.BatteryManagement;
 
 public class ElectroEngine extends Engine {
-    private BatteryManagement bmanagement;
+    private BatteryManagement batteryManagement;
 
     public ElectroEngine() {
 
@@ -21,7 +21,7 @@ public class ElectroEngine extends Engine {
 
     @Override
     public int rotate(int kmph) {
-        bmanagement.takeOut(25 * kmph);
+        batteryManagement.takeOut(25 * kmph);
         return 0;
     }
 }

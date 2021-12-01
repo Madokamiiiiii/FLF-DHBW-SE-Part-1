@@ -8,8 +8,11 @@ public class BatteryDisplay implements IDisplay {
 
     }
 
-    @Override
+    public void setValue(double value) {
+        this.value = Math.round(value / 40.0) / 100.0;
+    }
+
     public String display() {
-        return "";
+        return value + "%";
     }
 }

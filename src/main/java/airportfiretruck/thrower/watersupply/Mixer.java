@@ -17,7 +17,7 @@ public class Mixer {
         tanks.add(1, new Tank(ExtinguishingAgent.FOAM));
     }
 
-    public void mixFoam(boolean moreFoam) {
+    public void setMixingRatio(int ratio) {
 
     }
 

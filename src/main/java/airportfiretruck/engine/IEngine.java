@@ -1,9 +1,15 @@
 package airportfiretruck.engine;
 
 public interface IEngine {
-    public void on();
-    public void off();
-    public int rotate(int kmph);
-    public int getVelocity();
-    public void setVelocity(int velocity);
+    void on();
+
+    void off();
+
+    int rotate(int kmph);
+
+    int getVelocity();
+
+    BatteryManagement getBatteryManagement();
+
+    void setVelocity(int velocity);
 }

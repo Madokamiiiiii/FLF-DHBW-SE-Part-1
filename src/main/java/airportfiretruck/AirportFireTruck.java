@@ -16,11 +16,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AirportFireTruck {
-    private List<IEngine> engines;
+    private final List<IEngine> engines;
     private final CentralUnit centralUnit;
-    private Cabin cabin;
-    private RoofThrower roofThrower;
-    private FrontThrower frontThrower;
+    private final Cabin cabin;
+    private final RoofThrower roofThrower;
+    private final FrontThrower frontThrower;
     private List<FloorSprayNozzle> floorSprayNozzles;
     private List<Axle> axles;
     private List<FrontAxle> frontAxles;

@@ -1,12 +1,12 @@
 package airportfiretruck.thrower;
 
-public class RoofThrower implements IThrowerMixer {
+public class RoofThrower extends ThrowerMixer {
     private RoofThrowerLevel level;
-    private UpperSegment usegment;
-    private LowerSegment lsegment;
+    private UpperSegment upperSegment;
+    private LowerSegment lowerSegment;
 
     public RoofThrower() {
-
+        joystick.assignThrower(this);
     }
 
     public void setLevel(RoofThrowerLevel level) {
@@ -18,4 +18,13 @@ public class RoofThrower implements IThrowerMixer {
     public void spray() {
 
     }
+
+    public void setLowerSegmentDegree(int degree) {
+        lowerSegment.setDegree(degree);
+    }
+
+    public void setUpperSegmentLength(int length) {
+        upperSegment.setLength(length);
+    }
+
 }
