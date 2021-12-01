@@ -9,6 +9,7 @@ public enum BatteryManagement {
         bbox.charge(amount);
     }
     public int takeOut (int amount) {
+
         return bbox.takeOut(amount);
     }
     public double getRemainingBatteryLevel() {
