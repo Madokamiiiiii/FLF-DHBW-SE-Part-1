@@ -151,39 +151,91 @@ public class AirportFireTruck {
                 axles.add(i, new Axle());
                 frontAxles.add(i, new FrontAxle());
                 blueLights.add(i, new BlueLight(LightSize.SMALL));
+                blueLights.get(i).setPosition(Position.BOTTOM);
                 blueLights.get(i).setFrontRearSide(FrontRearSide.FRONT);
                 directionIndicatorLights.add(i, new DirectionIndicatorLight());
-                directionIndicatorLights.add(i + 2, new DirectionIndicatorLight());
+                directionIndicatorLights.get(i).setPosition(Position.BOTTOM);
                 directionIndicatorLights.get(i).setLeftRightSide(LeftRightSide.LEFT);
-                directionIndicatorLights.get(2 * i).setFrontRearSide(FrontRearSide.FRONT);
-                directionIndicatorLights.get(i + 2).setLeftRightSide(LeftRightSide.RIGHT);
-                directionIndicatorLights.get(2 * i + 1).setFrontRearSide(FrontRearSide.REAR);
                 brakeLights.add(i, new BrakeLight());
                 brakeLights.get(i).setFrontRearSide(FrontRearSide.REAR);
+                brakeLights.get(i).setPosition(Position.BOTTOM);
                 warningLights.add(i, new WarningLight());
                 warningLights.get(i).setPosition(Position.TOP);
                 headLights.add(i, new HeadLight());
-                headLights.add(i + 2, new HeadLight());
                 headLights.get(i).setPosition(Position.TOP);
+                headLights.get(i).setLeftRightSide(LeftRightSide.MIDDLE);
                 headLights.get(i).setFrontRearSide(FrontRearSide.FRONT);
+            }
+            for (int i = 0; i < 2; i++) {
+                blueLights.add(i + 2, new BlueLight(LightSize.LARGE));
+                blueLights.get(i + 2).setPosition(Position.TOP);
+                blueLights.get(i + 2).setFrontRearSide(FrontRearSide.FRONT);
+                blueLights.get(i + 2).setLeftRightSide(LeftRightSide.LEFT);
+                directionIndicatorLights.add(i + 2, new DirectionIndicatorLight());
+                directionIndicatorLights.get(i + 2).setPosition(Position.BOTTOM);
+                headLights.add(i + 2, new HeadLight());
                 headLights.get(i + 2).setPosition(Position.TOP);
+                headLights.get(i + 2).setLeftRightSide(LeftRightSide.MIDDLE);
                 headLights.get(i + 2).setFrontRearSide(FrontRearSide.FRONT);
             }
-            for (int i = 0; i < 3; i++) {
-                sideLights.add(i, new SideLight());
-                sideLights.add(i + 3, new SideLight());
-                sideLights.get(i).setLeftRightSide(LeftRightSide.LEFT);
-                sideLights.get(i).setFrontRearSide(FrontRearSide.FRONT);
-                sideLights.get(i + 3).setLeftRightSide(LeftRightSide.RIGHT);
-                sideLights.get(i + 3).setFrontRearSide(FrontRearSide.FRONT);
+            for (int i = 0; i < 2; i++) {
+                blueLights.add(i + 4, new BlueLight(LightSize.LARGE));
+                blueLights.get(i + 4).setPosition(Position.TOP);
+                blueLights.get(i + 4).setFrontRearSide(FrontRearSide.FRONT);
+                blueLights.get(i + 4).setLeftRightSide(LeftRightSide.RIGHT);
+                headLights.add(i + 4, new HeadLight());
             }
-
+            for (int i = 0; i < 2; i++) {
+                blueLights.add(i + 6, new BlueLight(LightSize.MEDIUM));
+                blueLights.get(i + 6).setPosition(Position.BOTTOM);
+                blueLights.get(i + 6).setFrontRearSide(FrontRearSide.REAR);
+                blueLights.get(i + 6).setLeftRightSide(LeftRightSide.LEFT);
+                headLights.add(i + 6, new HeadLight());
+            }
+            for (int i = 0; i < 2; i++) {
+                blueLights.add(i + 8, new BlueLight(LightSize.MEDIUM));
+                blueLights.get(i + 8).setPosition(Position.BOTTOM);
+                blueLights.get(i + 8).setFrontRearSide(FrontRearSide.REAR);
+                blueLights.get(i + 8).setLeftRightSide(LeftRightSide.RIGHT);
+                directionIndicatorLights.get(2 * i).setFrontRearSide(FrontRearSide.FRONT);
+                directionIndicatorLights.get(i + 2).setLeftRightSide(LeftRightSide.RIGHT);
+                directionIndicatorLights.get(2 * i + 1).setFrontRearSide(FrontRearSide.REAR);
+                headLights.add(i + 8, new HeadLight());
+            }
+            for (int i = 0; i < 3; i++) {
+                headLights.get(i + 4).setFrontRearSide(FrontRearSide.FRONT);
+                headLights.get(i + 4).setLeftRightSide(LeftRightSide.LEFT);
+                headLights.get(i + 4).setPosition(Position.BOTTOM);
+            }
+            for (int i = 0; i < 3; i++) {
+                headLights.get(i + 7).setFrontRearSide(FrontRearSide.FRONT);
+                headLights.get(i + 7).setLeftRightSide(LeftRightSide.RIGHT);
+                headLights.get(i + 7).setPosition(Position.BOTTOM);
+            }
+            for (int i = 0; i < 5; i++) {
+                sideLights.add(i, new SideLight());
+                sideLights.get(i).setLeftRightSide(LeftRightSide.LEFT);
+                sideLights.get(i).setPosition(Position.BOTTOM);
+            }
+            for (int i = 0; i < 5; i++) {
+                sideLights.add(i + 5, new SideLight());
+                sideLights.get(i + 5).setLeftRightSide(LeftRightSide.RIGHT);
+                sideLights.get(i + 5).setPosition(Position.BOTTOM);
+            }
+            for (Axle axle : axles) {
+                buildAxle(axle);
+            }
+            for (FrontAxle frontAxle : frontAxles) {
+                buildAxle(frontAxle);
+            }
             warningLights.get(0).setFrontRearSide(FrontRearSide.REAR);
             warningLights.get(0).setLeftRightSide(LeftRightSide.RIGHT);
             warningLights.get(1).setFrontRearSide(FrontRearSide.FRONT);
             warningLights.get(1).setLeftRightSide(LeftRightSide.LEFT);
             brakeLights.get(0).setLeftRightSide(LeftRightSide.LEFT);
             brakeLights.get(1).setLeftRightSide(LeftRightSide.RIGHT);
+            blueLights.get(0).setLeftRightSide(LeftRightSide.LEFT);
+            blueLights.get(1).setLeftRightSide(LeftRightSide.RIGHT);
         }
 
         private void buildAxle(Axle axle) {

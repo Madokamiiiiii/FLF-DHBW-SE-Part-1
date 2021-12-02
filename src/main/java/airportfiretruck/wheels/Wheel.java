@@ -7,10 +7,13 @@ public class Wheel {
     private List<BrakeDisk> brakeDisks;
 
     public Wheel() {
-        tire = new Tire();
-        brakeDisks = new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
-            brakeDisks.add(i,new BrakeDisk());
-        }
+    }
+
+    public void setBrakeDisks(List<BrakeDisk> brakeDisks) {
+        this.brakeDisks = brakeDisks;
+    }
+
+    public void setTire(Tire tire) {
+        this.tire = tire;
     }
 }

@@ -7,4 +7,8 @@ public class Axle {
 
     public Axle() {
     }
+
+    public void setWheels(List<Wheel> wheels) {
+        this.wheels = wheels;
+    }
 }

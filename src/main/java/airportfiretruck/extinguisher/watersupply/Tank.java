@@ -31,18 +31,22 @@ public class Tank {
                         pointer[2]--;
                         continue;
                     }
-                    pointer[2] = capacity[0][0].length;
-                    pointer[0]++;
+                    if (pointer[0] < capacity.length - 1) {
+                        pointer[2] = capacity[0][0].length - 1;
+                        pointer[0]++;
+                        capacity[pointer[0]][pointer[1]][pointer[2]] = 1;
+                        pointer[2]--;
+                        continue;
+                    }
+                }
+                if (pointer[1] < capacity[0].length - 1) {
+                    pointer[2] = capacity[0][0].length - 1;
+                    pointer[0] = 0;
+                    pointer[1]++;
                     capacity[pointer[0]][pointer[1]][pointer[2]] = 1;
                     pointer[2]--;
                     continue;
                 }
-                pointer[2] = capacity[0][0].length;
-                pointer[0] = 0;
-                pointer[1]++;
-                capacity[pointer[0]][pointer[1]][pointer[2]] = 1;
-                pointer[2]--;
-                continue;
             }
             return;
         }
