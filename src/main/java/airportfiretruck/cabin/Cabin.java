@@ -26,7 +26,8 @@ public class Cabin {
         return displays;
     }
 
-    public SteeringWheel getSwheel() {
+    public SteeringWheel getSteeringWheel() {
         return steeringWheel;
     }
+
 }

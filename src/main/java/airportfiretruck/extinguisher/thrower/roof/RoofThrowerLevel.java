@@ -1,4 +1,4 @@
-package airportfiretruck.thrower;
+package airportfiretruck.extinguisher.thrower.roof;
 
 public enum RoofThrowerLevel {
     A,

@@ -4,6 +4,14 @@ import airportfiretruck.cabin.Cabin;
 import airportfiretruck.centralunit.CentralUnit;
 import airportfiretruck.engine.ElectroEngine;
 import airportfiretruck.engine.IEngine;
+import airportfiretruck.extinguisher.thrower.FloorSprayNozzle;
+import airportfiretruck.extinguisher.thrower.FrontThrower;
+import airportfiretruck.extinguisher.thrower.roof.LowerSegment;
+import airportfiretruck.extinguisher.thrower.roof.RoofThrower;
+import airportfiretruck.extinguisher.thrower.roof.UpperSegment;
+import airportfiretruck.extinguisher.watersupply.ExtinguishingAgent;
+import airportfiretruck.extinguisher.watersupply.Mixer;
+import airportfiretruck.extinguisher.watersupply.Tank;
 import airportfiretruck.lights.*;
 import airportfiretruck.lights.led.BlueLight;
 import airportfiretruck.lights.led.LightSize;
@@ -11,9 +19,6 @@ import airportfiretruck.lights.led.WarningLight;
 import airportfiretruck.lights.position.FrontRearSide;
 import airportfiretruck.lights.position.LeftRightSide;
 import airportfiretruck.lights.position.Position;
-import airportfiretruck.thrower.FloorSprayNozzle;
-import airportfiretruck.thrower.FrontThrower;
-import airportfiretruck.thrower.RoofThrower;
 import airportfiretruck.wheels.Axle;
 import airportfiretruck.wheels.FrontAxle;
 
@@ -26,15 +31,15 @@ public class AirportFireTruck {
     private final Cabin cabin;
     private final RoofThrower roofThrower;
     private final FrontThrower frontThrower;
-    private List<FloorSprayNozzle> floorSprayNozzles;
-    private List<Axle> axles;
-    private List<FrontAxle> frontAxles;
-    private List<DirectionIndicatorLight> directionIndicatorLights;
-    private List<BrakeLight> brakeLights;
-    private List<HeadLight> headLights;
-    private List<SideLight> sideLights;
-    private List<BlueLight> blueLights;
-    private List<WarningLight> warningLights;
+    private final List<FloorSprayNozzle> floorSprayNozzles;
+    private final List<Axle> axles;
+    private final List<FrontAxle> frontAxles;
+    private final List<DirectionIndicatorLight> directionIndicatorLights;
+    private final List<BrakeLight> brakeLights;
+    private final List<HeadLight> headLights;
+    private final List<SideLight> sideLights;
+    private final List<BlueLight> blueLights;
+    private final List<WarningLight> warningLights;
     private List<FrontLight> frontLights;
 
     public Cabin getCabin() {
@@ -128,11 +133,17 @@ public class AirportFireTruck {
         public Builder() {
             centralUnit = new CentralUnit();
             cabin = new Cabin();
-            roofThrower = new RoofThrower();
-            frontThrower = new FrontThrower();
+
+            // Thrower
+            Tank waterTank = new Tank(ExtinguishingAgent.WATER);
+            Tank foamTank = new Tank(ExtinguishingAgent.FOAM);
+            Mixer mixer = new Mixer(List.of(waterTank, foamTank));
+            roofThrower = new RoofThrower(mixer, 10000, new UpperSegment(), new LowerSegment());
+            frontThrower = new FrontThrower(mixer, 3500);
             for (int i = 0; i < 7; i++) {
-                floorSprayNozzles.add(i, new FloorSprayNozzle());
+                floorSprayNozzles.add(i, new FloorSprayNozzle(100, waterTank));
             }
+
             for (int i = 0; i < 2; i++) {
                 engines.add(i, new ElectroEngine());
                 axles.add(i, new Axle());

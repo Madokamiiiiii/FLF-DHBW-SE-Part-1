@@ -2,15 +2,15 @@ package airportfiretruck.cabin.joysticks;
 
 import airportfiretruck.buttons.ButtonPosition;
 import airportfiretruck.buttons.PushButton;
-import airportfiretruck.thrower.FrontThrower;
-import airportfiretruck.thrower.IThrowerMixer;
+import airportfiretruck.extinguisher.thrower.FrontThrower;
 
 public class FrontThrowerJoystick extends Joystick {
-    public FrontThrowerJoystick() {
-        super();
-    }
-
     public FrontThrower thrower;
+
+    public FrontThrowerJoystick(FrontThrower thrower) {
+        super();
+        this.thrower = thrower;
+    }
 
     @Override
     public void pushButtonPressed(PushButton pushButton) {
@@ -33,11 +33,5 @@ public class FrontThrowerJoystick extends Joystick {
     public void joystickButtonPressed() {
         joystickButtonPressed(thrower);
     }
-
-    @Override
-    public void assignThrower(IThrowerMixer thrower) {
-        this.thrower = (FrontThrower) thrower;
-    }
-
 
 }

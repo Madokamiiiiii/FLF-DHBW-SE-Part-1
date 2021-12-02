@@ -3,7 +3,7 @@ package airportfiretruck.cabin.joysticks;
 import airportfiretruck.buttons.ButtonPosition;
 import airportfiretruck.buttons.JoystickButton;
 import airportfiretruck.buttons.PushButton;
-import airportfiretruck.thrower.IThrowerMixer;
+import airportfiretruck.extinguisher.thrower.IThrowerMixer;
 
 import java.util.ArrayList;
 
@@ -31,11 +31,9 @@ public abstract class Joystick implements IJoystick {
             case 3 -> ratio = 5;
             case 5 -> ratio = 10;
             case 10 -> ratio = 0;
-            default -> {
-            }
         }
     }
-    
+
 
     protected void joystickButtonPressed(IThrowerMixer thrower) {
         if (thrower.isActive()) {

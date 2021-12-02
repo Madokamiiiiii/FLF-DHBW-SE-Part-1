@@ -107,7 +107,7 @@ public class CentralUnit implements IPedalCentralUnit, ISteeringCentralUnit, ITh
 
     @Override
     public void steer() {
-        int position = flf.getCabin().getSwheel().getPosition();
+        int position = flf.getCabin().getSteeringWheel().getPosition();
         flf.getFrontAxles().get(0).setSteeringAngle(position);
         flf.getFrontAxles().get(1).setSteeringAngle(position);
         if (position == 0) {

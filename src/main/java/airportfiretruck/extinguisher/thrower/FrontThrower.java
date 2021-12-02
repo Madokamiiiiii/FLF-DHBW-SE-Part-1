@@ -1,11 +1,13 @@
-package airportfiretruck.thrower;
+package airportfiretruck.extinguisher.thrower;
+
+import airportfiretruck.extinguisher.watersupply.Mixer;
 
 public class FrontThrower extends ThrowerMixer {
     private int degree;
     private int level;
 
-    public FrontThrower() {
-        joystick.assignThrower(this);
+    public FrontThrower(Mixer mixer, int limit) {
+        super(mixer, limit);
     }
 
     public void setDegree(int degree) {
@@ -18,6 +20,6 @@ public class FrontThrower extends ThrowerMixer {
 
     @Override
     public void spray() {
-
+        mixer.getLiquid(level, mixingRatio);
     }
 }

@@ -3,11 +3,12 @@ package airportfiretruck.cabin.pedals;
 import airportfiretruck.centralunit.IPedalCentralUnit;
 
 public class Pedal implements IPedal {
-    private IPedalCentralUnit centralUnit;
-    private PedalType pedalType;
+    private final IPedalCentralUnit centralUnit;
+    private final PedalType pedalType;
 
-    public Pedal() {
-
+    public Pedal(PedalType type, IPedalCentralUnit centralUnit) {
+        pedalType = type;
+        this.centralUnit = centralUnit;
     }
 
     @Override

@@ -6,10 +6,11 @@ import airportfiretruck.centralunit.ISteeringCentralUnit;
 public class SteeringWheel {
     private int position;
 
-    private ISteeringCentralUnit centralUnit;
+    private final ISteeringCentralUnit centralUnit;
 
-    public SteeringWheel() {
+    public SteeringWheel(ISteeringCentralUnit centralUnit) {
         position = 0;
+        this.centralUnit = centralUnit;
     }
 
     public int getPosition() {

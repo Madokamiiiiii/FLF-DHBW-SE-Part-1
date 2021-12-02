@@ -6,8 +6,8 @@ public class FrontThrowerKnob implements IRotaryKnob {
     private final ThrowerType type;
 
     public FrontThrowerKnob() {
-        level = 0;
         type = ThrowerType.FRONT;
+        level = 0;
     }
 
     @Override
@@ -29,8 +29,6 @@ public class FrontThrowerKnob implements IRotaryKnob {
             case 2500 -> level = 2000;
             case 3000 -> level = 2500;
             case 3500 -> level = 3000;
-            default -> {
-            }
         }
     }
 
@@ -44,8 +42,6 @@ public class FrontThrowerKnob implements IRotaryKnob {
             case 2000 -> level = 2500;
             case 2500 -> level = 3000;
             case 3000 -> level = 3500;
-            default -> {
-            }
         }
     }
 }

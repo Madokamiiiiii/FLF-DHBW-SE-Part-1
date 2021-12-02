@@ -1,4 +1,4 @@
-package airportfiretruck.thrower.watersupply;
+package airportfiretruck.extinguisher.watersupply;
 
 public class Tank {
     private int[][][] capacity;
@@ -10,10 +10,12 @@ public class Tank {
         switch (type) {
             case FOAM -> {
                 capacity = new int[25][10][10];
+                fill(25 * 10 * 10);
                 pointer = new int[]{24, 9, 0};
             }
             case WATER -> {
                 capacity = new int[50][25][10];
+                fill(50 * 25 * 10);
                 pointer = new int[]{49, 24, 0};
             }
         }
@@ -76,5 +78,9 @@ public class Tank {
             return pumped;
         }
         return pumped;
+    }
+
+    public ExtinguishingAgent getType() {
+        return type;
     }
 }
