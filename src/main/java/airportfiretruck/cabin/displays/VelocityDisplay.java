@@ -2,12 +2,8 @@ package airportfiretruck.cabin.displays;
 
 public class VelocityDisplay implements IDisplay {
 
-    private int velocity;
-
-    public VelocityDisplay() {
-        velocity = 0;
-    }
-
+    private int velocity = 0;
+    
     @Override
     public void setValue(double velocity) {
         this.velocity = (int) velocity;

@@ -1,4 +1,4 @@
-package airportfiretruck.lights.position;
+package airportfiretruck.position;
 
 public enum Position {
     TOP,

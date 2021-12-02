@@ -3,14 +3,14 @@ package airportfiretruck.cabin;
 
 import airportfiretruck.centralunit.ISteeringCentralUnit;
 
+// Note: Dieses Lenkrad erlaubt nur eine Wendung bis 90° in beide Richtungen.
 public class SteeringWheel {
     private int position;
 
-    private final ISteeringCentralUnit centralUnit;
+    private ISteeringCentralUnit centralUnit;
 
-    public SteeringWheel(ISteeringCentralUnit centralUnit) {
+    public SteeringWheel() {
         position = 0;
-        this.centralUnit = centralUnit;
     }
 
     public int getPosition() {
@@ -22,14 +22,14 @@ public class SteeringWheel {
     }
 
     public void turnLeft(int degree) {
-        if (position > -40) {
+        if (position > -90) {
             position -= degree;
             centralUnit.steer();
         }
     }
 
     public void turnRight(int degree) {
-        if (position < 40) {
+        if (position < 90) {
             position += degree;
             centralUnit.steer();
         }

@@ -1,8 +1,8 @@
 package airportfiretruck.lights;
 
-import airportfiretruck.lights.position.FrontRearSide;
-import airportfiretruck.lights.position.LeftRightSide;
-import airportfiretruck.lights.position.Position;
+import airportfiretruck.position.FrontRearSide;
+import airportfiretruck.position.LeftRightSide;
+import airportfiretruck.position.Position;
 
 public abstract class Light {
 

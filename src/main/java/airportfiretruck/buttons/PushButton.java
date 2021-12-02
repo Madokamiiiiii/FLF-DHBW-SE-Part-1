@@ -1,17 +1,20 @@
 package airportfiretruck.buttons;
 
 import airportfiretruck.cabin.joysticks.Joystick;
+import airportfiretruck.position.LeftRightSide;
 
 public class PushButton extends Button {
-    private boolean active;
+    private boolean active = false;
     private Joystick joystick;
+
+    private final LeftRightSide position;
 
     public void setJoystick(Joystick joystick) {
         this.joystick = joystick;
     }
 
-    public PushButton() {
-
+    public PushButton(LeftRightSide leftRightSide) {
+        position = leftRightSide;
     }
 
     @Override
@@ -22,5 +25,9 @@ public class PushButton extends Button {
 
     public boolean isActive() {
         return active;
+    }
+
+    public LeftRightSide getPosition() {
+        return position;
     }
 }

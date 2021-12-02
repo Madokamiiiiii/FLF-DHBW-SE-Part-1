@@ -12,15 +12,17 @@ import airportfiretruck.extinguisher.thrower.roof.UpperSegment;
 import airportfiretruck.extinguisher.watersupply.ExtinguishingAgent;
 import airportfiretruck.extinguisher.watersupply.Mixer;
 import airportfiretruck.extinguisher.watersupply.Tank;
-import airportfiretruck.lights.*;
+import airportfiretruck.lights.BrakeLight;
+import airportfiretruck.lights.DirectionIndicatorLight;
+import airportfiretruck.lights.HeadLight;
+import airportfiretruck.lights.SideLight;
 import airportfiretruck.lights.led.BlueLight;
 import airportfiretruck.lights.led.LightSize;
 import airportfiretruck.lights.led.WarningLight;
-import airportfiretruck.lights.position.FrontRearSide;
-import airportfiretruck.lights.position.LeftRightSide;
-import airportfiretruck.lights.position.Position;
-import airportfiretruck.wheels.Axle;
-import airportfiretruck.wheels.FrontAxle;
+import airportfiretruck.position.FrontRearSide;
+import airportfiretruck.position.LeftRightSide;
+import airportfiretruck.position.Position;
+import airportfiretruck.wheels.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +42,6 @@ public class AirportFireTruck {
     private final List<SideLight> sideLights;
     private final List<BlueLight> blueLights;
     private final List<WarningLight> warningLights;
-    private List<FrontLight> frontLights;
 
     public Cabin getCabin() {
         return cabin;
@@ -90,10 +91,6 @@ public class AirportFireTruck {
         return warningLights;
     }
 
-    public List<FrontLight> getFrontLights() {
-        return frontLights;
-    }
-
     public AirportFireTruck(Builder builder) {
         centralUnit = builder.centralUnit;
         centralUnit.setFlf(this);
@@ -114,7 +111,11 @@ public class AirportFireTruck {
         headLights = builder.headLights;
     }
 
-    public class Builder {
+    public List<FloorSprayNozzle> getFloorSprayNozzles() {
+        return floorSprayNozzles;
+    }
+
+    public static class Builder {
         private final CentralUnit centralUnit;
         private final Cabin cabin;
         private final RoofThrower roofThrower;
@@ -123,7 +124,6 @@ public class AirportFireTruck {
         private final List<FloorSprayNozzle> floorSprayNozzles = new ArrayList<>();
         private final List<Axle> axles = new ArrayList<>();
         private final List<FrontAxle> frontAxles = new ArrayList<>();
-        private final List<FrontLight> frontLights = new ArrayList<>();
         private final List<WarningLight> warningLights = new ArrayList<>();
         private final List<SideLight> sideLights = new ArrayList<>();
         private final List<HeadLight> headLights = new ArrayList<>();
@@ -134,13 +134,14 @@ public class AirportFireTruck {
         public Builder() {
             centralUnit = new CentralUnit();
             cabin = new Cabin();
+            cabin.build();
 
             // Thrower
             Tank waterTank = new Tank(ExtinguishingAgent.WATER);
             Tank foamTank = new Tank(ExtinguishingAgent.FOAM);
             Mixer mixer = new Mixer(List.of(waterTank, foamTank));
-            roofThrower = new RoofThrower(mixer, 10000, new UpperSegment(), new LowerSegment());
-            frontThrower = new FrontThrower(mixer, 3500);
+            roofThrower = new RoofThrower(cabin.getRoofThrowerJoystick(), mixer, 10000, new UpperSegment(), new LowerSegment());
+            frontThrower = new FrontThrower(cabin.getFrontThrowerJoystick(), mixer, 3500);
             for (int i = 0; i < 7; i++) {
                 floorSprayNozzles.add(i, new FloorSprayNozzle(100, waterTank));
             }
@@ -151,18 +152,6 @@ public class AirportFireTruck {
                 frontAxles.add(i, new FrontAxle());
                 blueLights.add(i, new BlueLight(LightSize.SMALL));
                 blueLights.get(i).setFrontRearSide(FrontRearSide.FRONT);
-                blueLights.add(i + 2, new BlueLight(LightSize.LARGE));
-                blueLights.get(i + 2).setFrontRearSide(FrontRearSide.FRONT);
-                blueLights.get(i + 2).setLeftRightSide(LeftRightSide.LEFT);
-                blueLights.add(i + 4, new BlueLight(LightSize.LARGE));
-                blueLights.get(i + 4).setFrontRearSide(FrontRearSide.FRONT);
-                blueLights.get(i + 4).setLeftRightSide(LeftRightSide.RIGHT);
-                blueLights.add(i + 6,new BlueLight(LightSize.MEDIUM));
-                blueLights.get(i + 6).setFrontRearSide(FrontRearSide.REAR);
-                blueLights.get(i + 6).setLeftRightSide(LeftRightSide.LEFT);
-                blueLights.add(i + 8, new BlueLight(LightSize.MEDIUM));
-                blueLights.get(i + 8).setFrontRearSide(FrontRearSide.REAR);
-                blueLights.get(i + 8).setLeftRightSide(LeftRightSide.RIGHT);
                 directionIndicatorLights.add(i, new DirectionIndicatorLight());
                 directionIndicatorLights.add(i + 2, new DirectionIndicatorLight());
                 directionIndicatorLights.get(i).setLeftRightSide(LeftRightSide.LEFT);
@@ -195,6 +184,22 @@ public class AirportFireTruck {
             warningLights.get(1).setLeftRightSide(LeftRightSide.LEFT);
             brakeLights.get(0).setLeftRightSide(LeftRightSide.LEFT);
             brakeLights.get(1).setLeftRightSide(LeftRightSide.RIGHT);
+        }
+
+        private void buildAxle(Axle axle) {
+            List<Wheel> wheels = new ArrayList<>();
+            for (int i = 0; i < 2; i++) {
+                List<BrakeDisk> brakeDisks = new ArrayList<>();
+                for (int j = 0; j < 3; j++) {
+                    brakeDisks.add(j, new BrakeDisk());
+                }
+                Tire tire = new Tire();
+                Wheel wheel = new Wheel();
+                wheel.setTire(tire);
+                wheel.setBrakeDisks(brakeDisks);
+                wheels.add(i, wheel);
+            }
+            axle.setWheels(wheels);
         }
 
         public AirportFireTruck build() {

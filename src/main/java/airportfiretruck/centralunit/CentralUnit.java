@@ -7,10 +7,16 @@ import airportfiretruck.cabin.panel.rotaryknobs.RoofThrowerKnob;
 import airportfiretruck.cabin.panel.switches.RelatedDevice;
 import airportfiretruck.cabin.pedals.PedalType;
 import airportfiretruck.engine.IEngine;
-import airportfiretruck.lights.*;
+import airportfiretruck.extinguisher.thrower.FloorSprayNozzle;
+import airportfiretruck.lights.BrakeLight;
+import airportfiretruck.lights.DirectionIndicatorLight;
+import airportfiretruck.lights.HeadLight;
+import airportfiretruck.lights.SideLight;
 import airportfiretruck.lights.led.BlueLight;
 import airportfiretruck.lights.led.WarningLight;
-import airportfiretruck.lights.position.LeftRightSide;
+import airportfiretruck.position.FrontRearSide;
+import airportfiretruck.position.LeftRightSide;
+import airportfiretruck.position.Position;
 
 public class CentralUnit implements IPedalCentralUnit, ISteeringCentralUnit, IThrowerCentralUnit, IControlPanelCentralUnit {
     private AirportFireTruck flf;
@@ -36,12 +42,12 @@ public class CentralUnit implements IPedalCentralUnit, ISteeringCentralUnit, ITh
             engine.rotate(newVelocity);
             flf.getCabin().getDisplays().get(0).setValue(engine.getBatteryManagement().getRemainingBatteryLevel());
         }
-        for (BrakeLight blight : flf.getBrakeLights()) {
+        for (BrakeLight brakeLight : flf.getBrakeLights()) {
             if (sign < 0) {
-                blight.on();
+                brakeLight.on();
                 continue;
             }
-            blight.off();
+            brakeLight.off();
         }
     }
 
@@ -51,46 +57,50 @@ public class CentralUnit implements IPedalCentralUnit, ISteeringCentralUnit, ITh
             case ENGINES -> {
                 for (IEngine engine : flf.getEngines()) {
                     if (isOn) {
-                        engine.off();
+                        engine.on();
                         continue;
                     }
-                    engine.on();
+                    engine.off();
                 }
             }
             case BLUE_LIGHTS -> {
                 for (BlueLight blueLight : flf.getBlueLights()) {
                     if (isOn) {
-                        blueLight.off();
+                        blueLight.on();
                         continue;
                     }
-                    blueLight.on();
+                    blueLight.off();
                 }
             }
             case ROOF_LIGHTS -> {
                 for (HeadLight headLight : flf.getHeadLights()) {
-                    if (isOn) {
+                    if (headLight.getPosition() == Position.TOP) {
+                        if (isOn) {
+                            headLight.on();
+                            continue;
+                        }
                         headLight.off();
-                        continue;
                     }
-                    headLight.on();
                 }
             }
             case SIDE_LIGHTS -> {
                 for (SideLight sideLight : flf.getSideLights()) {
                     if (isOn) {
-                        sideLight.off();
+                        sideLight.on();
                         continue;
                     }
-                    sideLight.on();
+                    sideLight.off();
                 }
             }
             case FRONT_LIGHTS -> {
-                for (FrontLight frontLight : flf.getFrontLights()) {
-                    if (isOn) {
-                        frontLight.off();
-                        continue;
+                for (HeadLight headLight : flf.getHeadLights()) {
+                    if (headLight.getPosition() == Position.BOTTOM) {
+                        if (isOn) {
+                            headLight.on();
+                            continue;
+                        }
+                        headLight.off();
                     }
-                    frontLight.on();
                 }
             }
             case WARNING_LIGHTS -> {
@@ -100,6 +110,11 @@ public class CentralUnit implements IPedalCentralUnit, ISteeringCentralUnit, ITh
                         continue;
                     }
                     warningLight.on();
+                }
+            }
+            case SELF_PROTECTION -> {
+                for (FloorSprayNozzle floorSprayNozzle : flf.getFloorSprayNozzles()) {
+                    floorSprayNozzle.setOn(isOn);
                 }
             }
         }

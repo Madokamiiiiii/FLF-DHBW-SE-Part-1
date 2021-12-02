@@ -4,34 +4,60 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d81c2fcd-6860-40c3-a4bd-03e47c36c420" name="Default Changelist" comment="That's a not as big as last time update">
-      <change afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/extinguisher/thrower/RoofThrowerAlt.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/extinguisher/thrower/ThrowerMixerAlt.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/extinguisher/watersupply/MixerAlt.java" afterDir="false" />
+    <list default="true" id="d81c2fcd-6860-40c3-a4bd-03e47c36c420" name="Default Changelist" comment="That's a not as big as last time update&#10;Plus Merge Conflicts">
+      <change afterPath="$PROJECT_DIR$/current (1).vpp.bak_003d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/TestTruck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/current (1).vpp" beforeDir="false" afterPath="$PROJECT_DIR$/current (1).vpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/AirportFireTruck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/AirportFireTruck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/buttons/BusDoorButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/buttons/BusDoorButton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/buttons/Button.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/buttons/Button.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/buttons/PushButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/buttons/PushButton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/BusDoor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/BusDoor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/Cabin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/Cabin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/SteeringWheel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/SteeringWheel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/displays/BatteryDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/displays/BatteryDisplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/displays/VelocityDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/displays/VelocityDisplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/joysticks/FrontThrowerJoystick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/joysticks/FrontThrowerJoystick.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/joysticks/IJoystick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/joysticks/IJoystick.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/joysticks/Joystick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/joysticks/Joystick.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/joysticks/RoofThrowerJoystick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/joysticks/RoofThrowerJoystick.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/panel/ControlPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/panel/ControlPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/panel/rotaryknobs/FrontThrowerKnob.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/panel/rotaryknobs/FrontThrowerKnob.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/panel/switches/PanelSwitch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/panel/switches/PanelSwitch.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/panel/switches/Switch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/panel/switches/Switch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/pedals/IPedal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/pedals/IPedal.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/pedals/Pedal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/pedals/Pedal.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/seats/FrontSeat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/seats/FrontSeat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/engine/ElectroEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/engine/ElectroEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/engine/Engine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/centralunit/CentralUnit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/centralunit/CentralUnit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/extinguisher/thrower/FloorSprayNozzle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/extinguisher/thrower/FloorSprayNozzle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/extinguisher/thrower/FrontThrower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/extinguisher/thrower/FrontThrower.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/extinguisher/thrower/roof/LowerSegment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/extinguisher/thrower/roof/LowerSegment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/extinguisher/thrower/RoofThrowerAlt.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/extinguisher/thrower/ThrowerMixerAlt.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/extinguisher/thrower/roof/RoofThrower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/extinguisher/thrower/roof/RoofThrower.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/extinguisher/thrower/roof/SegmentPart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/extinguisher/thrower/roof/SegmentPart.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/extinguisher/thrower/roof/UpperSegment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/extinguisher/thrower/roof/UpperSegment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/extinguisher/watersupply/Tank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/extinguisher/watersupply/Tank.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/lights/FrontLight.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/lights/Light.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/lights/Light.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/lights/led/BlueLight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/lights/led/BlueLight.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/lights/led/Led.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/lights/led/Led.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/lights/led/WarningLight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/lights/led/WarningLight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/lights/position/FrontRearSide.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/position/FrontRearSide.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/lights/position/LeftRightSide.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/position/LeftRightSide.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/lights/position/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/position/Position.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/wheels/Axle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/wheels/Axle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/wheels/FrontAxle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/wheels/FrontAxle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/wheels/Wheel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/wheels/Wheel.java" afterDir="false" />
     </list>
-    <list id="b9424982-6305-4497-b7e6-9222244bff9f" name="Changes by nillg" comment="That's a big update pt 2" />
+    <list id="f2df29fb-7308-4031-8f73-615cf6c4aaac" name="Changes by nillg" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/AirportFireTruck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/AirportFireTruck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/extinguisher/watersupply/Tank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/extinguisher/watersupply/Tank.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/wheels/Axle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/wheels/Axle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/wheels/Wheel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/wheels/Wheel.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,17 +68,103 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="implementation" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="implementation" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="implementation" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="implementation" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="verification" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/main/java/airportfiretruck/extinguisher/watersupply/Tank.java">
+      <ranges>
+        <range start1="10" end1="14" start2="10" end2="14" changelist="d81c2fcd-6860-40c3-a4bd-03e47c36c420" />
+        <range start1="15" end1="19" start2="15" end2="19" changelist="d81c2fcd-6860-40c3-a4bd-03e47c36c420" />
+        <range start1="33" end1="38" start2="33" end2="40" changelist="f2df29fb-7308-4031-8f73-615cf6c4aaac" />
+        <range start1="39" end1="45" start2="41" end2="49" changelist="f2df29fb-7308-4031-8f73-615cf6c4aaac" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/airportfiretruck/wheels/Axle.java">
+      <ranges>
+        <range start1="2" end1="3" start2="2" end2="2" changelist="d81c2fcd-6860-40c3-a4bd-03e47c36c420" />
+        <range start1="9" end1="12" start2="8" end2="8" changelist="d81c2fcd-6860-40c3-a4bd-03e47c36c420" />
+        <range start1="13" end1="13" start2="9" end2="13" changelist="f2df29fb-7308-4031-8f73-615cf6c4aaac" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/airportfiretruck/wheels/Wheel.java">
+      <ranges>
+        <range start1="2" end1="3" start2="2" end2="2" changelist="d81c2fcd-6860-40c3-a4bd-03e47c36c420" />
+        <range start1="10" end1="15" start2="9" end2="9" changelist="f2df29fb-7308-4031-8f73-615cf6c4aaac" />
+        <range start1="16" end1="16" start2="10" end2="18" changelist="f2df29fb-7308-4031-8f73-615cf6c4aaac" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/airportfiretruck/AirportFireTruck.java">
+      <ranges>
+        <range start1="14" end1="15" start2="14" end2="18" changelist="d81c2fcd-6860-40c3-a4bd-03e47c36c420" />
+        <range start1="18" end1="23" start2="21" end2="25" changelist="d81c2fcd-6860-40c3-a4bd-03e47c36c420" />
+        <range start1="42" end1="43" start2="44" end2="44" changelist="d81c2fcd-6860-40c3-a4bd-03e47c36c420" />
+        <range start1="91" end1="95" start2="92" end2="92" changelist="d81c2fcd-6860-40c3-a4bd-03e47c36c420" />
+        <range start1="116" end1="117" start2="113" end2="118" changelist="d81c2fcd-6860-40c3-a4bd-03e47c36c420" />
+        <range start1="125" end1="126" start2="126" end2="126" changelist="d81c2fcd-6860-40c3-a4bd-03e47c36c420" />
+        <range start1="136" end1="136" start2="136" end2="137" changelist="d81c2fcd-6860-40c3-a4bd-03e47c36c420" />
+        <range start1="141" end1="143" start2="142" end2="144" changelist="d81c2fcd-6860-40c3-a4bd-03e47c36c420" />
+        <range start1="152" end1="152" start2="153" end2="154" changelist="f2df29fb-7308-4031-8f73-615cf6c4aaac" />
+        <range start1="153" end1="165" start2="155" end2="155" changelist="d81c2fcd-6860-40c3-a4bd-03e47c36c420" />
+        <range start1="166" end1="167" start2="156" end2="157" changelist="f2df29fb-7308-4031-8f73-615cf6c4aaac" />
+        <range start1="168" end1="171" start2="158" end2="158" changelist="f2df29fb-7308-4031-8f73-615cf6c4aaac" />
+        <range start1="173" end1="173" start2="160" end2="161" changelist="f2df29fb-7308-4031-8f73-615cf6c4aaac" />
+        <range start1="176" end1="177" start2="164" end2="164" changelist="f2df29fb-7308-4031-8f73-615cf6c4aaac" />
+        <range start1="178" end1="178" start2="165" end2="166" changelist="f2df29fb-7308-4031-8f73-615cf6c4aaac" />
+        <range start1="179" end1="181" start2="167" end2="167" changelist="f2df29fb-7308-4031-8f73-615cf6c4aaac" />
+        <range start1="182" end1="182" start2="168" end2="204" changelist="f2df29fb-7308-4031-8f73-615cf6c4aaac" />
+        <range start1="183" end1="189" start2="205" end2="208" changelist="f2df29fb-7308-4031-8f73-615cf6c4aaac" />
+        <range start1="190" end1="191" start2="209" end2="230" changelist="f2df29fb-7308-4031-8f73-615cf6c4aaac" />
+        <range start1="197" end1="197" start2="236" end2="238" changelist="f2df29fb-7308-4031-8f73-615cf6c4aaac" />
+        <range start1="198" end1="198" start2="239" end2="255" changelist="d81c2fcd-6860-40c3-a4bd-03e47c36c420" />
+      </ranges>
+    </file>
   </component>
   <component name="ProjectId" id="21d2htfIqwhlgdTVT5C9oo0HAy1" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -72,11 +184,15 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="code.cleanup.on.save" value="true" />
     <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
+    <property name="extract.method.default.visibility" value="private" />
     <property name="format.on.save" value="true" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="optimize.imports.on.save" value="true" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="CodeWithMe" />
   </component>
   <component name="RecentsManager">
@@ -84,7 +200,7 @@
       <recent name="airportfiretruck.cabin.joysticks" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Gradle.TestTruck.buildComplete">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -96,6 +212,54 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TestTruck.buildComplete" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;TestTruck.buildComplete&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="software_engineering [test]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.TestTruck.buildComplete" />
+        <item itemvalue="Gradle.software_engineering [test]" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -106,7 +270,7 @@
       <option name="presentableId" value="Default" />
       <updated>1638256765615</updated>
       <workItem from="1638256767471" duration="2870000" />
-      <workItem from="1638354498586" duration="26717000" />
+      <workItem from="1638354498586" duration="42459000" />
     </task>
     <task id="LOCAL-00001" summary="Styling">
       <created>1638364703104</created>
@@ -136,7 +300,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638442877660</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="That's a not as big as last time update&#10;Plus Merge Conflicts">
+      <created>1638443411016</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1638443411016</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -160,7 +331,8 @@
     <MESSAGE value="That's a big update" />
     <MESSAGE value="That's a big update pt 2" />
     <MESSAGE value="That's a not as big as last time update" />
-    <option name="LAST_COMMIT_MESSAGE" value="That's a not as big as last time update" />
+    <MESSAGE value="That's a not as big as last time update&#10;Plus Merge Conflicts" />
+    <option name="LAST_COMMIT_MESSAGE" value="That's a not as big as last time update&#10;Plus Merge Conflicts" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

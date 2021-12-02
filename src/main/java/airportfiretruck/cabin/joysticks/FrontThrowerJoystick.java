@@ -1,20 +1,20 @@
 package airportfiretruck.cabin.joysticks;
 
-import airportfiretruck.buttons.ButtonPosition;
 import airportfiretruck.buttons.PushButton;
 import airportfiretruck.extinguisher.thrower.FrontThrower;
+import airportfiretruck.extinguisher.thrower.IThrowerMixer;
+import airportfiretruck.position.LeftRightSide;
 
 public class FrontThrowerJoystick extends Joystick {
     public FrontThrower thrower;
 
-    public FrontThrowerJoystick(FrontThrower thrower) {
+    public FrontThrowerJoystick() {
         super();
-        this.thrower = thrower;
     }
 
     @Override
     public void pushButtonPressed(PushButton pushButton) {
-        if (pushButton.getPosition() == ButtonPosition.LEFT) {
+        if (pushButton.getPosition() == LeftRightSide.LEFT) {
             if (pushButton.isActive()) {        // Frontwerfer ist deaktiviert und schwenken auf 0°
                 thrower.setActive(false);
                 thrower.setDegree(0);
@@ -32,6 +32,11 @@ public class FrontThrowerJoystick extends Joystick {
     @Override
     public void joystickButtonPressed() {
         joystickButtonPressed(thrower);
+    }
+
+    @Override
+    public void assign(IThrowerMixer thrower) {
+        this.thrower = (FrontThrower) thrower;
     }
 
 }

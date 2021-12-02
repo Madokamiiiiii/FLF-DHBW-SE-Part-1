@@ -8,15 +8,15 @@ public class Tank {
     public Tank(ExtinguishingAgent type) {
         this.type = type;
         switch (type) {
-            case FOAM -> {
-                capacity = new int[25][10][10];
-                fill(25 * 10 * 10);
-                pointer = new int[]{24, 9, 0};
-            }
             case WATER -> {
-                capacity = new int[50][25][10];
-                fill(50 * 25 * 10);
-                pointer = new int[]{49, 24, 0};
+                capacity = new int[75][30][15];
+                pointer = new int[]{0, 0, 14};
+                fill(75 * 30 * 15);
+            }
+            case FOAM -> {
+                capacity = new int[75][30][5];
+                pointer = new int[]{0, 0, 4};
+                fill(75 * 30 * 5);
             }
         }
     }

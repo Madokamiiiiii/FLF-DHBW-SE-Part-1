@@ -4,14 +4,15 @@ import airportfiretruck.cabin.displays.BatteryDisplay;
 import airportfiretruck.cabin.displays.IDisplay;
 import airportfiretruck.cabin.displays.VelocityDisplay;
 import airportfiretruck.cabin.joysticks.FrontThrowerJoystick;
-import airportfiretruck.cabin.joysticks.IJoystick;
 import airportfiretruck.cabin.joysticks.RoofThrowerJoystick;
 import airportfiretruck.cabin.panel.ControlPanel;
 import airportfiretruck.cabin.pedals.Pedal;
 import airportfiretruck.cabin.pedals.PedalType;
 import airportfiretruck.cabin.seats.FrontSeat;
+import airportfiretruck.cabin.seats.Respirator;
 import airportfiretruck.cabin.seats.Seat;
 import airportfiretruck.centralunit.CentralUnit;
+import airportfiretruck.position.LeftRightSide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,30 +23,31 @@ public class Cabin {
     private List<BusDoor> doors;
     private List<Seat> seats;
     private List<IDisplay> displays;
-    private List<IJoystick> joysticks;
+    private FrontThrowerJoystick frontThrowerJoystick;
+    private RoofThrowerJoystick roofThrowerJoystick;
     private SteeringWheel steeringWheel;
     private ControlPanel controlPanel;
 
-    public Cabin() {
+    public void build() {
         controlPanel = new ControlPanel();
         steeringWheel = new SteeringWheel();
         pedals = new ArrayList<>();
-        pedals.add(0,new Pedal(PedalType.GAS));
-        pedals.add(1,new Pedal(PedalType.BRAKE));
+        pedals.add(0, new Pedal(PedalType.GAS));
+        pedals.add(1, new Pedal(PedalType.BRAKE));
         doors = new ArrayList<>();
-        doors.add(0,new BusDoor());
-        doors.add(1,new BusDoor());
+        doors.add(0, new BusDoor());
+        doors.add(1, new BusDoor());
         seats = new ArrayList<>();
-        seats.add(0,new FrontSeat());
-        seats.add(1,new FrontSeat());
-        seats.add(2,new Seat());
-        seats.add(3,new Seat());
+        seats.add(0, new FrontSeat(new Respirator(), LeftRightSide.RIGHT));
+        seats.add(1, new FrontSeat(new Respirator(), LeftRightSide.LEFT));
+        for (int i = 0; i < 2; i++) {
+            seats.add(new Seat(new Respirator()));
+        }
         displays = new ArrayList<>();
         displays.add(0, new VelocityDisplay());
         displays.add(1, new BatteryDisplay());
-        joysticks = new ArrayList<>();
-        joysticks.add(0, new FrontThrowerJoystick());
-        joysticks.add(1, new RoofThrowerJoystick());
+        frontThrowerJoystick = new FrontThrowerJoystick();
+        roofThrowerJoystick = new RoofThrowerJoystick();
     }
 
     public List<IDisplay> getDisplays() {
@@ -56,7 +58,32 @@ public class Cabin {
         return steeringWheel;
     }
 
+    public FrontThrowerJoystick getFrontThrowerJoystick() {
+        return frontThrowerJoystick;
+    }
+
+    public RoofThrowerJoystick getRoofThrowerJoystick() {
+        return roofThrowerJoystick;
+    }
+
+    public List<BusDoor> getDoors() {
+        return doors;
+    }
+
+    public ControlPanel getControlPanel() {
+        return controlPanel;
+    }
+
+    public List<Pedal> getPedals() {
+        return pedals;
+    }
+
+    public List<Seat> getSeats() {
+        return seats;
+    }
+
     public void connectToCentralUnit(CentralUnit centralUnit) {
+        steeringWheel.connectToCentralUnit(centralUnit);
         controlPanel.connectToCentralUnit(centralUnit);
         for (Pedal pedal : pedals) {
             pedal.connectToCentralUnit(centralUnit);

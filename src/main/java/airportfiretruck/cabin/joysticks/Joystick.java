@@ -1,9 +1,9 @@
 package airportfiretruck.cabin.joysticks;
 
-import airportfiretruck.buttons.ButtonPosition;
 import airportfiretruck.buttons.JoystickButton;
 import airportfiretruck.buttons.PushButton;
 import airportfiretruck.extinguisher.thrower.IThrowerMixer;
+import airportfiretruck.position.LeftRightSide;
 
 import java.util.ArrayList;
 
@@ -14,15 +14,12 @@ public abstract class Joystick implements IJoystick {
 
     public Joystick() {
         pushButtons = new ArrayList<>();
-        pushButtons.add(0, new PushButton());
-        pushButtons.add(1, new PushButton());
+        pushButtons.add(0, new PushButton(LeftRightSide.LEFT));
+        pushButtons.add(1, new PushButton(LeftRightSide.RIGHT));
         joystickButton = new JoystickButton();
         joystickButton.setJoystick(this);
-        joystickButton.setPosition(ButtonPosition.BEHIND);
         pushButtons.get(0).setJoystick(this);
-        pushButtons.get(0).setPosition(ButtonPosition.LEFT);
         pushButtons.get(1).setJoystick(this);
-        pushButtons.get(1).setPosition(ButtonPosition.RIGHT);
     }
 
     protected void next() {
