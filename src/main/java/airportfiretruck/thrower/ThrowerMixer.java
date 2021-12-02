@@ -17,6 +17,10 @@ public abstract class ThrowerMixer extends Thrower implements IThrowerMixer {
         return active;
     }
 
+    public Mixer getMixer() {
+        return mixer;
+    }
+
     public void setActive(boolean active) {
         this.active = active;
     }

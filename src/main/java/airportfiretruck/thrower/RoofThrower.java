@@ -16,7 +16,14 @@ public class RoofThrower extends ThrowerMixer {
 
     @Override
     public void spray() {
-
+        int amount = 0;
+        switch (level) {
+            case A -> amount = 500;
+            case B -> amount = 1000;
+            case C -> amount = 2500;
+        }
+        // evaluate return value? 2 : both tanks over-emptied, ±1 : water / foam tank overemptied, 0 : all water delivered
+        mixer.getLiquid(amount);
     }
 
     public void setLowerSegmentDegree(int degree) {
