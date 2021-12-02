@@ -135,6 +135,7 @@ public class AirportFireTruck {
             centralUnit = new CentralUnit();
             cabin = new Cabin();
             cabin.build();
+            cabin.connectToCentralUnit(centralUnit);
 
             // Thrower
             Tank waterTank = new Tank(ExtinguishingAgent.WATER);

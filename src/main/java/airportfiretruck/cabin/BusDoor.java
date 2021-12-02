@@ -23,4 +23,8 @@ public class BusDoor {
         buttons.get(0).setBusDoor(this);
         buttons.get(1).setBusDoor(this);
     }
+
+    public List<BusDoorButton> getButtons() {
+        return buttons;
+    }
 }

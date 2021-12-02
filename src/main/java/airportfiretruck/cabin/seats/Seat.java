@@ -7,4 +7,8 @@ public class Seat {
     public Seat(Respirator respirator) {
         this.respirator = respirator;
     }
+
+    public Respirator getRespirator() {
+        return respirator;
+    }
 }

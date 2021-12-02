@@ -34,4 +34,8 @@ public class SteeringWheel {
             centralUnit.steer();
         }
     }
+
+    public ISteeringCentralUnit getCentralUnit() {
+        return centralUnit;
+    }
 }

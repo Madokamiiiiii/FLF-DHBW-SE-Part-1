@@ -1,5 +1,13 @@
 import airportfiretruck.AirportFireTruck;
 import airportfiretruck.cabin.Cabin;
+import airportfiretruck.cabin.SteeringWheel;
+import airportfiretruck.cabin.joysticks.FrontThrowerJoystick;
+import airportfiretruck.cabin.joysticks.RoofThrowerJoystick;
+import airportfiretruck.cabin.panel.ControlPanel;
+import airportfiretruck.cabin.pedals.Pedal;
+import airportfiretruck.cabin.pedals.PedalType;
+import airportfiretruck.cabin.seats.FrontSeat;
+import airportfiretruck.cabin.seats.Seat;
 import airportfiretruck.lights.*;
 import airportfiretruck.lights.led.BlueLight;
 import airportfiretruck.lights.led.Color;
@@ -20,6 +28,7 @@ import static airportfiretruck.position.LeftRightSide.*;
 import static airportfiretruck.position.Position.BOTTOM;
 import static airportfiretruck.position.Position.TOP;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class TestTruck {
@@ -84,7 +93,44 @@ public class TestTruck {
         Cabin cabin = airportFireTruck.getCabin();
 
         assertEquals(2, cabin.getDoors().size());
+        cabin.getDoors().forEach(busDoor -> assertEquals(2, busDoor.getButtons().size()));
 
+        List<Seat> seats = cabin.getSeats();
+        assertEquals(4, seats.size());
+        assertEquals(2, seats.stream().filter(seat -> seat instanceof FrontSeat).count());
+        seats.forEach(seat -> assertNotNull(seat.getRespirator()));
+
+        FrontThrowerJoystick frontThrowerJoystick = cabin.getFrontThrowerJoystick();
+        assertNotNull(frontThrowerJoystick);
+        assertNotNull(frontThrowerJoystick.getJoystickButton());
+        assertEquals(2, frontThrowerJoystick.getPushButtons().size());
+
+        RoofThrowerJoystick roofThrowerJoystick = cabin.getRoofThrowerJoystick();
+        assertNotNull(roofThrowerJoystick);
+        assertNotNull(roofThrowerJoystick.getJoystickButton());
+        assertEquals(2, roofThrowerJoystick.getPushButtons().size());
+
+        // Test ControlPanel
+        ControlPanel panel = cabin.getControlPanel();
+        assertEquals(6, panel.getSwitches().size());
+        assertEquals(2, panel.getKnobs().size());
+        assertNotNull(panel.getCentralUnit());
+
+        SteeringWheel steeringWheel = cabin.getSteeringWheel();
+        assertNotNull(steeringWheel);
+        assertNotNull(steeringWheel.getCentralUnit());
+
+        assertEquals(2, cabin.getDisplays().size());
+
+        List<Pedal> pedals = cabin.getPedals();
+        List<Pedal> gas = pedals.stream().filter(pedal -> pedal.getPedalType().equals(PedalType.GAS)).collect(Collectors.toList());
+        assertEquals(1, gas.size());
+        assertNotNull(gas.get(0).getCentralUnit());
+        List<Pedal> brake = pedals.stream().filter(pedal -> pedal.getPedalType().equals(PedalType.BRAKE)).collect(Collectors.toList());
+        assertEquals(1, brake.size());
+        assertNotNull(brake.get(0).getCentralUnit());
+
+        // Test thrower
     }
 
     private long testLedLightAndPosition(List<BlueLight> lights, Position position, LeftRightSide leftRightSide, FrontRearSide frontRearSide, LightSize size) {

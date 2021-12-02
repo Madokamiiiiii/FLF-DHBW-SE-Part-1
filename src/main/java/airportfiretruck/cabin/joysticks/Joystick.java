@@ -38,4 +38,12 @@ public abstract class Joystick implements IJoystick {
             thrower.spray();
         }
     }
+
+    public ArrayList<PushButton> getPushButtons() {
+        return pushButtons;
+    }
+
+    public JoystickButton getJoystickButton() {
+        return joystickButton;
+    }
 }

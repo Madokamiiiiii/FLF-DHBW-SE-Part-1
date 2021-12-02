@@ -19,4 +19,12 @@ public class Pedal implements IPedal {
     public void connectToCentralUnit(IPedalCentralUnit centralUnit) {
         this.centralUnit = centralUnit;
     }
+
+    public IPedalCentralUnit getCentralUnit() {
+        return centralUnit;
+    }
+
+    public PedalType getPedalType() {
+        return pedalType;
+    }
 }

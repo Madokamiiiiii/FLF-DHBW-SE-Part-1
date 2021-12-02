@@ -30,6 +30,7 @@ public class Cabin {
 
     public void build() {
         controlPanel = new ControlPanel();
+        controlPanel.build();
         steeringWheel = new SteeringWheel();
         pedals = new ArrayList<>();
         pedals.add(0, new Pedal(PedalType.GAS));
