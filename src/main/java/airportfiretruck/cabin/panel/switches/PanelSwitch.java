@@ -6,8 +6,12 @@ public class PanelSwitch extends Switch {
     private RelatedDevice device;
     private ControlPanel panel;
 
-    public PanelSwitch() {
+    public PanelSwitch(RelatedDevice device) {
+        this.device = device;
+    }
 
+    public void connectToPanel(ControlPanel panel) {
+        this.panel = panel;
     }
 
     @Override

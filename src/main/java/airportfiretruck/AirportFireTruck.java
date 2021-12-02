@@ -94,6 +94,7 @@ public class AirportFireTruck {
         centralUnit.setFlf(this);
 
         cabin = builder.cabin;
+        cabin.connectToCentralUnit(centralUnit);
         engines = builder.engines;
         roofThrower = builder.roofThrower;
         frontThrower = builder.frontThrower;

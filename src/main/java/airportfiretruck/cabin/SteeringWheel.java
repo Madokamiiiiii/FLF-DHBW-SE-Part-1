@@ -16,6 +16,10 @@ public class SteeringWheel {
         return position;
     }
 
+    public void connectToCentralUnit(ISteeringCentralUnit centralUnit) {
+        this.centralUnit = centralUnit;
+    }
+
     public void turnLeft(int degree) {
         if (position > -40) {
             position -= degree;

@@ -10,4 +10,5 @@ public abstract class Switch {
     public void pressed() {
         isOn = !isOn;
     }
+
 }

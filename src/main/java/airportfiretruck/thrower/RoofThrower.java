@@ -6,6 +6,7 @@ public class RoofThrower extends ThrowerMixer {
     private LowerSegment lowerSegment;
 
     public RoofThrower() {
+        upperSegment = new UpperSegment();
         joystick.assignThrower(this);
     }
 

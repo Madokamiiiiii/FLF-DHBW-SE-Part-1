@@ -5,7 +5,7 @@ public class BatteryDisplay implements IDisplay {
     private double value;
 
     public BatteryDisplay() {
-
+        value = 100;
     }
 
     public void setValue(double value) {

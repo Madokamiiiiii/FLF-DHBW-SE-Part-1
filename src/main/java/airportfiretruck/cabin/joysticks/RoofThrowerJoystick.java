@@ -23,7 +23,7 @@ public class RoofThrowerJoystick extends Joystick {
             } else {                            // RoofThrower ist aktiviert und schwenken auf 90°
                 thrower.setActive(true);
                 thrower.setLowerSegmentDegree(90);
-                thrower.setUpperSegmentLength(11);
+                //thrower.setUpperSegmentLength(11);
             }
         } else {                                // Rechter Druckknopf
             if (thrower.isActive()) {           // Ändere Mischverhältnis

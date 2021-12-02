@@ -31,6 +31,6 @@ public abstract class ThrowerMixer extends Thrower implements IThrowerMixer {
 
     // TODO: Wie/Wann könnte die Verbindung hergestellt werden?
     public void assignJoystick() {
-
+        // Arm muss Joystick gar nicht kennen!
     }
 }

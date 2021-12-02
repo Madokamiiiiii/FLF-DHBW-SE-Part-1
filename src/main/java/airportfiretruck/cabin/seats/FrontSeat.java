@@ -5,7 +5,7 @@ public class FrontSeat extends Seat {
     private boolean isOccupied;
 
     public FrontSeat() {
-
+        isOccupied = false;
     }
 
     public void setOccupied(boolean occupied) {
