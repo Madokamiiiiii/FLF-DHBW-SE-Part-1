@@ -6,9 +6,8 @@ public class Pedal implements IPedal {
     private final IPedalCentralUnit centralUnit;
     private final PedalType pedalType;
 
-    public Pedal(PedalType type, IPedalCentralUnit centralUnit) {
-        pedalType = type;
-        this.centralUnit = centralUnit;
+    public Pedal(PedalType pedalType) {
+        this.pedalType=pedalType;
     }
 
     @Override
@@ -16,5 +15,8 @@ public class Pedal implements IPedal {
         if (pedalType == PedalType.GAS) {
             centralUnit.pedal(pedalType);
         }
+    }
+    public void connectToCentralUnit(IPedalCentralUnit centralUnit) {
+        this.centralUnit = centralUnit;
     }
 }

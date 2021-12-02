@@ -20,6 +20,9 @@ public class FrontThrower extends ThrowerMixer {
 
     @Override
     public void spray() {
+        // Different approach
         mixer.getLiquid(level, mixingRatio);
+        // same here: evaluate??
+        // mixer.getLiquid(level);
     }
 }

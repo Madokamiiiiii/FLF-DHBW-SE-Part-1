@@ -99,6 +99,7 @@ public class AirportFireTruck {
         centralUnit.setFlf(this);
 
         cabin = builder.cabin;
+        cabin.connectToCentralUnit(centralUnit);
         engines = builder.engines;
         roofThrower = builder.roofThrower;
         frontThrower = builder.frontThrower;
@@ -148,22 +149,18 @@ public class AirportFireTruck {
                 engines.add(i, new ElectroEngine());
                 axles.add(i, new Axle());
                 frontAxles.add(i, new FrontAxle());
-                blueLights.add(i, new BlueLight());
-                blueLights.get(i).setLightSize(LightSize.SMALL);
+                blueLights.add(i, new BlueLight(LightSize.SMALL));
                 blueLights.get(i).setFrontRearSide(FrontRearSide.FRONT);
-                blueLights.add(i + 2, new BlueLight());
-                blueLights.get(i + 2).setLightSize(LightSize.LARGE);
+                blueLights.add(i + 2, new BlueLight(LightSize.LARGE));
                 blueLights.get(i + 2).setFrontRearSide(FrontRearSide.FRONT);
                 blueLights.get(i + 2).setLeftRightSide(LeftRightSide.LEFT);
-                blueLights.add(i + 4, new BlueLight());
-                blueLights.get(i + 4).setLightSize(LightSize.LARGE);
+                blueLights.add(i + 4, new BlueLight(LightSize.LARGE));
                 blueLights.get(i + 4).setFrontRearSide(FrontRearSide.FRONT);
                 blueLights.get(i + 4).setLeftRightSide(LeftRightSide.RIGHT);
-                blueLights.get(i + 6).setLightSize(LightSize.MEDIUM);
+                blueLights.add(i + 6,new BlueLight(LightSize.MEDIUM));
                 blueLights.get(i + 6).setFrontRearSide(FrontRearSide.REAR);
                 blueLights.get(i + 6).setLeftRightSide(LeftRightSide.LEFT);
-                blueLights.add(i + 8, new BlueLight());
-                blueLights.get(i + 8).setLightSize(LightSize.MEDIUM);
+                blueLights.add(i + 8, new BlueLight(LightSize.MEDIUM));
                 blueLights.get(i + 8).setFrontRearSide(FrontRearSide.REAR);
                 blueLights.get(i + 8).setLeftRightSide(LeftRightSide.RIGHT);
                 directionIndicatorLights.add(i, new DirectionIndicatorLight());

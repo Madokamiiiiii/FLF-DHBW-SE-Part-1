@@ -6,7 +6,7 @@ public class UpperSegment {
     private final List<SegmentPart> segmentParts;
 
     public UpperSegment() {
-        segmentParts = List.of(new SegmentPart(), new SegmentPart(), new SegmentPart());
+        segmentParts = List.of(new SegmentPart(6), new SegmentPart(6), new SegmentPart(5));
     }
 
     public void setLength(int length) {

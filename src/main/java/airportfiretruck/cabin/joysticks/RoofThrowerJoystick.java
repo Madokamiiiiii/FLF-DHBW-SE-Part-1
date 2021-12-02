@@ -16,14 +16,14 @@ public class RoofThrowerJoystick extends Joystick {
     @Override
     public void pushButtonPressed(PushButton pushButton) {
         if (pushButton.getPosition() == ButtonPosition.LEFT) {
-            if (pushButton.isActive()) {        // RoofThrower ist deaktiviert und schwenken auf 0°
+            if (pushButton.isActive()) {        // RoofThrowerAlt ist deaktiviert und schwenken auf 0°
                 thrower.setActive(false);
                 thrower.setLowerSegmentDegree(0);
                 thrower.setUpperSegmentLength(0);
-            } else {                            // RoofThrower ist aktiviert und schwenken auf 90°
+            } else {                            // RoofThrowerAlt ist aktiviert und schwenken auf 90°
                 thrower.setActive(true);
                 thrower.setLowerSegmentDegree(90);
-                thrower.setUpperSegmentLength(11);
+                //thrower.setUpperSegmentLength(11);
             }
         } else {                                // Rechter Druckknopf
             if (thrower.isActive()) {           // Ändere Mischverhältnis

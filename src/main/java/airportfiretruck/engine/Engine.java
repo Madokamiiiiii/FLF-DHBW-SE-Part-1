@@ -1,8 +1,8 @@
 package airportfiretruck.engine;
 
 public abstract class Engine implements IEngine {
-    private boolean isOn = false;
-    private int velocity = 0;
+    protected boolean isOn = false;
+    protected int velocity = 0;
 
     public void setOn(boolean on) {
         isOn = on;
