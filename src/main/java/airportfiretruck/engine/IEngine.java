@@ -1,6 +1,6 @@
 package airportfiretruck.engine;
 
-import airportfiretruck.battery.BatteryManagement;
+import airportfiretruck.engine.battery.BatteryManagement;
 
 public interface IEngine {
     void on();

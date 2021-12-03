@@ -25,4 +25,8 @@ public class Mixer {
         int output = foam + water;
         return output;
     }
+
+    public List<Tank> getTanks() {
+        return tanks;
+    }
 }

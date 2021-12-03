@@ -19,4 +19,8 @@ public class PanelSwitch extends Switch {
         super.pressed();
         panel.panelSwitch(device, isOn());
     }
+
+    public RelatedDevice getDevice() {
+        return device;
+    }
 }

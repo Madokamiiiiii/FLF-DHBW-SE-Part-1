@@ -34,7 +34,7 @@ public class AirportFireTruck {
     private final RoofThrower roofThrower;
     private final FrontThrower frontThrower;
     private final List<FloorSprayNozzle> floorSprayNozzles;
-    private final List<Axle> axles;
+    private final List<RearAxle> rearAxles;
     private final List<FrontAxle> frontAxles;
     private final List<DirectionIndicatorLight> directionIndicatorLights;
     private final List<BrakeLight> brakeLights;
@@ -61,6 +61,10 @@ public class AirportFireTruck {
 
     public List<FrontAxle> getFrontAxles() {
         return frontAxles;
+    }
+
+    public List<RearAxle> getRearAxles() {
+        return rearAxles;
     }
 
     public List<DirectionIndicatorLight> getDirectionIndicatorLights() {
@@ -101,7 +105,7 @@ public class AirportFireTruck {
         roofThrower = builder.roofThrower;
         frontThrower = builder.frontThrower;
         floorSprayNozzles = builder.floorSprayNozzles;
-        axles = builder.axles;
+        rearAxles = builder.rearAxles;
         frontAxles = builder.frontAxles;
         directionIndicatorLights = builder.directionIndicatorLights;
         sideLights = builder.sideLights;
@@ -122,7 +126,7 @@ public class AirportFireTruck {
         private final FrontThrower frontThrower;
         private final List<IEngine> engines = new ArrayList<>();
         private final List<FloorSprayNozzle> floorSprayNozzles = new ArrayList<>();
-        private final List<Axle> axles = new ArrayList<>();
+        private final List<RearAxle> rearAxles = new ArrayList<>();
         private final List<FrontAxle> frontAxles = new ArrayList<>();
         private final List<WarningLight> warningLights = new ArrayList<>();
         private final List<SideLight> sideLights = new ArrayList<>();
@@ -147,10 +151,11 @@ public class AirportFireTruck {
                 floorSprayNozzles.add(i, new FloorSprayNozzle(100, waterTank));
             }
 
+            rearAxles.addAll(List.of(new RearAxle(LeftRightSide.LEFT), new RearAxle(LeftRightSide.RIGHT)));
+            frontAxles.addAll(List.of(new FrontAxle(LeftRightSide.LEFT), new FrontAxle(LeftRightSide.RIGHT)));
+
             for (int i = 0; i < 2; i++) {
                 engines.add(i, new ElectroEngine());
-                axles.add(i, new Axle());
-                frontAxles.add(i, new FrontAxle());
                 blueLights.add(i, new BlueLight(LightSize.SMALL));
                 blueLights.get(i).setPosition(Position.BOTTOM);
                 blueLights.get(i).setFrontRearSide(FrontRearSide.FRONT);
@@ -223,7 +228,7 @@ public class AirportFireTruck {
                 sideLights.get(i + 5).setLeftRightSide(LeftRightSide.RIGHT);
                 sideLights.get(i + 5).setPosition(Position.BOTTOM);
             }
-            for (Axle axle : axles) {
+            for (Axle axle : rearAxles) {
                 buildAxle(axle);
             }
             for (FrontAxle frontAxle : frontAxles) {

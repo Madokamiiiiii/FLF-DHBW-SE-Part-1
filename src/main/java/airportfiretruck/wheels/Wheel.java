@@ -16,4 +16,12 @@ public class Wheel {
     public void setTire(Tire tire) {
         this.tire = tire;
     }
+
+    public List<BrakeDisk> getBrakeDisks() {
+        return brakeDisks;
+    }
+
+    public Tire getTire() {
+        return tire;
+    }
 }

@@ -15,7 +15,7 @@ public class ControlPanel {
 
     private IControlPanelCentralUnit centralUnit;
     private List<IRotaryKnob> knobs;
-    private List<Switch> switches;
+    private List<PanelSwitch> switches;
 
     public void connectToCentralUnit(IControlPanelCentralUnit centralUnit) {
         this.centralUnit = centralUnit;
@@ -53,7 +53,7 @@ public class ControlPanel {
         return knobs;
     }
 
-    public List<Switch> getSwitches() {
+    public List<PanelSwitch> getSwitches() {
         return switches;
     }
 }

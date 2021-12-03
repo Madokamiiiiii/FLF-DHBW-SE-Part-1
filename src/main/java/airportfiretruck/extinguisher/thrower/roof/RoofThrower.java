@@ -46,4 +46,11 @@ public class RoofThrower extends ThrowerMixer {
         upperSegment.setLength(length);
     }
 
+    public LowerSegment getLowerSegment() {
+        return lowerSegment;
+    }
+
+    public UpperSegment getUpperSegment() {
+        return upperSegment;
+    }
 }

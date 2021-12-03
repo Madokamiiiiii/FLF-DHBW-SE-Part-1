@@ -1,10 +1,13 @@
 package airportfiretruck.wheels;
 
+import airportfiretruck.position.FrontRearSide;
+import airportfiretruck.position.LeftRightSide;
+
 public class FrontAxle extends Axle {
     private int steeringAngle;
 
-    public FrontAxle() {
-        super();
+    public FrontAxle(LeftRightSide side) {
+        super(FrontRearSide.FRONT, side);
         steeringAngle = 0;
     }
 

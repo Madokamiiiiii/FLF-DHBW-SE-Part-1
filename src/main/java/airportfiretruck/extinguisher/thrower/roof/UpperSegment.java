@@ -25,4 +25,8 @@ public class UpperSegment {
             }
         }
     }
+
+    public List<SegmentPart> getSegmentParts() {
+        return segmentParts;
+    }
 }

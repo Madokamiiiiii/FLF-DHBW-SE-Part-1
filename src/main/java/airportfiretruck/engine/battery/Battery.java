@@ -1,4 +1,4 @@
-package airportfiretruck.battery;
+package airportfiretruck.engine.battery;
 
 public class Battery {
     private BatteryStatus status;
@@ -8,6 +8,7 @@ public class Battery {
     public Battery() {
         capacity = new int[100][10][100];
         pointer = new int[]{99, 9, 99};
+        charge(100 * 10 * 100);
     }
 
     public void charge(int amount) {

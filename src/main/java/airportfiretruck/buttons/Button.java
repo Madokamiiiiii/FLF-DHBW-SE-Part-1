@@ -2,7 +2,5 @@ package airportfiretruck.buttons;
 
 public abstract class Button {
 
-    public void pressed() {
-
-    }
+    public abstract void pressed();
 }

@@ -1,15 +1,19 @@
 package airportfiretruck.cabin.joysticks;
 
+import airportfiretruck.buttons.JoystickButton;
 import airportfiretruck.buttons.PushButton;
 import airportfiretruck.extinguisher.thrower.FrontThrower;
 import airportfiretruck.extinguisher.thrower.IThrowerMixer;
 import airportfiretruck.position.LeftRightSide;
 
+import java.util.List;
+
 public class FrontThrowerJoystick extends Joystick {
+
     public FrontThrower thrower;
 
-    public FrontThrowerJoystick() {
-        super();
+    public FrontThrowerJoystick(List<PushButton> pushButtonList, JoystickButton joystickButton) {
+        super(pushButtonList, joystickButton);
     }
 
     @Override
@@ -39,4 +43,7 @@ public class FrontThrowerJoystick extends Joystick {
         this.thrower = (FrontThrower) thrower;
     }
 
+    public FrontThrower getThrower() {
+        return thrower;
+    }
 }

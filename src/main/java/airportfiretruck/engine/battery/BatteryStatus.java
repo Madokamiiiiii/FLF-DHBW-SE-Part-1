@@ -1,9 +1,10 @@
-package airportfiretruck.battery;
+package airportfiretruck.engine.battery;
 
 public class BatteryStatus {
     private int x;
     private int y;
     private int z;
+
     public BatteryStatus() {
         x = 99;
         y = 9;

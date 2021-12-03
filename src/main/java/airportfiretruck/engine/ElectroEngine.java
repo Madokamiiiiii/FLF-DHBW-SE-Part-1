@@ -1,13 +1,9 @@
 package airportfiretruck.engine;
 
-import airportfiretruck.battery.BatteryManagement;
+import airportfiretruck.engine.battery.BatteryManagement;
 
 public class ElectroEngine extends Engine {
-    private BatteryManagement batteryManagement;
-
-    public ElectroEngine() {
-
-    }
+    private final BatteryManagement batteryManagement = BatteryManagement.INSTANCE;
 
     public BatteryManagement getBatteryManagement() {
         return batteryManagement;

@@ -1,9 +1,12 @@
 package airportfiretruck.cabin;
 
+import airportfiretruck.buttons.JoystickButton;
+import airportfiretruck.buttons.PushButton;
 import airportfiretruck.cabin.displays.BatteryDisplay;
 import airportfiretruck.cabin.displays.IDisplay;
 import airportfiretruck.cabin.displays.VelocityDisplay;
 import airportfiretruck.cabin.joysticks.FrontThrowerJoystick;
+import airportfiretruck.cabin.joysticks.IJoystick;
 import airportfiretruck.cabin.joysticks.RoofThrowerJoystick;
 import airportfiretruck.cabin.panel.ControlPanel;
 import airportfiretruck.cabin.pedals.Pedal;
@@ -15,6 +18,7 @@ import airportfiretruck.centralunit.CentralUnit;
 import airportfiretruck.position.LeftRightSide;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Cabin {
@@ -23,8 +27,8 @@ public class Cabin {
     private List<BusDoor> doors;
     private List<Seat> seats;
     private List<IDisplay> displays;
-    private FrontThrowerJoystick frontThrowerJoystick;
-    private RoofThrowerJoystick roofThrowerJoystick;
+    private IJoystick frontThrowerJoystick;
+    private IJoystick roofThrowerJoystick;
     private SteeringWheel steeringWheel;
     private ControlPanel controlPanel;
 
@@ -47,8 +51,8 @@ public class Cabin {
         displays = new ArrayList<>();
         displays.add(0, new VelocityDisplay());
         displays.add(1, new BatteryDisplay());
-        frontThrowerJoystick = new FrontThrowerJoystick();
-        roofThrowerJoystick = new RoofThrowerJoystick();
+        frontThrowerJoystick = new FrontThrowerJoystick(Arrays.asList(new PushButton(LeftRightSide.LEFT), new PushButton(LeftRightSide.RIGHT)), new JoystickButton());
+        roofThrowerJoystick = new RoofThrowerJoystick(Arrays.asList(new PushButton(LeftRightSide.LEFT), new PushButton(LeftRightSide.RIGHT)), new JoystickButton());
     }
 
     public List<IDisplay> getDisplays() {
@@ -59,11 +63,11 @@ public class Cabin {
         return steeringWheel;
     }
 
-    public FrontThrowerJoystick getFrontThrowerJoystick() {
+    public IJoystick getFrontThrowerJoystick() {
         return frontThrowerJoystick;
     }
 
-    public RoofThrowerJoystick getRoofThrowerJoystick() {
+    public IJoystick getRoofThrowerJoystick() {
         return roofThrowerJoystick;
     }
 

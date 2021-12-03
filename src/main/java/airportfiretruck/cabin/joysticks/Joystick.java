@@ -3,20 +3,17 @@ package airportfiretruck.cabin.joysticks;
 import airportfiretruck.buttons.JoystickButton;
 import airportfiretruck.buttons.PushButton;
 import airportfiretruck.extinguisher.thrower.IThrowerMixer;
-import airportfiretruck.position.LeftRightSide;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Joystick implements IJoystick {
-    protected ArrayList<PushButton> pushButtons;
+    protected List<PushButton> pushButtons;
     protected JoystickButton joystickButton;
     protected int ratio = 0;
 
-    public Joystick() {
-        pushButtons = new ArrayList<>();
-        pushButtons.add(0, new PushButton(LeftRightSide.LEFT));
-        pushButtons.add(1, new PushButton(LeftRightSide.RIGHT));
-        joystickButton = new JoystickButton();
+    public Joystick(List<PushButton> pushButtons, JoystickButton joystickButton) {
+        this.pushButtons = pushButtons;
+        this.joystickButton = joystickButton;
         joystickButton.setJoystick(this);
         pushButtons.get(0).setJoystick(this);
         pushButtons.get(1).setJoystick(this);
@@ -39,7 +36,7 @@ public abstract class Joystick implements IJoystick {
         }
     }
 
-    public ArrayList<PushButton> getPushButtons() {
+    public List<PushButton> getPushButtons() {
         return pushButtons;
     }
 

@@ -1,4 +1,4 @@
-package airportfiretruck.battery;
+package airportfiretruck.engine.battery;
 
 public class BatteryBox {
     private final Battery[][] battery;

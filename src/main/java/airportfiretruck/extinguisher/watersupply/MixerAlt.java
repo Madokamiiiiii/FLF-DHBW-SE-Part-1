@@ -5,6 +5,8 @@ import airportfiretruck.extinguisher.thrower.IThrowerMixer;
 import java.util.ArrayList;
 import java.util.List;
 
+
+// TODO: Mergen?
 public class MixerAlt {
 
     private int foamRatio;
