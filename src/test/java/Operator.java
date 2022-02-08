@@ -4,11 +4,12 @@ import airportfiretruck.cabin.panel.rotaryknobs.RoofThrowerKnob;
 import airportfiretruck.cabin.panel.rotaryknobs.ThrowerType;
 import airportfiretruck.cabin.panel.switches.PanelSwitch;
 import airportfiretruck.cabin.panel.switches.RelatedDevice;
+import airportfiretruck.person.Person;
 
 import java.util.List;
 
 // This simulates the operator in the tests
-public class Operator {
+public class Operator extends Person {
     private final List<PanelSwitch> switches;
     private final FrontThrowerKnob frontThrowerKnob;
     private final RoofThrowerKnob roofThrowerKnob;

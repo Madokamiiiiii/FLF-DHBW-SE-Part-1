@@ -19,6 +19,7 @@ import airportfiretruck.lights.SideLight;
 import airportfiretruck.lights.led.BlueLight;
 import airportfiretruck.lights.led.LightSize;
 import airportfiretruck.lights.led.WarningLight;
+import airportfiretruck.person.Person;
 import airportfiretruck.position.FrontRearSide;
 import airportfiretruck.position.LeftRightSide;
 import airportfiretruck.position.Position;
@@ -42,6 +43,7 @@ public class AirportFireTruck {
     private final List<SideLight> sideLights;
     private final List<BlueLight> blueLights;
     private final List<WarningLight> warningLights;
+    private final List<Person> persons;
 
     public Cabin getCabin() {
         return cabin;
@@ -95,9 +97,12 @@ public class AirportFireTruck {
         return warningLights;
     }
 
+    public List<Person> getPersons() {
+        return persons;
+    }
+
     public AirportFireTruck(Builder builder) {
         centralUnit = builder.centralUnit;
-        centralUnit.setFlf(this);
 
         cabin = builder.cabin;
         cabin.connectToCentralUnit(centralUnit);
@@ -113,6 +118,9 @@ public class AirportFireTruck {
         blueLights = builder.blueLights;
         brakeLights = builder.brakeLights;
         headLights = builder.headLights;
+        persons = builder.persons;
+
+        centralUnit.setFlf(this);
     }
 
     public List<FloorSprayNozzle> getFloorSprayNozzles() {
@@ -134,6 +142,7 @@ public class AirportFireTruck {
         private final List<BrakeLight> brakeLights = new ArrayList<>();
         private final List<BlueLight> blueLights = new ArrayList<>();
         private final List<DirectionIndicatorLight> directionIndicatorLights = new ArrayList<>();
+        private final List<Person> persons = new ArrayList<>();
 
         public Builder() {
             centralUnit = new CentralUnit();
@@ -155,6 +164,7 @@ public class AirportFireTruck {
             frontAxles.addAll(List.of(new FrontAxle(LeftRightSide.LEFT), new FrontAxle(LeftRightSide.RIGHT)));
 
             for (int i = 0; i < 2; i++) {
+                persons.add(i, new Person());
                 engines.add(i, new ElectroEngine());
                 blueLights.add(i, new BlueLight(LightSize.SMALL));
                 blueLights.get(i).setPosition(Position.BOTTOM);
@@ -242,6 +252,8 @@ public class AirportFireTruck {
             brakeLights.get(1).setLeftRightSide(LeftRightSide.RIGHT);
             blueLights.get(0).setLeftRightSide(LeftRightSide.LEFT);
             blueLights.get(1).setLeftRightSide(LeftRightSide.RIGHT);
+            persons.get(0).setName("Bob");
+            persons.get(1).setName("Red Adair");
         }
 
         private void buildAxle(Axle axle) {

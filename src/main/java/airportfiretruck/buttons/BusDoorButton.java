@@ -16,7 +16,12 @@ public class BusDoorButton extends Button {
         this.busDoor = busDoor;
     }
 
+    public FrontRearSide getPosition() {
+        return position;
+    }
+
     @Override
+
     public void pressed() {
         busDoor.openClose();
     }

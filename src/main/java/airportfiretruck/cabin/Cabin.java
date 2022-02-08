@@ -93,5 +93,9 @@ public class Cabin {
         for (Pedal pedal : pedals) {
             pedal.connectToCentralUnit(centralUnit);
         }
+        for (BusDoor busDoor : doors) {
+            busDoor.connectToCentralUnit(centralUnit);
+            busDoor.getIdReader().connectToCentralUnit(centralUnit);
+        }
     }
 }
