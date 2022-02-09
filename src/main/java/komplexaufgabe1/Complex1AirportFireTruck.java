@@ -1,5 +1,6 @@
-package airportfiretruck;
+package komplexaufgabe1;
 
+import airportfiretruck.AirportFireTruck;
 import airportfiretruck.cabin.Cabin;
 import airportfiretruck.centralunit.CentralUnit;
 import airportfiretruck.engine.ElectroEngine;
@@ -27,7 +28,7 @@ import airportfiretruck.wheels.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AirportFireTruck {
+public class Complex1AirportFireTruck extends AirportFireTruck {
     private final List<IEngine> engines;
     private final CentralUnit centralUnit;
     private final Cabin cabin;
@@ -42,6 +43,7 @@ public class AirportFireTruck {
     private final List<SideLight> sideLights;
     private final List<BlueLight> blueLights;
     private final List<WarningLight> warningLights;
+    private final List<Person> persons;
 
     public Cabin getCabin() {
         return cabin;
@@ -95,7 +97,12 @@ public class AirportFireTruck {
         return warningLights;
     }
 
-    public AirportFireTruck(Builder builder) {
+    public List<Person> getPersons() {
+        return persons;
+    }
+
+    public Complex1AirportFireTruck(Builder builder) {
+        super(new AirportFireTruck.Builder());
         centralUnit = builder.centralUnit;
 
         cabin = builder.cabin;
@@ -112,6 +119,7 @@ public class AirportFireTruck {
         blueLights = builder.blueLights;
         brakeLights = builder.brakeLights;
         headLights = builder.headLights;
+        persons = builder.persons;
 
         centralUnit.setFlf(this);
     }
@@ -135,10 +143,11 @@ public class AirportFireTruck {
         private final List<BrakeLight> brakeLights = new ArrayList<>();
         private final List<BlueLight> blueLights = new ArrayList<>();
         private final List<DirectionIndicatorLight> directionIndicatorLights = new ArrayList<>();
+        private final List<Person> persons = new ArrayList<>();
 
         public Builder() {
-            centralUnit = new CentralUnit();
-            cabin = new Cabin();
+            centralUnit = new ComplexCentralUnit();
+            cabin = new ComplexCabin();
             cabin.build();
             cabin.connectToCentralUnit(centralUnit);
 
@@ -156,6 +165,7 @@ public class AirportFireTruck {
             frontAxles.addAll(List.of(new FrontAxle(LeftRightSide.LEFT), new FrontAxle(LeftRightSide.RIGHT)));
 
             for (int i = 0; i < 2; i++) {
+                persons.add(i, new Person());
                 engines.add(i, new ElectroEngine());
                 blueLights.add(i, new BlueLight(LightSize.SMALL));
                 blueLights.get(i).setPosition(Position.BOTTOM);
@@ -243,6 +253,8 @@ public class AirportFireTruck {
             brakeLights.get(1).setLeftRightSide(LeftRightSide.RIGHT);
             blueLights.get(0).setLeftRightSide(LeftRightSide.LEFT);
             blueLights.get(1).setLeftRightSide(LeftRightSide.RIGHT);
+            persons.get(0).setName("Bob");
+            persons.get(1).setName("Red Adair");
         }
 
         private void buildAxle(Axle axle) {
@@ -262,7 +274,7 @@ public class AirportFireTruck {
         }
 
         public AirportFireTruck build() {
-            return new AirportFireTruck(this);
+            return new Complex1AirportFireTruck(this);
         }
     }
 }

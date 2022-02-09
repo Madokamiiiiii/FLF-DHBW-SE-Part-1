@@ -1,6 +1,4 @@
-package airportfiretruck.id;
-
-import airportfiretruck.cabin.BusDoor;
+package komplexaufgabe1;
 
 public class RfidChip {
     private final byte[] encrypted;
@@ -13,7 +11,7 @@ public class RfidChip {
         return encrypted;
     }
 
-    public void sendCode(BusDoor targetDoor) {
+    public void sendCode(ComplexBusDoor targetDoor) {
         targetDoor.unlock(this.encrypted);
     }
 }

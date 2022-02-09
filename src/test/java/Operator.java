@@ -4,7 +4,7 @@ import airportfiretruck.cabin.panel.rotaryknobs.RoofThrowerKnob;
 import airportfiretruck.cabin.panel.rotaryknobs.ThrowerType;
 import airportfiretruck.cabin.panel.switches.PanelSwitch;
 import airportfiretruck.cabin.panel.switches.RelatedDevice;
-import airportfiretruck.person.Person;
+import komplexaufgabe1.Person;
 
 import java.util.List;
 

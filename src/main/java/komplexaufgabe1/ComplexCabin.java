@@ -1,7 +1,10 @@
-package airportfiretruck.cabin;
+package komplexaufgabe1;
 
 import airportfiretruck.buttons.JoystickButton;
 import airportfiretruck.buttons.PushButton;
+import airportfiretruck.cabin.BusDoor;
+import airportfiretruck.cabin.Cabin;
+import airportfiretruck.cabin.SteeringWheel;
 import airportfiretruck.cabin.displays.BatteryDisplay;
 import airportfiretruck.cabin.displays.IDisplay;
 import airportfiretruck.cabin.displays.VelocityDisplay;
@@ -21,7 +24,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Cabin {
+public class ComplexCabin extends Cabin {
 
     private List<Pedal> pedals;
     private List<BusDoor> doors;
@@ -40,8 +43,8 @@ public class Cabin {
         pedals.add(0, new Pedal(PedalType.GAS));
         pedals.add(1, new Pedal(PedalType.BRAKE));
         doors = new ArrayList<>();
-        doors.add(0, new BusDoor());
-        doors.add(1, new BusDoor());
+        doors.add(0, new ComplexBusDoor());
+        doors.add(1, new ComplexBusDoor());
         seats = new ArrayList<>();
         seats.add(0, new FrontSeat(new Respirator(), LeftRightSide.RIGHT));
         seats.add(1, new FrontSeat(new Respirator(), LeftRightSide.LEFT));
@@ -92,6 +95,10 @@ public class Cabin {
         controlPanel.connectToCentralUnit(centralUnit);
         for (Pedal pedal : pedals) {
             pedal.connectToCentralUnit(centralUnit);
+        }
+        for (BusDoor busDoor : doors) {
+            ((ComplexBusDoor) busDoor).connectToCentralUnit((ComplexCentralUnit) centralUnit);
+            ((ComplexBusDoor) busDoor).getIdReader().connectToCentralUnit((ComplexCentralUnit) centralUnit);
         }
     }
 }

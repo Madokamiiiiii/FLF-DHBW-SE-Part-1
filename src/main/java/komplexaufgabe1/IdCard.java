@@ -1,7 +1,4 @@
-package airportfiretruck.id;
-
-import airportfiretruck.cabin.BusDoor;
-import airportfiretruck.person.Person;
+package komplexaufgabe1;
 
 public class IdCard {
     private final RfidChip rfidChip;
@@ -16,7 +13,7 @@ public class IdCard {
         return rfidChip;
     }
 
-    public void use(BusDoor targetDoor) {
+    public void use(ComplexBusDoor targetDoor) {
         this.rfidChip.sendCode(targetDoor);
     }
 }

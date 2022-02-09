@@ -1,7 +1,4 @@
-package airportfiretruck.person;
-
-import airportfiretruck.cabin.BusDoor;
-import airportfiretruck.id.IdCard;
+package komplexaufgabe1;
 
 public class Person {
     private String name;
@@ -23,7 +20,7 @@ public class Person {
         return this.idCard;
     }
 
-    public void useCard(BusDoor targetDoor) {
+    public void useCard(ComplexBusDoor targetDoor) {
         this.idCard.use(targetDoor);
     }
 }

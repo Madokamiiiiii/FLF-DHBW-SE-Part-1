@@ -1,6 +1,6 @@
-package airportfiretruck.cabin;
+package komplexaufgabe1;
 
-import airportfiretruck.centralunit.IIdCentralUnit;
+import airportfiretruck.cabin.BusDoor;
 
 public class IdReader {
     private IIdCentralUnit centralUnit;
