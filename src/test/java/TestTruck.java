@@ -1,3 +1,4 @@
+import Utils.Helper;
 import airportfiretruck.AirportFireTruck;
 import airportfiretruck.cabin.Cabin;
 import airportfiretruck.cabin.SteeringWheel;
@@ -5,11 +6,15 @@ import airportfiretruck.cabin.joysticks.FrontThrowerJoystick;
 import airportfiretruck.cabin.joysticks.IJoystick;
 import airportfiretruck.cabin.joysticks.RoofThrowerJoystick;
 import airportfiretruck.cabin.panel.ControlPanel;
+import airportfiretruck.cabin.panel.switches.PanelSwitch;
+import airportfiretruck.cabin.panel.switches.RelatedDevice;
+import airportfiretruck.cabin.panel.switches.Switch;
 import airportfiretruck.cabin.pedals.Pedal;
 import airportfiretruck.cabin.pedals.PedalType;
 import airportfiretruck.cabin.seats.FrontSeat;
 import airportfiretruck.cabin.seats.Seat;
 import airportfiretruck.engine.IEngine;
+import airportfiretruck.engine.battery.BatteryManagement;
 import airportfiretruck.extinguisher.thrower.FloorSprayNozzle;
 import airportfiretruck.extinguisher.thrower.FrontThrower;
 import airportfiretruck.extinguisher.thrower.roof.RoofThrower;
@@ -22,6 +27,7 @@ import airportfiretruck.lights.SideLight;
 import airportfiretruck.lights.led.BlueLight;
 import airportfiretruck.lights.led.LightSize;
 import airportfiretruck.lights.led.WarningLight;
+import airportfiretruck.position.Position;
 import airportfiretruck.wheels.Axle;
 import airportfiretruck.wheels.FrontAxle;
 import airportfiretruck.wheels.RearAxle;
@@ -62,7 +68,7 @@ public class TestTruck {
         assertEquals(3, Helper.testLightPosition(headLight, BOTTOM, RIGHT, FRONT));
         assertEquals(3, Helper.testLightPosition(headLight, BOTTOM, LEFT, FRONT));
 
-        // Test Direction Indicator
+        // Direction Indicator
         List<DirectionIndicatorLight> directionIndicatorLights = airportFireTruck.getDirectionIndicatorLights();
         assertEquals(4, directionIndicatorLights.size());
         assertEquals(1, Helper.testLightPosition(directionIndicatorLights, null, RIGHT, FRONT));
@@ -191,6 +197,7 @@ public class TestTruck {
         engines.forEach(engine -> assertNotNull(engine.getBatteryManagement()));
 
         // TODO: Test Battery?
+        assertEquals(100000, BatteryManagement.INSTANCE.getRemainingBatteryLevel());
 
         // Test CentralUnit
         assertNotNull(airportFireTruck.getCentralUnit());
@@ -199,7 +206,48 @@ public class TestTruck {
     @Test
     @Order(2)
     public void usageControlPanel() {
+        List<PanelSwitch> switches = airportFireTruck.getCabin().getControlPanel().getSwitches();
 
+        // Engines
+        airportFireTruck.getEngines().forEach(engine -> assertFalse(engine.isOn()));
+        switches.stream().filter(singleSwitch -> singleSwitch.getDevice() == RelatedDevice.ENGINES).findAny().orElseThrow().pressed();
+        airportFireTruck.getEngines().forEach(engine -> assertTrue(engine.isOn()));
+
+        // Warning Lights
+        airportFireTruck.getWarningLights().forEach(warningLight -> assertFalse(warningLight.isOn()));
+        switches.stream().filter(singleSwitch -> singleSwitch.getDevice() == RelatedDevice.WARNING_LIGHTS).findAny().orElseThrow().pressed();
+        airportFireTruck.getWarningLights().forEach(warningLight -> assertTrue(warningLight.isOn()));
+
+        // Blue Lights
+        airportFireTruck.getBlueLights().forEach(blueLight -> assertFalse(blueLight.isOn()));
+        switches.stream().filter(singleSwitch -> singleSwitch.getDevice() == RelatedDevice.BLUE_LIGHTS).findAny().orElseThrow().pressed();
+        airportFireTruck.getBlueLights().forEach(blueLight -> assertTrue(blueLight.isOn()));
+
+        // Front Lights
+        airportFireTruck.getHeadLights().stream().filter(headLight -> headLight.getPosition().equals(TOP)).forEach(headLight -> assertFalse(headLight.isOn()));
+        airportFireTruck.getHeadLights().stream().filter(headLight -> headLight.getPosition().equals(BOTTOM)).forEach(headLight -> assertFalse(headLight.isOn()));
+        switches.stream().filter(singleSwitch -> singleSwitch.getDevice() == RelatedDevice.FRONT_LIGHTS).findAny().orElseThrow().pressed();
+        airportFireTruck.getHeadLights().stream().filter(headLight -> headLight.getPosition().equals(TOP)).forEach(headLight -> assertFalse(headLight.isOn())); // Bleiben ausgeschaltet
+        airportFireTruck.getHeadLights().stream().filter(headLight -> headLight.getPosition().equals(BOTTOM)).forEach(headLight -> assertTrue(headLight.isOn()));
+
+        // Roof Lights
+        switches.stream().filter(singleSwitch -> singleSwitch.getDevice() == RelatedDevice.BLUE_LIGHTS).findAny().orElseThrow().pressed(); // Lichter von vorher wieder ausschalten
+
+        airportFireTruck.getHeadLights().stream().filter(headLight -> headLight.getPosition().equals(TOP)).forEach(headLight -> assertTrue(headLight.isOn()));
+        airportFireTruck.getHeadLights().stream().filter(headLight -> headLight.getPosition().equals(BOTTOM)).forEach(headLight -> assertFalse(headLight.isOn()));
+        switches.stream().filter(singleSwitch -> singleSwitch.getDevice() == RelatedDevice.ROOF_LIGHTS).findAny().orElseThrow().pressed();
+        airportFireTruck.getHeadLights().stream().filter(headLight -> headLight.getPosition().equals(TOP)).forEach(headLight -> assertTrue(headLight.isOn()));
+        airportFireTruck.getHeadLights().stream().filter(headLight -> headLight.getPosition().equals(BOTTOM)).forEach(headLight -> assertFalse(headLight.isOn())); // Bleiben ausgeschaltet
+
+        // Side Lights
+        airportFireTruck.getSideLights().forEach(sideLight -> assertFalse(sideLight.isOn()));
+        switches.stream().filter(singleSwitch -> singleSwitch.getDevice() == RelatedDevice.SIDE_LIGHTS).findAny().orElseThrow().pressed();
+        airportFireTruck.getSideLights().forEach(sideLight -> assertTrue(sideLight.isOn()));
+
+        // Self Protection
+        airportFireTruck.getFloorSprayNozzles().forEach(floorSprayNozzle -> assertFalse(floorSprayNozzle.isOn()));
+        switches.stream().filter(singleSwitch -> singleSwitch.getDevice() == RelatedDevice.SELF_PROTECTION).findAny().orElseThrow().pressed();
+        airportFireTruck.getFloorSprayNozzles().forEach(floorSprayNozzle -> assertTrue(floorSprayNozzle.isOn()));
     }
 
     @Test

@@ -21,7 +21,6 @@ public class BusDoorButton extends Button {
     }
 
     @Override
-
     public void pressed() {
         busDoor.openClose();
     }

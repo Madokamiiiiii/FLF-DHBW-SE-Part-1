@@ -4,6 +4,8 @@ import airportfiretruck.cabin.Cabin;
 import airportfiretruck.centralunit.CentralUnit;
 import airportfiretruck.engine.ElectroEngine;
 import airportfiretruck.engine.IEngine;
+import airportfiretruck.engine.battery.BatteryBox;
+import airportfiretruck.engine.battery.BatteryManagement;
 import airportfiretruck.extinguisher.thrower.FloorSprayNozzle;
 import airportfiretruck.extinguisher.thrower.FrontThrower;
 import airportfiretruck.extinguisher.thrower.roof.LowerSegment;
@@ -97,6 +99,7 @@ public class AirportFireTruck {
 
     public AirportFireTruck(Builder builder) {
         centralUnit = builder.centralUnit;
+        centralUnit.setFlf(this);
 
         cabin = builder.cabin;
         cabin.connectToCentralUnit(centralUnit);
@@ -112,8 +115,6 @@ public class AirportFireTruck {
         blueLights = builder.blueLights;
         brakeLights = builder.brakeLights;
         headLights = builder.headLights;
-
-        centralUnit.setFlf(this);
     }
 
     public List<FloorSprayNozzle> getFloorSprayNozzles() {
@@ -243,6 +244,8 @@ public class AirportFireTruck {
             brakeLights.get(1).setLeftRightSide(LeftRightSide.RIGHT);
             blueLights.get(0).setLeftRightSide(LeftRightSide.LEFT);
             blueLights.get(1).setLeftRightSide(LeftRightSide.RIGHT);
+
+            BatteryManagement.INSTANCE.setBatteryBox(new BatteryBox());
         }
 
         private void buildAxle(Axle axle) {

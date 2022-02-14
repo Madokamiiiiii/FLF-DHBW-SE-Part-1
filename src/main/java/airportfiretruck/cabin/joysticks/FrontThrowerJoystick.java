@@ -10,7 +10,7 @@ import java.util.List;
 
 public class FrontThrowerJoystick extends Joystick {
 
-    public FrontThrower thrower;
+    private FrontThrower thrower;
 
     public FrontThrowerJoystick(List<PushButton> pushButtonList, JoystickButton joystickButton) {
         super(pushButtonList, joystickButton);

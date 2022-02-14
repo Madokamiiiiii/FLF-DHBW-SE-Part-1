@@ -2,8 +2,11 @@ package airportfiretruck.engine.battery;
 
 public enum BatteryManagement {
     INSTANCE;
-
     private BatteryBox batteryBox;
+
+    public void setBatteryBox(BatteryBox batteryBox) {
+        this.batteryBox = batteryBox;
+    }
 
     public void charge(int amount) {
         batteryBox.charge(amount);

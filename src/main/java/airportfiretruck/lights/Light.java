@@ -43,4 +43,8 @@ public abstract class Light {
     public void off() {
         isOn = false;
     }
+
+    public boolean isOn() {
+        return isOn;
+    }
 }

@@ -1,10 +1,13 @@
 package airportfiretruck.engine.battery;
 
 public class BatteryBox {
-    private final Battery[][] battery;
+    private final Battery[][] battery = new Battery[2][2];
 
     public BatteryBox() {
-        battery = new Battery[2][2];
+        battery[0][0] = new Battery();
+        battery[0][1] = new Battery();
+        battery[1][0] = new Battery();
+        battery[1][1] = new Battery();
     }
 
     public void charge(int amount) {

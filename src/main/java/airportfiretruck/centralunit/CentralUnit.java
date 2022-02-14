@@ -20,9 +20,6 @@ import airportfiretruck.position.Position;
 public class CentralUnit implements IPedalCentralUnit, ISteeringCentralUnit, IThrowerCentralUnit, IControlPanelCentralUnit {
     private AirportFireTruck flf;
 
-    public CentralUnit() {
-    }
-
     @Override
     public void pedal(PedalType pedalType) {
         int sign = 4;

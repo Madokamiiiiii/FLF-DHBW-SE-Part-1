@@ -30,13 +30,13 @@ public class TestComplex1_UseCases {
             }
         }
 
-        // Fahrer und Operator sitzen im FLF, die Türen sind nicht gesperrt, aber geschlossen:
+        // Fahrer und Utils.Operator sitzen im FLF, die Türen sind nicht gesperrt, aber geschlossen:
         for (BusDoor bd : flf.getCabin().getDoors()) {
             assertFalse(((ComplexBusDoor) bd).isLocked());
             assertFalse(bd.state());
         }
 
-        // Operator öffnet von innen rechte Bustür über Taster
+        // Utils.Operator öffnet von innen rechte Bustür über Taster
         flf.getCabin().getDoors().get(1).getButtons().stream().filter(x -> x.getPosition() == FrontRearSide.REAR).forEach(BusDoorButton::pressed);
 
         // Somit ist die rechte Tür (1) geöffnet, die linke (0) nicht; beide sind nicht gesperrt
@@ -45,7 +45,7 @@ public class TestComplex1_UseCases {
         assertFalse(((ComplexBusDoor) flf.getCabin().getDoors().get(1)).isLocked());
         assertTrue(flf.getCabin().getDoors().get(1).state());
 
-        // Operator verlässt Fahrzeug
+        // Utils.Operator verlässt Fahrzeug
 
         // Fahrer öffnet von innen linke Bustür über Taster
         flf.getCabin().getDoors().get(0).getButtons().stream().filter(x -> x.getPosition() == FrontRearSide.REAR).forEach(BusDoorButton::pressed);
@@ -94,7 +94,7 @@ public class TestComplex1_UseCases {
             assertTrue(bd.state());
         }
 
-        // Operator setzt sich und schließt von innen die rechte Bustür über Taster
+        // Utils.Operator setzt sich und schließt von innen die rechte Bustür über Taster
         flf.getCabin().getDoors().get(1).getButtons().stream().filter(x -> x.getPosition() == FrontRearSide.REAR).forEach(BusDoorButton::pressed);
 
         // Somit ist die linke Tür (0) geöffnet, die rechte (1) nicht; beide sind nicht gesperrt

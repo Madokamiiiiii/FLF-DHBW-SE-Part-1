@@ -7,6 +7,8 @@ public interface IEngine {
 
     void off();
 
+    boolean isOn();
+
     int rotate(int kmph);
 
     int getVelocity();

@@ -27,4 +27,8 @@ public class FloorSprayNozzle extends Thrower {
     public Tank getTank() {
         return tank;
     }
+
+    public boolean isOn() {
+        return isOn;
+    }
 }

@@ -1,3 +1,5 @@
+package Utils;
+
 import airportfiretruck.lights.Light;
 import airportfiretruck.lights.led.BlueLight;
 import airportfiretruck.lights.led.Color;
