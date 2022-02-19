@@ -319,8 +319,8 @@ public class TestTruck {
         assertEquals(2, engines.size());
         engines.forEach(engine -> assertNotNull(engine.getBatteryManagement()));
 
-        // TODO: Test Battery?
-        assertEquals(100000, BatteryManagement.INSTANCE.getRemainingBatteryLevel());
+        // Test Battery
+        assertEquals(400000, 4 * BatteryManagement.INSTANCE.getRemainingBatteryLevel());
 
         // Test CentralUnit
         assertNotNull(airportFireTruck.getCentralUnit());
@@ -377,6 +377,7 @@ public class TestTruck {
     @Test
     @Order(3)
     public void handleParking() {
+        testFullTanks();
         generateHelper();
         // s0101
         airportFireTruck.getEngines().forEach(engine -> assertFalse(engine.isOn()));

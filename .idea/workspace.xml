@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d81c2fcd-6860-40c3-a4bd-03e47c36c420" name="Default Changelist" comment="first tests">
+    <list default="true" id="d81c2fcd-6860-40c3-a4bd-03e47c36c420" name="Default Changelist" comment="BAT-TE-RY">
       <change beforePath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -12,9 +12,7 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/centralunit/CentralUnit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/centralunit/CentralUnit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/engine/ElectroEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/engine/ElectroEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/engine/IEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/engine/IEngine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/extinguisher/watersupply/Tank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/extinguisher/watersupply/Tank.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/TestTruck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TestTruck.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -126,7 +124,7 @@
       <recent name="airportfiretruck.wheels" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.TestTruck.handleInspectionDrive">
+  <component name="RunManager" selected="Gradle.TestTruck.handleParking">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -165,27 +163,6 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
         <option name="scriptParameters" value="--tests &quot;TestParking.frontThrowerInActive&quot;" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="TestParking.roofThrowerPulledIn" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;TestParking.roofThrowerPulledIn&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -243,13 +220,34 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="TestTruck.handleParking" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;TestTruck.handleParking&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.TestTruck.handleInspectionDrive" />
+        <item itemvalue="Gradle.TestTruck.handleParking" />
         <item itemvalue="Gradle.TestTruck" />
+        <item itemvalue="Gradle.TestTruck.handleInspectionDrive" />
         <item itemvalue="Gradle.TestParking" />
         <item itemvalue="Gradle.TestParking.frontThrowerInActive" />
-        <item itemvalue="Gradle.TestParking.roofThrowerPulledIn" />
       </list>
     </recent_temporary>
   </component>
@@ -341,7 +339,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645261845068</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="BAT-TE-RY">
+      <created>1645288948878</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1645288948878</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -383,7 +388,8 @@
     <MESSAGE value="huge commit with complex1" />
     <MESSAGE value="batteries" />
     <MESSAGE value="first tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="first tests" />
+    <MESSAGE value="BAT-TE-RY" />
+    <option name="LAST_COMMIT_MESSAGE" value="BAT-TE-RY" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
