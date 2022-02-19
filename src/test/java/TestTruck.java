@@ -68,12 +68,21 @@ public class TestTruck {
                 airportFireTruck.getCabin().getControlPanel(),
                 (FrontThrowerJoystick) airportFireTruck.getCabin().getFrontThrowerJoystick(),
                 airportFireTruck.getCabin().getDoors().get(0).getButtons(),
-                (FrontSeat) airportFireTruck.getCabin().getSeats().get(0));
+
+                (FrontSeat) airportFireTruck.getCabin().getSeats().stream().filter(seat -> {
+                    FrontSeat frontSeat = (FrontSeat) seat;
+                    return frontSeat.getLeftRightSide().equals(LEFT);
+                }).findFirst().orElseThrow()
+        );
 
         operator = new Operator(airportFireTruck.getCabin().getControlPanel(),
                 (RoofThrowerJoystick) airportFireTruck.getCabin().getRoofThrowerJoystick(),
                 airportFireTruck.getCabin().getDoors().get(1).getButtons(),
-                (FrontSeat) airportFireTruck.getCabin().getSeats().get(1));
+                (FrontSeat) airportFireTruck.getCabin().getSeats().stream().filter(seat -> {
+                    FrontSeat frontSeat = (FrontSeat) seat;
+                    return frontSeat.getLeftRightSide().equals(RIGHT);
+                }).findFirst().orElseThrow()
+        );
     }
 
     private void testCommon() {
@@ -85,7 +94,7 @@ public class TestTruck {
         operator.pressDoorButton(REAR);
         operator.sitOrGetUp();
 
-        airportFireTruck.getCabin().getSeats().forEach(seat -> assertTrue(seat.isOccupied()));
+        airportFireTruck.getCabin().getSeats().stream().filter(seat -> seat instanceof FrontSeat).forEach(seat -> assertTrue(seat.isOccupied()));
 
         // s0X02
         driver.pressDoorButton(REAR);
@@ -121,7 +130,7 @@ public class TestTruck {
 
         if (Objects.nonNull(lightConfiguration.frontLights)) {
             if (lightConfiguration.frontLights) {
-                operator.useSwitch(RelatedDevice.ROOF_LIGHTS);
+                operator.useSwitch(RelatedDevice.FRONT_LIGHTS);
                 airportFireTruck.getHeadLights().stream().filter(roofLight -> roofLight.getPosition().equals(BOTTOM)).forEach(roofLight -> assertTrue(roofLight.isOn()));
             } else {
                 airportFireTruck.getHeadLights().stream().filter(roofLight -> roofLight.getPosition().equals(BOTTOM)).forEach(roofLight -> assertFalse(roofLight.isOn()));
