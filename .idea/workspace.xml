@@ -124,7 +124,7 @@
       <recent name="airportfiretruck.wheels" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.TestTruck.handleParking">
+  <component name="RunManager" selected="Gradle.TestTruck">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -243,8 +243,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.TestTruck.handleParking" />
         <item itemvalue="Gradle.TestTruck" />
+        <item itemvalue="Gradle.TestTruck.handleParking" />
         <item itemvalue="Gradle.TestTruck.handleInspectionDrive" />
         <item itemvalue="Gradle.TestParking" />
         <item itemvalue="Gradle.TestParking.frontThrowerInActive" />

@@ -519,7 +519,7 @@ public class TestTruck {
         // Beschleunigung: (1+...+20)*4=840 Einheiten
         // Konstante Fahrt: 10*80=800 Einheiten
         // gesamt 1640 Einheiten * 25 Zellen Verbrauch: 41000 gesamt
-        assertEquals(400000 - 41000, BatteryManagement.INSTANCE.getRemainingBatteryLevel());
+        assertEquals(400000 - 41000, 4 * BatteryManagement.INSTANCE.getRemainingBatteryLevel());
     }
 
     @Test
