@@ -7,7 +7,6 @@ import airportfiretruck.cabin.panel.rotaryknobs.RoofThrowerKnob;
 import airportfiretruck.cabin.panel.switches.RelatedDevice;
 import airportfiretruck.cabin.pedals.PedalType;
 import airportfiretruck.engine.IEngine;
-import airportfiretruck.engine.battery.BatteryManagement;
 import airportfiretruck.extinguisher.thrower.FloorSprayNozzle;
 import airportfiretruck.lights.BrakeLight;
 import airportfiretruck.lights.DirectionIndicatorLight;
@@ -32,19 +31,18 @@ public class CentralUnit implements IPedalCentralUnit, ISteeringCentralUnit, ITh
         if (newVelocity < 0) { // Nicht rückwarts fahren
             return;
         }
-        flf.getCabin().getDisplays().get(1).setValue(newVelocity);
 
         for (IEngine engine : flf.getEngines()) {
             engine.setVelocity(newVelocity);
-            flf.getCabin().getDisplays().get(0).setValue(engine.getBatteryManagement().getRemainingBatteryLevel());
+            engine.rotate();
         }
-        rotateEngines();
+
         for (BrakeLight brakeLight : flf.getBrakeLights()) {
             if (sign < 0) {
                 brakeLight.on();
-                continue;
+            } else {
+                brakeLight.off();
             }
-            brakeLight.off();
         }
     }
 
@@ -153,11 +151,6 @@ public class CentralUnit implements IPedalCentralUnit, ISteeringCentralUnit, ITh
             case ROOF -> flf.getRoofThrower().setLevel(((RoofThrowerKnob) rotaryKnob).getLevel());
             case FRONT -> flf.getFrontThrower().setLevel(((FrontThrowerKnob) rotaryKnob).getLevel());
         }
-    }
-
-    public void rotateEngines() {
-        int velocity = flf.getEngines().get(0).getVelocity();
-        BatteryManagement.INSTANCE.takeOut(25 * velocity);
     }
 
     public void setFlf(AirportFireTruck flf) {

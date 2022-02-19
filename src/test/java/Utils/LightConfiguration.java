@@ -1,9 +1,9 @@
 package Utils;
 
 public class LightConfiguration {
-    public Boolean roofLights = true;
-    public Boolean sideLights = true;
-    public Boolean frontLights = true;
-    public Boolean warningLights = true;
-    public Boolean blueLight = true;
+    public boolean roofLights = true;
+    public boolean sideLights = true;
+    public boolean frontLights = true;
+    public boolean warningLights = true;
+    public boolean blueLight = true;
 }

@@ -1,6 +1,9 @@
 package airportfiretruck;
 
 import airportfiretruck.cabin.Cabin;
+import airportfiretruck.cabin.displays.BatteryDisplay;
+import airportfiretruck.cabin.displays.IDisplay;
+import airportfiretruck.cabin.displays.VelocityDisplay;
 import airportfiretruck.centralunit.CentralUnit;
 import airportfiretruck.engine.ElectroEngine;
 import airportfiretruck.engine.IEngine;
@@ -156,8 +159,10 @@ public class AirportFireTruck {
             rearAxles.addAll(List.of(new RearAxle(LeftRightSide.LEFT), new RearAxle(LeftRightSide.RIGHT)));
             frontAxles.addAll(List.of(new FrontAxle(LeftRightSide.LEFT), new FrontAxle(LeftRightSide.RIGHT)));
 
+            List<IDisplay> displays = cabin.getDisplays();
             for (int i = 0; i < 2; i++) {
-                engines.add(i, new ElectroEngine());
+                engines.add(i, new ElectroEngine((VelocityDisplay) displays.stream().filter(iDisplay -> iDisplay instanceof VelocityDisplay).findFirst().orElseThrow(),
+                        (BatteryDisplay) displays.stream().filter(iDisplay -> iDisplay instanceof BatteryDisplay).findFirst().orElseThrow()));
                 blueLights.add(i, new BlueLight(LightSize.SMALL));
                 blueLights.get(i).setPosition(Position.BOTTOM);
                 blueLights.get(i).setFrontRearSide(FrontRearSide.FRONT);
