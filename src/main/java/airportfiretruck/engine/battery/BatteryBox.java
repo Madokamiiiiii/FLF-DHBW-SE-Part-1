@@ -13,11 +13,11 @@ public class BatteryBox {
     public void charge(int amount) {
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < 2; j++) {
-                int free = (int) battery[i][j].getRemainingBatteryLevel() - 100000;
+                int free = (int) battery[i][j].getRemainingBatteryLevel();
                 switch (free) {
-                    case 0:
-                        continue;
                     case 100000:
+                        continue;
+                    case 0:
                         battery[i][j].charge(amount);
                         if (amount > 100000) {
                             amount -= 100000;
