@@ -9,4 +9,8 @@ public class FrontSeat extends Seat {
         super(respirator);
         this.leftRightSide = leftRightSide;
     }
+
+    public LeftRightSide getLeftRightSide() {
+        return leftRightSide;
+    }
 }
