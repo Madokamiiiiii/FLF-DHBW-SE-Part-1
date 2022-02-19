@@ -150,8 +150,8 @@ public class TestTruck {
 
     private void testThrowerOffPosition() {
         // RoofThrower down
-        assertEquals(0,airportFireTruck.getRoofThrower().getLowerSegment().getDegree());
-        assertEquals(0,airportFireTruck.getRoofThrower().getUpperSegment().getLength());
+        assertEquals(0, airportFireTruck.getRoofThrower().getLowerSegment().getDegree());
+        assertEquals(0, airportFireTruck.getRoofThrower().getUpperSegment().getLength());
 
         // FrontThrower deactive
         assertFalse(airportFireTruck.getFrontThrower().isActive());
@@ -430,12 +430,52 @@ public class TestTruck {
         testLights(lightConfiguration);
 
         // s0211 - s0212
-        testFullTanks();
+        //testFullTanks();
 
         // s0213 - s0214
         testInitialThrowerKnobLevels();
 
         // TODO: Rest
+        for (int i = 0; i < 7; i++) {
+            airportFireTruck.getCabin().getPedals().stream().filter(pedal -> pedal.getPedalType() == PedalType.GAS).forEach(Pedal::pressed);
+        }
+        for (int i = 0; i < 5; i++) {
+            airportFireTruck.getCentralUnit().rotateEngines();
+        }
+        airportFireTruck.getCabin().getSteeringWheel().turnLeft(5);
+        for (int i = 0; i < 3; i++) {
+            airportFireTruck.getCentralUnit().rotateEngines();
+        }
+        assertEquals(-5, airportFireTruck.getCabin().getSteeringWheel().getPosition());
+        airportFireTruck.getFrontAxles().forEach(frontAxle -> assertEquals(-5, frontAxle.getSteeringAngle()));
+
+        airportFireTruck.getCabin().getSteeringWheel().turnRight(5);
+        for (int i = 0; i < 5; i++) {
+            airportFireTruck.getCentralUnit().rotateEngines();
+        }
+        assertEquals(0, airportFireTruck.getCabin().getSteeringWheel().getPosition());
+        airportFireTruck.getFrontAxles().forEach(frontAxle -> assertEquals(0, frontAxle.getSteeringAngle()));
+
+        airportFireTruck.getCabin().getSteeringWheel().turnRight(5);
+        for (int i = 0; i < 5; i++) {
+            airportFireTruck.getCentralUnit().rotateEngines();
+        }
+
+        assertEquals(5, airportFireTruck.getCabin().getSteeringWheel().getPosition());
+        airportFireTruck.getFrontAxles().forEach(frontAxle -> assertEquals(5, frontAxle.getSteeringAngle()));
+
+        airportFireTruck.getCabin().getSteeringWheel().turnLeft(5);
+        for (int i = 0; i < 7; i++) {
+            airportFireTruck.getCabin().getPedals().stream().filter(pedal -> pedal.getPedalType() == PedalType.BRAKE).forEach(Pedal::pressed);
+        }
+
+        // Rechnung:
+        // Bremsweg: (1+..+6)*4 = 84
+        // Beschleunigung: (1+...+7)*4 = 112
+        // Konstante Fahrt: (5+5+3+5)*28 = 18*28 = 504 Iterationseinheiten
+        // 504+112+84 = 700 Iterationseinheiten à 25 Zellen Verbrauch: 17500 ist der Gesamtverbrauch
+
+        assertEquals(400000 - 17500, 4 * BatteryManagement.INSTANCE.getRemainingBatteryLevel());
     }
 
     @Test
@@ -459,6 +499,17 @@ public class TestTruck {
         testInitialThrowerKnobLevels();
 
         // TODO: Rest
+        for (int i = 0; i < 20; i++) {
+            airportFireTruck.getCabin().getPedals().stream().filter(pedal -> pedal.getPedalType() == PedalType.GAS).forEach(Pedal::pressed);
+        }
+        for (int i = 0; i < 10; i++) {
+            airportFireTruck.getCentralUnit().rotateEngines();
+        }
+        // Rechnung:
+        // Beschleunigung: (1+...+20)*4=840 Einheiten
+        // Konstante Fahrt: 10*80=800 Einheiten
+        // gesamt 1640 Einheiten * 25 Zellen Verbrauch: 41000 gesamt
+        assertEquals(400000 - 41000, BatteryManagement.INSTANCE.getRemainingBatteryLevel());
     }
 
     @Test

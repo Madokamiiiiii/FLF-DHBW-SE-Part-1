@@ -9,8 +9,6 @@ public interface IEngine {
 
     boolean isOn();
 
-    int rotate(int kmph);
-
     int getVelocity();
 
     BatteryManagement getBatteryManagement();

@@ -8,10 +8,4 @@ public class ElectroEngine extends Engine {
     public BatteryManagement getBatteryManagement() {
         return batteryManagement;
     }
-
-    @Override
-    public int rotate(int kmph) {
-        batteryManagement.takeOut(25 * kmph);
-        return 0;
-    }
 }
