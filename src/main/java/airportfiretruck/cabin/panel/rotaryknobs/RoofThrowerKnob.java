@@ -1,8 +1,9 @@
 package airportfiretruck.cabin.panel.rotaryknobs;
 
+import airportfiretruck.cabin.panel.ControlPanel;
 import airportfiretruck.extinguisher.thrower.roof.RoofThrowerLevel;
 
-public class RoofThrowerKnob implements IRotaryKnob {
+public class RoofThrowerKnob extends RotaryKnob implements IRotaryKnob {
 
     private RoofThrowerLevel level;
     private final ThrowerType type;
@@ -16,7 +17,8 @@ public class RoofThrowerKnob implements IRotaryKnob {
         return level;
     }
 
-    public RoofThrowerKnob() {
+    public RoofThrowerKnob(ControlPanel controlPanel) {
+        this.controlPanel = controlPanel;
         type = ThrowerType.ROOF;
         level = RoofThrowerLevel.A;
     }
@@ -27,6 +29,7 @@ public class RoofThrowerKnob implements IRotaryKnob {
             case B -> level = RoofThrowerLevel.A;
             case C -> level = RoofThrowerLevel.B;
         }
+        controlPanel.thrower(this);
     }
 
     @Override
@@ -35,5 +38,6 @@ public class RoofThrowerKnob implements IRotaryKnob {
             case A -> level = RoofThrowerLevel.B;
             case B -> level = RoofThrowerLevel.C;
         }
+        controlPanel.thrower(this);
     }
 }

@@ -21,6 +21,14 @@ public class FrontThrower extends ThrowerMixer {
         }
     }
 
+    public int getDegree() {
+        return degree;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
     public void setLevel(int level) {
         this.level = level;
     }
@@ -32,6 +40,7 @@ public class FrontThrower extends ThrowerMixer {
 
         // Wenn die Kapazität überschritten werden würde, nimm die maximale Kapazität.
         // Nach der Spezifikation dürfte das aber nicht erreicht werden.
+        System.out.println(level + "." + limit + "." + mixingRatio);
         mixer.getLiquid(Math.min(level, limit), mixingRatio);
     }
 }

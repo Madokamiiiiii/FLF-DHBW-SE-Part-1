@@ -20,6 +20,9 @@ public class RoofThrower extends ThrowerMixer {
         this.level = level;
     }
 
+    public RoofThrowerLevel getLevel() {
+        return level;
+    }
 
     @Override
     public void spray() {
@@ -31,6 +34,7 @@ public class RoofThrower extends ThrowerMixer {
 
         // Wenn die Kapazität überschritten werden würde, nimm die maximale Kapazität.
         // Nach der Spezifikation dürfte das aber nicht erreicht werden.
+        System.out.println(outputQuantity + "." + limit + "." + mixingRatio);
         mixer.getLiquid(Math.min(outputQuantity, limit), mixingRatio);
     }
 

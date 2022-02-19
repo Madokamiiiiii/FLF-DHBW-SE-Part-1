@@ -25,6 +25,10 @@ public abstract class ThrowerMixer extends Thrower implements IThrowerMixer {
         this.mixingRatio = ratio;
     }
 
+    public int getMixingRatio() {
+        return mixingRatio;
+    }
+
     public Mixer getMixer() {
         return mixer;
     }

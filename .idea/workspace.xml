@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d81c2fcd-6860-40c3-a4bd-03e47c36c420" name="Default Changelist" comment="BAT-TE-RY">
+    <list default="true" id="d81c2fcd-6860-40c3-a4bd-03e47c36c420" name="Default Changelist" comment="this is so POG -- all tests till now DO run">
+      <change afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/panel/rotaryknobs/RotaryKnob.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -12,6 +13,12 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/panel/ControlPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/panel/ControlPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/panel/rotaryknobs/FrontThrowerKnob.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/panel/rotaryknobs/FrontThrowerKnob.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/panel/rotaryknobs/RoofThrowerKnob.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/panel/rotaryknobs/RoofThrowerKnob.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/extinguisher/thrower/FrontThrower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/extinguisher/thrower/FrontThrower.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/extinguisher/thrower/ThrowerMixer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/extinguisher/thrower/ThrowerMixer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/extinguisher/thrower/roof/RoofThrower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/extinguisher/thrower/roof/RoofThrower.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/extinguisher/watersupply/Tank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/extinguisher/watersupply/Tank.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/TestTruck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TestTruck.java" afterDir="false" />
     </list>
@@ -136,48 +143,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestParking" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;TestParking&quot;" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="TestParking.frontThrowerInActive" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;TestParking.frontThrowerInActive&quot;" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
     <configuration name="TestTruck" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -199,12 +164,33 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="TestTruck.handleInspectionDrive" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="TestTruck.handleAirplaneEngineFire" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;TestTruck.handleInspectionDrive&quot;" />
+        <option name="scriptParameters" value="--tests &quot;TestTruck.handleAirplaneEngineFire&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="TestTruck.handleFuelTruckOnFire" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;TestTruck.handleFuelTruckOnFire&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -241,13 +227,34 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="TestTruck.handlePushbackVehicleOnFire" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;TestTruck.handlePushbackVehicleOnFire&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.TestTruck" />
+        <item itemvalue="Gradle.TestTruck.handleFuelTruckOnFire" />
+        <item itemvalue="Gradle.TestTruck.handlePushbackVehicleOnFire" />
+        <item itemvalue="Gradle.TestTruck.handleAirplaneEngineFire" />
         <item itemvalue="Gradle.TestTruck.handleParking" />
-        <item itemvalue="Gradle.TestTruck.handleInspectionDrive" />
-        <item itemvalue="Gradle.TestParking" />
-        <item itemvalue="Gradle.TestParking.frontThrowerInActive" />
       </list>
     </recent_temporary>
   </component>
@@ -346,7 +353,21 @@
       <option name="project" value="LOCAL" />
       <updated>1645288948878</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Tanks do tank now --&gt; prolly gonna be gen'ralized as its just counting in an alternate system">
+      <created>1645291111291</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1645291111291</updated>
+    </task>
+    <task id="LOCAL-00014" summary="this is so POG -- all tests till now DO run">
+      <created>1645291256213</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1645291256213</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -363,7 +384,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/main" />
+                        <option value="main" />
                       </list>
                     </value>
                   </entry>
@@ -389,14 +410,16 @@
     <MESSAGE value="batteries" />
     <MESSAGE value="first tests" />
     <MESSAGE value="BAT-TE-RY" />
-    <option name="LAST_COMMIT_MESSAGE" value="BAT-TE-RY" />
+    <MESSAGE value="Tanks do tank now --&gt; prolly gonna be gen'ralized as its just counting in an alternate system" />
+    <MESSAGE value="this is so POG -- all tests till now DO run" />
+    <option name="LAST_COMMIT_MESSAGE" value="this is so POG -- all tests till now DO run" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/TestTruck.java</url>
-          <line>238</line>
+          <line>249</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>

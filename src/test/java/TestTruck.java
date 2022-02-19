@@ -13,6 +13,7 @@ import airportfiretruck.cabin.panel.rotaryknobs.FrontThrowerKnob;
 import airportfiretruck.cabin.panel.rotaryknobs.IRotaryKnob;
 import airportfiretruck.cabin.panel.rotaryknobs.RoofThrowerKnob;
 import airportfiretruck.cabin.panel.rotaryknobs.ThrowerType;
+import airportfiretruck.cabin.panel.switches.PanelSwitch;
 import airportfiretruck.cabin.panel.switches.RelatedDevice;
 import airportfiretruck.cabin.pedals.Pedal;
 import airportfiretruck.cabin.pedals.PedalType;
@@ -43,6 +44,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
 
+import static airportfiretruck.extinguisher.thrower.roof.RoofThrowerLevel.C;
 import static airportfiretruck.position.FrontRearSide.FRONT;
 import static airportfiretruck.position.FrontRearSide.REAR;
 import static airportfiretruck.position.LeftRightSide.*;
@@ -445,7 +447,7 @@ public class TestTruck {
         // s0213 - s0214
         testInitialThrowerKnobLevels();
 
-        // TODO: Rest
+        // s0215
         for (int i = 0; i < 7; i++) {
             airportFireTruck.getCabin().getPedals().stream().filter(pedal -> pedal.getPedalType() == PedalType.GAS).forEach(Pedal::pressed);
         }
@@ -508,7 +510,7 @@ public class TestTruck {
         // s0313 - s0314
         testInitialThrowerKnobLevels();
 
-        // TODO: Rest
+        // s0315
         for (int i = 0; i < 20; i++) {
             airportFireTruck.getCabin().getPedals().stream().filter(pedal -> pedal.getPedalType() == PedalType.GAS).forEach(Pedal::pressed);
         }
@@ -535,7 +537,44 @@ public class TestTruck {
         // s0409 - s0410
         testFullTanks();
 
-        // TODO: Rest
+        // s0411
+        airportFireTruck.getCabin().getControlPanel().getSwitches().stream().filter(sw -> sw.getDevice() == RelatedDevice.SELF_PROTECTION).forEach(PanelSwitch::pressed);
+        airportFireTruck.getFloorSprayNozzles().forEach(FloorSprayNozzle::spray);
+
+        assertEquals(101250 - 700, airportFireTruck.getRoofThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.WATER).findFirst().orElseThrow().getRemainingCapacity());
+
+        airportFireTruck.getCabin().getFrontThrowerJoystick().pushButtonPressed(((FrontThrowerJoystick) airportFireTruck.getCabin().getFrontThrowerJoystick()).getPushButtons().stream().filter(pb -> pb.getPosition() == LEFT).findFirst().orElseThrow());
+        for (int i = 0; i < 2; i++) {
+            airportFireTruck.getCabin().getFrontThrowerJoystick().pushButtonPressed(((FrontThrowerJoystick) airportFireTruck.getCabin().getFrontThrowerJoystick()).getPushButtons().stream().filter(pb -> pb.getPosition() == RIGHT).findFirst().orElseThrow());
+        }
+        for (int i = 0; i < 6; i++) {
+            airportFireTruck.getCabin().getControlPanel().getKnobs().stream().filter(rk -> rk.getType() == ThrowerType.FRONT).findFirst().orElseThrow().turnRight();
+        }
+        for (int i = 0; i < 3; i++) {
+            airportFireTruck.getCabin().getFrontThrowerJoystick().joystickButtonPressed();
+        }
+        assertTrue(airportFireTruck.getFrontThrower().isActive());
+        assertEquals(90, airportFireTruck.getFrontThrower().getDegree());
+        assertEquals(3000, airportFireTruck.getFrontThrower().getLevel());
+        assertEquals(5, airportFireTruck.getFrontThrower().getMixingRatio());
+        assertEquals(101250 - 700 - 8550, airportFireTruck.getRoofThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.WATER).findFirst().orElseThrow().getRemainingCapacity());
+        assertEquals(33750 - 450, airportFireTruck.getRoofThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.FOAM).findFirst().orElseThrow().getRemainingCapacity());
+
+        airportFireTruck.getCabin().getRoofThrowerJoystick().pushButtonPressed(((RoofThrowerJoystick) airportFireTruck.getCabin().getRoofThrowerJoystick()).getPushButtons().stream().filter(pb -> pb.getPosition() == LEFT).findFirst().orElseThrow());
+        airportFireTruck.getCabin().getRoofThrowerJoystick().pushButtonPressed(((RoofThrowerJoystick) airportFireTruck.getCabin().getRoofThrowerJoystick()).getPushButtons().stream().filter(pb -> pb.getPosition() == RIGHT).findFirst().orElseThrow());
+        for (int i = 0; i < 2; i++) {
+            airportFireTruck.getCabin().getControlPanel().getKnobs().stream().filter(rk -> rk.getType() == ThrowerType.ROOF).findFirst().orElseThrow().turnRight();
+        }
+        for (int i = 0; i < 3; i++) {
+            airportFireTruck.getCabin().getRoofThrowerJoystick().joystickButtonPressed();
+        }
+        assertTrue(airportFireTruck.getRoofThrower().isActive());
+        assertEquals(90, airportFireTruck.getRoofThrower().getLowerSegment().getDegree());
+        assertEquals(16, airportFireTruck.getRoofThrower().getUpperSegment().getLength());
+        assertEquals(C, airportFireTruck.getRoofThrower().getLevel());
+        assertEquals(3, airportFireTruck.getRoofThrower().getMixingRatio());
+        assertEquals(101250 - 700 - 8550 - 7275, airportFireTruck.getRoofThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.WATER).findFirst().orElseThrow().getRemainingCapacity());
+        assertEquals(33750 - 450 - 225, airportFireTruck.getRoofThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.FOAM).findFirst().orElseThrow().getRemainingCapacity());
     }
 
     @Test
@@ -552,6 +591,54 @@ public class TestTruck {
         testFullTanks();
 
         // TODO: Rest
+        airportFireTruck.getCabin().getFrontThrowerJoystick().pushButtonPressed(((FrontThrowerJoystick) airportFireTruck.getCabin().getFrontThrowerJoystick()).getPushButtons().stream().filter(pb -> pb.getPosition() == LEFT).findFirst().orElseThrow());
+        for (int i = 0; i < 3; i++) {
+            airportFireTruck.getCabin().getFrontThrowerJoystick().pushButtonPressed(((FrontThrowerJoystick) airportFireTruck.getCabin().getFrontThrowerJoystick()).getPushButtons().stream().filter(pb -> pb.getPosition() == RIGHT).findFirst().orElseThrow());
+        }
+        for (int i = 0; i < 7; i++) {
+            airportFireTruck.getCabin().getControlPanel().getKnobs().stream().filter(rk -> rk.getType() == ThrowerType.FRONT).findFirst().orElseThrow().turnRight();
+        }
+        for (int i = 0; i < 3; i++) {
+            airportFireTruck.getCabin().getFrontThrowerJoystick().joystickButtonPressed();
+        }
+        assertTrue(airportFireTruck.getFrontThrower().isActive());
+        assertEquals(90, airportFireTruck.getFrontThrower().getDegree());
+        assertEquals(3500, airportFireTruck.getFrontThrower().getLevel());
+        assertEquals(10, airportFireTruck.getFrontThrower().getMixingRatio());
+        assertEquals(101250 - 9450, airportFireTruck.getRoofThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.WATER).findFirst().orElseThrow().getRemainingCapacity());
+        assertEquals(33750 - 1050, airportFireTruck.getRoofThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.FOAM).findFirst().orElseThrow().getRemainingCapacity());
+
+        airportFireTruck.getCabin().getRoofThrowerJoystick().pushButtonPressed(((RoofThrowerJoystick) airportFireTruck.getCabin().getRoofThrowerJoystick()).getPushButtons().stream().filter(pb -> pb.getPosition() == LEFT).findFirst().orElseThrow());
+        for (int i = 0; i < 2; i++) {
+            airportFireTruck.getCabin().getRoofThrowerJoystick().pushButtonPressed(((RoofThrowerJoystick) airportFireTruck.getCabin().getRoofThrowerJoystick()).getPushButtons().stream().filter(pb -> pb.getPosition() == RIGHT).findFirst().orElseThrow());
+            airportFireTruck.getCabin().getControlPanel().getKnobs().stream().filter(rk -> rk.getType() == ThrowerType.ROOF).findFirst().orElseThrow().turnRight();
+        }
+        for (int i = 0; i < 5; i++) {
+            airportFireTruck.getCabin().getRoofThrowerJoystick().joystickButtonPressed();
+        }
+        assertTrue(airportFireTruck.getRoofThrower().isActive());
+        assertEquals(90, airportFireTruck.getRoofThrower().getLowerSegment().getDegree());
+        assertEquals(16, airportFireTruck.getRoofThrower().getUpperSegment().getLength());
+        assertEquals(C, airportFireTruck.getRoofThrower().getLevel());
+        assertEquals(5, airportFireTruck.getRoofThrower().getMixingRatio());
+        assertEquals(101250 - 9450 - 11875, airportFireTruck.getRoofThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.WATER).findFirst().orElseThrow().getRemainingCapacity());
+        assertEquals(33750 - 1050 - 625, airportFireTruck.getRoofThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.FOAM).findFirst().orElseThrow().getRemainingCapacity());
+
+        for (int i = 0; i < 2; i++) {
+            airportFireTruck.getCabin().getFrontThrowerJoystick().pushButtonPressed(((FrontThrowerJoystick) airportFireTruck.getCabin().getFrontThrowerJoystick()).getPushButtons().stream().filter(pb -> pb.getPosition() == RIGHT).findFirst().orElseThrow());
+        }
+        for (int i = 0; i < 5; i++) {
+            airportFireTruck.getCabin().getControlPanel().getKnobs().stream().filter(rk -> rk.getType() == ThrowerType.FRONT).findFirst().orElseThrow().turnLeft();
+        }
+        for (int i = 0; i < 3; i++) {
+            airportFireTruck.getCabin().getFrontThrowerJoystick().joystickButtonPressed();
+        }
+        assertTrue(airportFireTruck.getFrontThrower().isActive());
+        assertEquals(90, airportFireTruck.getFrontThrower().getDegree());
+        assertEquals(1000, airportFireTruck.getFrontThrower().getLevel());
+        assertEquals(3, airportFireTruck.getFrontThrower().getMixingRatio());
+        assertEquals(101250 - 9450 - 11875 - 2910, airportFireTruck.getRoofThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.WATER).findFirst().orElseThrow().getRemainingCapacity());
+        assertEquals(33750 - 1050 - 625 - 90, airportFireTruck.getRoofThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.FOAM).findFirst().orElseThrow().getRemainingCapacity());
     }
 
     @Test
@@ -568,6 +655,58 @@ public class TestTruck {
         testFullTanks();
 
         // TODO: Rest
+        airportFireTruck.getCabin().getFrontThrowerJoystick().pushButtonPressed(((FrontThrowerJoystick) airportFireTruck.getCabin().getFrontThrowerJoystick()).getPushButtons().stream().filter(pb -> pb.getPosition() == LEFT).findFirst().orElseThrow());
+        for (int i = 0; i < 3; i++) {
+            airportFireTruck.getCabin().getFrontThrowerJoystick().pushButtonPressed(((FrontThrowerJoystick) airportFireTruck.getCabin().getFrontThrowerJoystick()).getPushButtons().stream().filter(pb -> pb.getPosition() == RIGHT).findFirst().orElseThrow());
+        }
+        for (int i = 0; i < 7; i++) {
+            airportFireTruck.getCabin().getControlPanel().getKnobs().stream().filter(rk -> rk.getType() == ThrowerType.FRONT).findFirst().orElseThrow().turnRight();
+        }
+        for (int i = 0; i < 5; i++) {
+            airportFireTruck.getCabin().getFrontThrowerJoystick().joystickButtonPressed();
+        }
+        assertTrue(airportFireTruck.getFrontThrower().isActive());
+        assertEquals(90, airportFireTruck.getFrontThrower().getDegree());
+        assertEquals(3500, airportFireTruck.getFrontThrower().getLevel());
+        assertEquals(10, airportFireTruck.getFrontThrower().getMixingRatio());
+        assertEquals(101250 - 15750, airportFireTruck.getRoofThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.WATER).findFirst().orElseThrow().getRemainingCapacity());
+        assertEquals(33750 - 1750, airportFireTruck.getRoofThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.FOAM).findFirst().orElseThrow().getRemainingCapacity());
+
+        airportFireTruck.getCabin().getRoofThrowerJoystick().pushButtonPressed(((RoofThrowerJoystick) airportFireTruck.getCabin().getRoofThrowerJoystick()).getPushButtons().stream().filter(pb -> pb.getPosition() == LEFT).findFirst().orElseThrow());
+        for (int i = 0; i < 2; i++) {
+            airportFireTruck.getCabin().getControlPanel().getKnobs().stream().filter(rk -> rk.getType() == ThrowerType.ROOF).findFirst().orElseThrow().turnRight();
+        }
+        for (int i = 0; i < 3; i++) {
+            airportFireTruck.getCabin().getRoofThrowerJoystick().pushButtonPressed(((RoofThrowerJoystick) airportFireTruck.getCabin().getRoofThrowerJoystick()).getPushButtons().stream().filter(pb -> pb.getPosition() == RIGHT).findFirst().orElseThrow());
+        }
+        for (int i = 0; i < 5; i++) {
+            airportFireTruck.getCabin().getRoofThrowerJoystick().joystickButtonPressed();
+        }
+        assertTrue(airportFireTruck.getRoofThrower().isActive());
+        assertEquals(90, airportFireTruck.getRoofThrower().getLowerSegment().getDegree());
+        assertEquals(16, airportFireTruck.getRoofThrower().getUpperSegment().getLength());
+        assertEquals(C, airportFireTruck.getRoofThrower().getLevel());
+        assertEquals(10, airportFireTruck.getRoofThrower().getMixingRatio());
+        assertEquals(101250 - 15750 - 11250, airportFireTruck.getRoofThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.WATER).findFirst().orElseThrow().getRemainingCapacity());
+        assertEquals(33750 - 1750 - 1250, airportFireTruck.getRoofThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.FOAM).findFirst().orElseThrow().getRemainingCapacity());
+
+        for (int i = 0; i < 5; i++) {
+            airportFireTruck.getCabin().getRoofThrowerJoystick().joystickButtonPressed();
+        }
+        assertEquals(101250 - 15750 - 11250 - 11250, airportFireTruck.getRoofThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.WATER).findFirst().orElseThrow().getRemainingCapacity());
+        assertEquals(33750 - 1750 - 1250 - 1250, airportFireTruck.getRoofThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.FOAM).findFirst().orElseThrow().getRemainingCapacity());
+
+        for (int i = 0; i < 2; i++) {
+            airportFireTruck.getCabin().getFrontThrowerJoystick().pushButtonPressed(((FrontThrowerJoystick) airportFireTruck.getCabin().getFrontThrowerJoystick()).getPushButtons().stream().filter(pb -> pb.getPosition() == RIGHT).findFirst().orElseThrow());
+        }
+        for (int i = 0; i < 5; i++) {
+            airportFireTruck.getCabin().getControlPanel().getKnobs().stream().filter(rk -> rk.getType() == ThrowerType.FRONT).findFirst().orElseThrow().turnLeft();
+        }
+        for (int i = 0; i < 5; i++) {
+            airportFireTruck.getCabin().getFrontThrowerJoystick().joystickButtonPressed();
+        }
+        assertEquals(101250 - 15750 - 11250 - 11250 - 4850, airportFireTruck.getRoofThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.WATER).findFirst().orElseThrow().getRemainingCapacity());
+        assertEquals(33750 - 1750 - 1250 - 1250 - 150, airportFireTruck.getRoofThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.FOAM).findFirst().orElseThrow().getRemainingCapacity());
     }
 
 }

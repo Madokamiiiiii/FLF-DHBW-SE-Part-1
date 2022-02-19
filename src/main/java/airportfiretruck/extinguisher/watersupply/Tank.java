@@ -90,7 +90,7 @@ public class Tank {
             // Fläche ist leer (100xHx100)
             if (index[1] > -1) {
                 index[2] = 0;
-                index[0] = 75;
+                index[0] = 74;
                 capacity[index[0]][index[1]][index[2]] = 0;
                 pumped++;
                 pointer--;

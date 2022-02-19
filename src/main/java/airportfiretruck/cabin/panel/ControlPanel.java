@@ -27,8 +27,8 @@ public class ControlPanel {
 
     public void build() {
         knobs = new ArrayList<>();
-        knobs.add(0, new FrontThrowerKnob());
-        knobs.add(1, new RoofThrowerKnob());
+        knobs.add(0, new FrontThrowerKnob(this));
+        knobs.add(1, new RoofThrowerKnob(this));
         switches = new ArrayList<>();
         switches.add(0, new PanelSwitch(RelatedDevice.ENGINES));
         switches.add(1, new PanelSwitch(RelatedDevice.WARNING_LIGHTS));
