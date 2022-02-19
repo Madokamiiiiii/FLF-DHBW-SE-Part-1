@@ -1,6 +1,7 @@
 package airportfiretruck.cabin.seats;
 
 public class Seat {
+    private boolean isOccupied = false;
 
     private final Respirator respirator;
 
@@ -10,5 +11,13 @@ public class Seat {
 
     public Respirator getRespirator() {
         return respirator;
+    }
+
+    public void setOccupied(boolean occupied) {
+        isOccupied = occupied;
+    }
+
+    public boolean isOccupied() {
+        return isOccupied;
     }
 }

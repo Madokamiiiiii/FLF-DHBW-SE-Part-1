@@ -251,7 +251,7 @@ public class TestTruck {
     @Test
     @Order(3)
     public void handleParking() {
-
+        // initialized FLF is parking already
     }
 
     @Test

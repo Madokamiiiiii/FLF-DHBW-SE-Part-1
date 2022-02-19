@@ -26,6 +26,14 @@ public class UpperSegment {
         }
     }
 
+    public int getLength() {
+        int total = 0;
+        for (SegmentPart segmentPart : segmentParts) {
+            total += segmentPart.getLength();
+        }
+        return total;
+    }
+
     public List<SegmentPart> getSegmentParts() {
         return segmentParts;
     }

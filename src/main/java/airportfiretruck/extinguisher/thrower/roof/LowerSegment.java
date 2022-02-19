@@ -10,4 +10,8 @@ public class LowerSegment {
     public void setDegree(int degree) {
         this.degree = degree;
     }
+
+    public int getDegree() {
+        return degree;
+    }
 }

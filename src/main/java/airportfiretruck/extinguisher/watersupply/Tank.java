@@ -9,12 +9,12 @@ public class Tank {
         this.type = type;
         switch (type) {
             case WATER -> {
-                capacity = new int[75][30][15];
+                capacity = new int[75][45][30];
                 pointer = new int[]{0, 0, 14};
                 fill(75 * 30 * 15);
             }
             case FOAM -> {
-                capacity = new int[75][30][5];
+                capacity = new int[75][45][10];
                 pointer = new int[]{0, 0, 4};
                 fill(75 * 30 * 5);
             }
@@ -82,6 +82,18 @@ public class Tank {
             return pumped;
         }
         return pumped;
+    }
+
+    public int getAmount() {
+        int total = 0;
+        for (int[][] area : capacity) {
+            for (int[] row : area) {
+                for (int cell : row) {
+                    total += cell;
+                }
+            }
+        }
+        return total;
     }
 
     public ExtinguishingAgent getType() {

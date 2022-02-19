@@ -18,4 +18,8 @@ public class SegmentPart {
             return length;
         }
     }
+
+    public int getLength() {
+        return length;
+    }
 }
