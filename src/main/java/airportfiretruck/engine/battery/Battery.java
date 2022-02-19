@@ -2,74 +2,101 @@ package airportfiretruck.engine.battery;
 
 public class Battery {
     private BatteryStatus status;
-    private final int[] pointer;
+    private int pointer;
     private final int[][][] capacity;
 
     public Battery() {
         capacity = new int[100][10][100];
-        pointer = new int[]{99, 9, 99};
+        pointer = 0;
         charge(100 * 10 * 100);
     }
 
     public void charge(int amount) {
+        int[] index = pointerAsIndex();
         for (; amount > 0; amount--) {
-            if (pointer[1] < 10) {
-                if (pointer[0] < 100) {
-                    if (pointer[2] < 100) {
-                        capacity[pointer[0]][pointer[1]][pointer[2]] = 1;
-                        pointer[2]++;
-                        continue;
-                    }
-                    pointer[2] = 0;
-                    pointer[0]++;
-                    capacity[pointer[0]][pointer[1]][pointer[2]] = 1;
-                    pointer[2]++;
-                    continue;
-                }
-                pointer[2] = 0;
-                pointer[0] = 0;
-                pointer[1]++;
-                capacity[pointer[0]][pointer[1]][pointer[2]] = 1;
-                pointer[2]++;
+            // Battery charged
+            if (pointer > 99999) {
+                return;
             }
+            if (index[2] < 100) {
+                capacity[index[0]][index[1]][index[2]] = 1;
+                pointer++;
+                index[2]++;
+                continue;
+            }
+            index[0]++;
+            // Reihe ist voll (LxHx100)
+            if (index[0] < 100) {
+                index[2] = 0;
+                capacity[index[0]][index[1]][index[2]] = 1;
+                pointer++;
+                index[2]++;
+                continue;
+            }
+            index[1]++;
+            // Fläche ist voll (100xHx100)
+            if (index[1] < 10) {
+                index[2] = 0;
+                index[0] = 0;
+                capacity[index[0]][index[1]][index[2]] = 1;
+                pointer++;
+                index[2]++;
+                continue;
+            }
+            return;
         }
         // Fertig geladen oder Batterie voll
     }
 
     public int takeOut(int amount) {
         int taken = 0;
+        pointer--;
+        int[] index = pointerAsIndex();
+        pointer++;
         for (; amount > 0; amount--) {
-            if (pointer[1] > 0) {
-                if (pointer[0] > 0) {
-                    if (pointer[2] > 0) {
-                        capacity[pointer[0]][pointer[1]][pointer[2]] = 0;
-                        pointer[2]--;
-                        taken++;
-                        continue;
-                    }
-                    pointer[2] = 99;
-                    pointer[0]--;
-                    capacity[pointer[0]][pointer[1]][pointer[2]] = 0;
-                    pointer[2]--;
-                    taken++;
-                    continue;
-                }
-                pointer[2] = 99;
-                pointer[0] = 99;
-                pointer[1]--;
-                capacity[pointer[0]][pointer[1]][pointer[2]] = 0;
-                pointer[2]--;
+            // Battery charged
+            if (pointer < 1) {
+                return taken;
+            }
+            if (index[2] > -1) {
+                capacity[index[0]][index[1]][index[2]] = 0;
                 taken++;
+                pointer--;
+                index[2]--;
                 continue;
             }
-            return taken;
+            index[0]--;
+            // Reihe ist voll (LxHx100)
+            if (index[0] > -1) {
+                index[2] = 99;
+                capacity[index[0]][index[1]][index[2]] = 0;
+                taken++;
+                pointer--;
+                index[2]--;
+                continue;
+            }
+            index[1]--;
+            // Fläche ist voll (100xHx100)
+            if (index[1] > -1) {
+                index[2] = 99;
+                index[0] = 99;
+                capacity[index[0]][index[1]][index[2]] = 0;
+                taken++;
+                pointer--;
+                index[2]--;
+            }
         }
-        return 0;
+        return taken;
+    }
+
+    private int[] pointerAsIndex() {
+        int y = pointer / 10000;
+        int x = (pointer % 10000) / 100;
+        int z = pointer % 100;
+        return new int[]{x, y, z};
     }
 
     public double getRemainingBatteryLevel() {
-        int base = pointer[1] * 10000;
-        int topLayer = (pointer[0] + 1) * (pointer[2] + 1);
-        return base + topLayer;
+        return pointer;
     }
 }

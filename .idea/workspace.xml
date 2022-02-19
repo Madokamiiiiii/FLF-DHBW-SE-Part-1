@@ -5,10 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d81c2fcd-6860-40c3-a4bd-03e47c36c420" name="Default Changelist" comment="huge commit with complex1">
-      <change afterPath="$PROJECT_DIR$/src/main/java/komplexaufgabe1/Complex1AirportFireTruck.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/komplexaufgabe1/ComplexBusDoor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/komplexaufgabe1/ComplexCabin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/komplexaufgabe1/ComplexCentralUnit.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -16,19 +12,9 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/AirportFireTruck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/AirportFireTruck.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/BusDoor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/BusDoor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/Cabin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/Cabin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/IdReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/komplexaufgabe1/IdReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/centralunit/CentralUnit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/centralunit/CentralUnit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/centralunit/ICabinCentralUnit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/komplexaufgabe1/ICabinCentralUnit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/centralunit/IIdCentralUnit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/komplexaufgabe1/IIdCentralUnit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/id/IdCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/komplexaufgabe1/IdCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/id/RfidChip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/komplexaufgabe1/RfidChip.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/person/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/komplexaufgabe1/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Operator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Operator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/TestComplex1_Functions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TestComplex1_Functions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/TestComplex1_UseCases.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TestComplex1_UseCases.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/engine/battery/Battery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/engine/battery/Battery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/TestTruck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TestTruck.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,7 +125,7 @@
       <recent name="airportfiretruck.wheels" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.TestComplex1_UseCases">
+  <component name="RunManager" selected="Gradle.TestTruck">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -150,48 +136,6 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
-    </configuration>
-    <configuration name="Komplex1.TestIntegration" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;Komplex1.TestIntegration&quot;" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="Komplex1.TestUnlock" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;Komplex1.TestUnlock&quot;" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
     </configuration>
     <configuration name="TestComplex1_Functions" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
@@ -235,12 +179,54 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="TestComplex1_UseCases.UseCase1" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="TestTruck" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;TestComplex1_UseCases.UseCase1&quot;" />
+        <option name="scriptParameters" value="--tests &quot;TestTruck&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="TestTruck.buildComplete" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;TestTruck.buildComplete&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="TestTruck.usageControlPanel" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;TestTruck.usageControlPanel&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -258,11 +244,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.TestTruck" />
+        <item itemvalue="Gradle.TestTruck.usageControlPanel" />
+        <item itemvalue="Gradle.TestTruck.buildComplete" />
         <item itemvalue="Gradle.TestComplex1_UseCases" />
         <item itemvalue="Gradle.TestComplex1_Functions" />
-        <item itemvalue="Gradle.TestComplex1_UseCases.UseCase1" />
-        <item itemvalue="Gradle.Komplex1.TestIntegration" />
-        <item itemvalue="Gradle.Komplex1.TestUnlock" />
       </list>
     </recent_temporary>
   </component>
@@ -387,7 +373,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/TestTruck.java</url>
-          <line>115</line>
+          <line>113</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>

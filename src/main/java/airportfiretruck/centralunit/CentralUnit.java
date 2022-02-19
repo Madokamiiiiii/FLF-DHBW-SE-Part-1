@@ -102,10 +102,10 @@ public class CentralUnit implements IPedalCentralUnit, ISteeringCentralUnit, ITh
             case WARNING_LIGHTS -> {
                 for (WarningLight warningLight : flf.getWarningLights()) {
                     if (isOn) {
-                        warningLight.off();
+                        warningLight.on();
                         continue;
                     }
-                    warningLight.on();
+                    warningLight.off();
                 }
             }
             case SELF_PROTECTION -> {
