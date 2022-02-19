@@ -1,29 +1,31 @@
 package Utils;
 
+import airportfiretruck.buttons.BusDoorButton;
 import airportfiretruck.buttons.PushButton;
-import airportfiretruck.cabin.joysticks.FrontThrowerJoystick;
 import airportfiretruck.cabin.joysticks.Joystick;
-import airportfiretruck.cabin.joysticks.RoofThrowerJoystick;
 import airportfiretruck.cabin.panel.ControlPanel;
-import airportfiretruck.cabin.panel.rotaryknobs.FrontThrowerKnob;
 import airportfiretruck.cabin.panel.rotaryknobs.IRotaryKnob;
-import airportfiretruck.cabin.panel.rotaryknobs.RoofThrowerKnob;
 import airportfiretruck.cabin.panel.rotaryknobs.ThrowerType;
-import airportfiretruck.cabin.panel.switches.PanelSwitch;
+import airportfiretruck.cabin.seats.FrontSeat;
+import airportfiretruck.position.FrontRearSide;
 import airportfiretruck.position.LeftRightSide;
 
 import java.util.List;
 
 public abstract class Person {
 
-    private IRotaryKnob throwerKnob;
+    private final IRotaryKnob throwerKnob;
     private final Joystick joystick;
-    private List<PushButton> joystickPushButtons;
+    private final List<PushButton> joystickPushButtons;
+    private final List<BusDoorButton> doorButtons;
+    private final FrontSeat seat;
 
-    public Person(Joystick joystick, ControlPanel panel, ThrowerType type) {
+    public Person(Joystick joystick, ControlPanel panel, ThrowerType type, List<BusDoorButton> doorButtons, FrontSeat seat) {
         this.joystick = joystick;
         throwerKnob = panel.getKnobs().stream().filter(knob -> knob.getType() == type).findFirst().orElseThrow();
         joystickPushButtons = joystick.getPushButtons();
+        this.doorButtons = doorButtons;
+        this.seat = seat;
     }
 
     public void turnRoofThrower(Direction direction) {
@@ -40,6 +42,14 @@ public abstract class Person {
 
     public void pressJoystickButton() {
         joystick.joystickButtonPressed();
+    }
+
+    public void pressDoorButton(FrontRearSide position) {
+        doorButtons.stream().filter(doorButton -> doorButton.getPosition().equals(position)).findFirst().orElseThrow().pressed();
+    }
+
+    public void sitOrGetUp() {
+        seat.setOccupied(!seat.isOccupied());
     }
 
 }

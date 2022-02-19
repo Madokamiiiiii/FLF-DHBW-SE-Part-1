@@ -31,7 +31,7 @@ public class TestParking {
     @Test
     @Order(3)
     public void doorsOpen() {
-        airportFireTruck.getCabin().getDoors().forEach(door -> assertTrue(door.state()));
+        airportFireTruck.getCabin().getDoors().forEach(door -> assertTrue(door.isOpen()));
     }
 
     @Test
@@ -70,7 +70,7 @@ public class TestParking {
 
     private void parkFLF() {
         airportFireTruck.getCabin().getDoors().forEach(door -> {
-            if (!door.state()) {
+            if (!door.isOpen()) {
                 door.openClose();
             }
         });

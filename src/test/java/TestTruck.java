@@ -1,4 +1,7 @@
+import Utils.Driver;
 import Utils.Helper;
+import Utils.LightConfiguration;
+import Utils.Operator;
 import airportfiretruck.AirportFireTruck;
 import airportfiretruck.cabin.Cabin;
 import airportfiretruck.cabin.SteeringWheel;
@@ -6,7 +9,10 @@ import airportfiretruck.cabin.joysticks.FrontThrowerJoystick;
 import airportfiretruck.cabin.joysticks.IJoystick;
 import airportfiretruck.cabin.joysticks.RoofThrowerJoystick;
 import airportfiretruck.cabin.panel.ControlPanel;
-import airportfiretruck.cabin.panel.switches.PanelSwitch;
+import airportfiretruck.cabin.panel.rotaryknobs.FrontThrowerKnob;
+import airportfiretruck.cabin.panel.rotaryknobs.IRotaryKnob;
+import airportfiretruck.cabin.panel.rotaryknobs.RoofThrowerKnob;
+import airportfiretruck.cabin.panel.rotaryknobs.ThrowerType;
 import airportfiretruck.cabin.panel.switches.RelatedDevice;
 import airportfiretruck.cabin.pedals.Pedal;
 import airportfiretruck.cabin.pedals.PedalType;
@@ -17,6 +23,7 @@ import airportfiretruck.engine.battery.BatteryManagement;
 import airportfiretruck.extinguisher.thrower.FloorSprayNozzle;
 import airportfiretruck.extinguisher.thrower.FrontThrower;
 import airportfiretruck.extinguisher.thrower.roof.RoofThrower;
+import airportfiretruck.extinguisher.thrower.roof.RoofThrowerLevel;
 import airportfiretruck.extinguisher.watersupply.ExtinguishingAgent;
 import airportfiretruck.extinguisher.watersupply.Tank;
 import airportfiretruck.lights.BrakeLight;
@@ -33,7 +40,7 @@ import airportfiretruck.wheels.Wheel;
 import org.junit.jupiter.api.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Objects;
 import java.util.stream.Stream;
 
 import static airportfiretruck.position.FrontRearSide.FRONT;
@@ -47,11 +54,129 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TestTruck {
 
     private AirportFireTruck airportFireTruck;
+    private Driver driver;
+    private Operator operator;
 
     @BeforeEach
     public void init() {
         // Generate FLF
         airportFireTruck = new AirportFireTruck.Builder().build();
+    }
+
+    private void generateHelper() {
+        driver = new Driver(airportFireTruck.getCabin().getPedals(),
+                airportFireTruck.getCabin().getControlPanel(),
+                (FrontThrowerJoystick) airportFireTruck.getCabin().getFrontThrowerJoystick(),
+                airportFireTruck.getCabin().getDoors().get(0).getButtons(),
+                (FrontSeat) airportFireTruck.getCabin().getSeats().get(0));
+
+        operator = new Operator(airportFireTruck.getCabin().getControlPanel(),
+                (RoofThrowerJoystick) airportFireTruck.getCabin().getRoofThrowerJoystick(),
+                airportFireTruck.getCabin().getDoors().get(1).getButtons(),
+                (FrontSeat) airportFireTruck.getCabin().getSeats().get(1));
+    }
+
+    private void testCommon() {
+        generateHelper();
+
+        // s0X01
+        driver.pressDoorButton(REAR);
+        driver.sitOrGetUp();
+        operator.pressDoorButton(REAR);
+        operator.sitOrGetUp();
+
+        airportFireTruck.getCabin().getSeats().forEach(seat -> assertTrue(seat.isOccupied()));
+
+        // s0X02
+        driver.pressDoorButton(REAR);
+        operator.pressDoorButton(REAR);
+        airportFireTruck.getCabin().getDoors().forEach(door -> assertFalse(door.isOpen()));
+
+        // s0X03
+        operator.useSwitch(RelatedDevice.ENGINES);
+        airportFireTruck.getEngines().forEach(engine -> assertTrue(engine.isOn()));
+    }
+
+    private void testLights(LightConfiguration lightConfiguration) {
+        // In the beginning all lights are off.
+        // If null is detected. Don't check the light because it's not specified in the scenario.
+
+        if (Objects.nonNull(lightConfiguration.roofLights)) {
+            if (lightConfiguration.roofLights) {
+                operator.useSwitch(RelatedDevice.ROOF_LIGHTS);
+                airportFireTruck.getHeadLights().stream().filter(headLight -> headLight.getPosition().equals(TOP)).forEach(headLight -> assertTrue(headLight.isOn()));
+            } else {
+                airportFireTruck.getHeadLights().stream().filter(headLight -> headLight.getPosition().equals(TOP)).forEach(headLight -> assertFalse(headLight.isOn()));
+            }
+        }
+
+        if (Objects.nonNull(lightConfiguration.sideLights)) {
+            if (lightConfiguration.roofLights) {
+                operator.useSwitch(RelatedDevice.SIDE_LIGHTS);
+                airportFireTruck.getSideLights().forEach(sideLight -> assertTrue(sideLight.isOn()));
+            } else {
+                airportFireTruck.getSideLights().forEach(sideLight -> assertFalse(sideLight.isOn()));
+            }
+        }
+
+        if (Objects.nonNull(lightConfiguration.frontLights)) {
+            if (lightConfiguration.frontLights) {
+                operator.useSwitch(RelatedDevice.ROOF_LIGHTS);
+                airportFireTruck.getHeadLights().stream().filter(roofLight -> roofLight.getPosition().equals(BOTTOM)).forEach(roofLight -> assertTrue(roofLight.isOn()));
+            } else {
+                airportFireTruck.getHeadLights().stream().filter(roofLight -> roofLight.getPosition().equals(BOTTOM)).forEach(roofLight -> assertFalse(roofLight.isOn()));
+            }
+        }
+
+        if (Objects.nonNull(lightConfiguration.warningLights)) {
+            if (lightConfiguration.warningLights) {
+                operator.useSwitch(RelatedDevice.WARNING_LIGHTS);
+                airportFireTruck.getWarningLights().forEach(warningLight -> assertTrue(warningLight.isOn()));
+            } else {
+                airportFireTruck.getWarningLights().forEach(warningLight -> assertFalse(warningLight.isOn()));
+            }
+        }
+
+        if (Objects.nonNull(lightConfiguration.blueLight)) {
+            if (lightConfiguration.blueLight) {
+                operator.useSwitch(RelatedDevice.BLUE_LIGHTS);
+                airportFireTruck.getBlueLights().forEach(blueLight -> assertTrue(blueLight.isOn()));
+            } else {
+                airportFireTruck.getBlueLights().forEach(blueLight -> assertFalse(blueLight.isOn()));
+            }
+        }
+
+    }
+
+    private void testThrowerOffPosition() {
+        // RoofThrower down
+        assertEquals(0,airportFireTruck.getRoofThrower().getLowerSegment().getDegree());
+        assertEquals(0,airportFireTruck.getRoofThrower().getUpperSegment().getLength());
+
+        // FrontThrower deactive
+        assertFalse(airportFireTruck.getFrontThrower().isActive());
+    }
+
+    private void testFullTanks() {
+        List<Tank> tanks = airportFireTruck.getRoofThrower().getMixer().getTanks();
+
+        Tank testedTank = tanks.stream().filter(tank -> tank.getType().equals(ExtinguishingAgent.WATER)).findFirst().orElseThrow();
+        testedTank.fill(101250);
+        assertEquals(101250, testedTank.getRemainingCapacity());
+
+        testedTank = tanks.stream().filter(tank -> tank.getType().equals(ExtinguishingAgent.FOAM)).findFirst().orElseThrow();
+        testedTank.fill(33750);
+        assertEquals(33750, testedTank.getRemainingCapacity());
+    }
+
+    private void testInitialThrowerKnobLevels() {
+        List<IRotaryKnob> rotaryKnobs = airportFireTruck.getCabin().getControlPanel().getKnobs();
+
+        FrontThrowerKnob frontThrowerKnob = (FrontThrowerKnob) rotaryKnobs.stream().filter(knob -> knob.getType().equals(ThrowerType.FRONT)).findFirst().orElseThrow();
+        assertEquals(0, frontThrowerKnob.getLevel());
+
+        RoofThrowerKnob roofThrowerKnob = (RoofThrowerKnob) rotaryKnobs.stream().filter(knob -> knob.getType().equals(ThrowerType.ROOF)).findFirst().orElseThrow();
+        assertEquals(RoofThrowerLevel.A, roofThrowerKnob.getLevel());
     }
 
     @Order(1)
@@ -132,7 +257,7 @@ public class TestTruck {
 
         // Test ControlPanel
         ControlPanel panel = cabin.getControlPanel();
-        assertEquals(6, panel.getSwitches().size());
+        assertEquals(7, panel.getSwitches().size());
         assertEquals(2, panel.getKnobs().size());
         assertNotNull(panel.getCentralUnit());
 
@@ -143,10 +268,10 @@ public class TestTruck {
         assertEquals(2, cabin.getDisplays().size());
 
         List<Pedal> pedals = cabin.getPedals();
-        List<Pedal> gas = pedals.stream().filter(pedal -> pedal.getPedalType().equals(PedalType.GAS)).collect(Collectors.toList());
+        List<Pedal> gas = pedals.stream().filter(pedal -> pedal.getPedalType().equals(PedalType.GAS)).toList();
         assertEquals(1, gas.size());
         assertNotNull(gas.get(0).getCentralUnit());
-        List<Pedal> brake = pedals.stream().filter(pedal -> pedal.getPedalType().equals(PedalType.BRAKE)).collect(Collectors.toList());
+        List<Pedal> brake = pedals.stream().filter(pedal -> pedal.getPedalType().equals(PedalType.BRAKE)).toList();
         assertEquals(1, brake.size());
         assertNotNull(brake.get(0).getCentralUnit());
 
@@ -168,7 +293,7 @@ public class TestTruck {
         floorSprayNozzles.forEach(floorSprayNozzle -> assertNotNull(floorSprayNozzle.getTank()));
 
         // Test Watersupply
-        List<Tank> tanks = roofThrower.getMixer().getTanks();
+        List<Tank> tanks = roofThrower.getMixer().getTanks(); // It's not important if from roofThrower or frontThrower. They share the same tanks.
         assertEquals(2, tanks.size());
         assertEquals(1, tanks.stream().filter(tank -> tank.getType() == ExtinguishingAgent.WATER).count());
         assertEquals(1, tanks.stream().filter(tank -> tank.getType() == ExtinguishingAgent.FOAM).count());
@@ -204,84 +329,184 @@ public class TestTruck {
     @Test
     @Order(2)
     public void usageControlPanel() {
-        List<PanelSwitch> switches = airportFireTruck.getCabin().getControlPanel().getSwitches();
+        generateHelper();
 
         // Engines
         airportFireTruck.getEngines().forEach(engine -> assertFalse(engine.isOn()));
-        switches.stream().filter(singleSwitch -> singleSwitch.getDevice() == RelatedDevice.ENGINES).findAny().orElseThrow().pressed();
+        operator.useSwitch(RelatedDevice.ENGINES);
         airportFireTruck.getEngines().forEach(engine -> assertTrue(engine.isOn()));
 
         // Warning Lights
         airportFireTruck.getWarningLights().forEach(warningLight -> assertFalse(warningLight.isOn()));
-        switches.stream().filter(singleSwitch -> singleSwitch.getDevice() == RelatedDevice.WARNING_LIGHTS).findAny().orElseThrow().pressed();
+        operator.useSwitch(RelatedDevice.WARNING_LIGHTS);
         airportFireTruck.getWarningLights().forEach(warningLight -> assertTrue(warningLight.isOn()));
 
         // Blue Lights
         airportFireTruck.getBlueLights().forEach(blueLight -> assertFalse(blueLight.isOn()));
-        switches.stream().filter(singleSwitch -> singleSwitch.getDevice() == RelatedDevice.BLUE_LIGHTS).findAny().orElseThrow().pressed();
+        operator.useSwitch(RelatedDevice.BLUE_LIGHTS);
         airportFireTruck.getBlueLights().forEach(blueLight -> assertTrue(blueLight.isOn()));
 
         // Front Lights
         airportFireTruck.getHeadLights().stream().filter(headLight -> headLight.getPosition().equals(TOP)).forEach(headLight -> assertFalse(headLight.isOn()));
         airportFireTruck.getHeadLights().stream().filter(headLight -> headLight.getPosition().equals(BOTTOM)).forEach(headLight -> assertFalse(headLight.isOn()));
-        switches.stream().filter(singleSwitch -> singleSwitch.getDevice() == RelatedDevice.FRONT_LIGHTS).findAny().orElseThrow().pressed();
-        airportFireTruck.getHeadLights().stream().filter(headLight -> headLight.getPosition().equals(TOP)).forEach(headLight -> assertFalse(headLight.isOn())); // Bleiben ausgeschaltet
+        operator.useSwitch(RelatedDevice.FRONT_LIGHTS);
+        airportFireTruck.getHeadLights().stream().filter(headLight -> headLight.getPosition().equals(TOP)).forEach(headLight -> assertFalse(headLight.isOn())); // Should stay off
         airportFireTruck.getHeadLights().stream().filter(headLight -> headLight.getPosition().equals(BOTTOM)).forEach(headLight -> assertTrue(headLight.isOn()));
 
         // Roof Lights
-        switches.stream().filter(singleSwitch -> singleSwitch.getDevice() == RelatedDevice.BLUE_LIGHTS).findAny().orElseThrow().pressed(); // Lichter von vorher wieder ausschalten
+        // Turn lights off again
+        operator.useSwitch(RelatedDevice.FRONT_LIGHTS);
 
-        //    airportFireTruck.getHeadLights().stream().filter(headLight -> headLight.getPosition().equals(TOP)).forEach(headLight -> assertTrue(headLight.isOn()));
-        // airportFireTruck.getHeadLights().stream().filter(headLight -> headLight.getPosition().equals(BOTTOM)).forEach(headLight -> assertFalse(headLight.isOn()));
-        switches.stream().filter(singleSwitch -> singleSwitch.getDevice() == RelatedDevice.ROOF_LIGHTS).findAny().orElseThrow().pressed();
+        airportFireTruck.getHeadLights().stream().filter(headLight -> headLight.getPosition().equals(TOP)).forEach(headLight -> assertFalse(headLight.isOn()));
+        airportFireTruck.getHeadLights().stream().filter(headLight -> headLight.getPosition().equals(BOTTOM)).forEach(headLight -> assertFalse(headLight.isOn()));
+        operator.useSwitch(RelatedDevice.ROOF_LIGHTS);
         airportFireTruck.getHeadLights().stream().filter(headLight -> headLight.getPosition().equals(TOP)).forEach(headLight -> assertTrue(headLight.isOn()));
-        // airportFireTruck.getHeadLights().stream().filter(headLight -> headLight.getPosition().equals(BOTTOM)).forEach(headLight -> assertFalse(headLight.isOn())); // Bleiben ausgeschaltet
+        airportFireTruck.getHeadLights().stream().filter(headLight -> headLight.getPosition().equals(BOTTOM)).forEach(headLight -> assertFalse(headLight.isOn())); // Should stay off
 
         // Side Lights
         airportFireTruck.getSideLights().forEach(sideLight -> assertFalse(sideLight.isOn()));
-        switches.stream().filter(singleSwitch -> singleSwitch.getDevice() == RelatedDevice.SIDE_LIGHTS).findAny().orElseThrow().pressed();
+        operator.useSwitch(RelatedDevice.SIDE_LIGHTS);
         airportFireTruck.getSideLights().forEach(sideLight -> assertTrue(sideLight.isOn()));
 
         // Self Protection
         airportFireTruck.getFloorSprayNozzles().forEach(floorSprayNozzle -> assertFalse(floorSprayNozzle.isOn()));
-        //switches.stream().filter(singleSwitch -> singleSwitch.getDevice() == RelatedDevice.SELF_PROTECTION).findAny().orElseThrow().pressed();
+        operator.useSwitch(RelatedDevice.SELF_PROTECTION);
         airportFireTruck.getFloorSprayNozzles().forEach(floorSprayNozzle -> assertTrue(floorSprayNozzle.isOn()));
     }
 
     @Test
     @Order(3)
     public void handleParking() {
-        // initialized FLF is parking already
+        generateHelper();
+        // s0101
+        airportFireTruck.getEngines().forEach(engine -> assertFalse(engine.isOn()));
+
+        // s0102
+        airportFireTruck.getCabin().getSeats().forEach(seat -> assertFalse(seat.isOccupied()));
+
+        // s0103
+        driver.pressDoorButton(REAR);
+        operator.pressDoorButton(REAR);
+        airportFireTruck.getCabin().getDoors().forEach(door -> assertTrue(door.isOpen()));
+
+        // s0104 - s0105
+        testThrowerOffPosition();
+
+        // s0106 - s0110
+        LightConfiguration lightConfiguration = new LightConfiguration();
+        lightConfiguration.roofLights = false;
+        lightConfiguration.sideLights = false;
+        lightConfiguration.frontLights = false;
+        lightConfiguration.warningLights = false;
+        lightConfiguration.blueLight = false;
+        testLights(lightConfiguration);
+
+        // s0111 - s0112
+        testFullTanks();
+
+        // s0113
+        BatteryManagement.INSTANCE.charge(100000);
+        assertEquals(100000, BatteryManagement.INSTANCE.getRemainingBatteryLevel());
+
+        // s0114 - s0115
+        testInitialThrowerKnobLevels();
     }
 
     @Test
     @Order(4)
     public void handleInspectionDrive() {
+        // s0201 - s0203
+        testCommon();
 
+        // s0204 - s0205
+        testThrowerOffPosition();
+
+        // s0206 - s0210
+        LightConfiguration lightConfiguration = new LightConfiguration();
+        lightConfiguration.roofLights = false;
+        lightConfiguration.sideLights = false;
+        lightConfiguration.blueLight = false;
+
+        testLights(lightConfiguration);
+
+        // s0211 - s0212
+        testFullTanks();
+
+        // s0213 - s0214
+        testInitialThrowerKnobLevels();
+
+        // TODO: Rest
     }
 
     @Test
     @Order(5)
     public void handleEmergencyDrive() {
+        // s0301 - s0303
+        testCommon();
 
+        // s0304 - s0305
+        testThrowerOffPosition();
+
+        // s0306 - s0310
+        LightConfiguration lightConfiguration = new LightConfiguration();
+        lightConfiguration.sideLights = false;
+        testLights(lightConfiguration);
+
+        // s0311 - s0312
+        testFullTanks();
+
+        // s0313 - s0314
+        testInitialThrowerKnobLevels();
+
+        // TODO: Rest
     }
 
     @Test
     @Order(6)
     public void handleFuelTruckOnFire() {
+        // s0401 - s0403
+        testCommon();
 
+        // s0404 - s0408
+        LightConfiguration lightConfiguration = new LightConfiguration();
+        testLights(lightConfiguration);
+
+        // s0409 - s0410
+        testFullTanks();
+
+        // TODO: Rest
     }
 
     @Test
     @Order(7)
     public void handlePushbackVehicleOnFire() {
+        // s0501 - s0503
+        testCommon();
 
+        // s0503 - s0508
+        LightConfiguration lightConfiguration = new LightConfiguration();
+        testLights(lightConfiguration);
+
+        // s0509 - s0510
+        testFullTanks();
+
+        // TODO: Rest
     }
 
     @Test
     @Order(8)
     public void handleAirplaneEngineFire() {
+        // s0601 - s0603
+        testCommon();
 
+        // s0603 - s0608
+        LightConfiguration lightConfiguration = new LightConfiguration();
+        testLights(lightConfiguration);
+
+        // s0609 - s0610
+        testFullTanks();
+
+        // TODO: Rest
     }
 
 }

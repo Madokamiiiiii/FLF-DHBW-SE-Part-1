@@ -36,6 +36,7 @@ public class ControlPanel {
         switches.add(3, new PanelSwitch(RelatedDevice.FRONT_LIGHTS));
         switches.add(4, new PanelSwitch(RelatedDevice.ROOF_LIGHTS));
         switches.add(5, new PanelSwitch(RelatedDevice.SIDE_LIGHTS));
+        switches.add(6, new PanelSwitch(RelatedDevice.SELF_PROTECTION));
         for (Switch panelSwitch : switches) {
             ((PanelSwitch) panelSwitch).connectToPanel(this);
         }

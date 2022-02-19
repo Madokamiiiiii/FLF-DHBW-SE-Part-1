@@ -1,14 +1,12 @@
 package Utils;
 
-import Utils.Direction;
-import airportfiretruck.buttons.PushButton;
+import airportfiretruck.buttons.BusDoorButton;
 import airportfiretruck.cabin.joysticks.RoofThrowerJoystick;
 import airportfiretruck.cabin.panel.ControlPanel;
-import airportfiretruck.cabin.panel.rotaryknobs.RoofThrowerKnob;
 import airportfiretruck.cabin.panel.rotaryknobs.ThrowerType;
 import airportfiretruck.cabin.panel.switches.PanelSwitch;
 import airportfiretruck.cabin.panel.switches.RelatedDevice;
-import airportfiretruck.position.LeftRightSide;
+import airportfiretruck.cabin.seats.FrontSeat;
 
 import java.util.List;
 
@@ -16,8 +14,8 @@ import java.util.List;
 public class Operator extends Person {
     private final List<PanelSwitch> switches;
 
-    public Operator(ControlPanel panel, RoofThrowerJoystick roofThrowerJoystick) {
-        super(roofThrowerJoystick, panel, ThrowerType.ROOF);
+    public Operator(ControlPanel panel, RoofThrowerJoystick roofThrowerJoystick, List<BusDoorButton> doorButtons, FrontSeat seat) {
+        super(roofThrowerJoystick, panel, ThrowerType.ROOF, doorButtons, seat);
         switches = panel.getSwitches();
     }
 

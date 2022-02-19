@@ -25,7 +25,7 @@ public class TestComplex1_UseCases {
             if (((ComplexBusDoor) bd).isLocked()) {
                 ((ComplexBusDoor) bd).lock();
             }
-            if (bd.state()) {
+            if (bd.isOpen()) {
                 bd.openClose();
             }
         }
@@ -33,7 +33,7 @@ public class TestComplex1_UseCases {
         // Fahrer und Utils.Operator sitzen im FLF, die Türen sind nicht gesperrt, aber geschlossen:
         for (BusDoor bd : flf.getCabin().getDoors()) {
             assertFalse(((ComplexBusDoor) bd).isLocked());
-            assertFalse(bd.state());
+            assertFalse(bd.isOpen());
         }
 
         // Utils.Operator öffnet von innen rechte Bustür über Taster
@@ -41,9 +41,9 @@ public class TestComplex1_UseCases {
 
         // Somit ist die rechte Tür (1) geöffnet, die linke (0) nicht; beide sind nicht gesperrt
         assertFalse(((ComplexBusDoor) flf.getCabin().getDoors().get(0)).isLocked());
-        assertFalse(flf.getCabin().getDoors().get(0).state());
+        assertFalse(flf.getCabin().getDoors().get(0).isOpen());
         assertFalse(((ComplexBusDoor) flf.getCabin().getDoors().get(1)).isLocked());
-        assertTrue(flf.getCabin().getDoors().get(1).state());
+        assertTrue(flf.getCabin().getDoors().get(1).isOpen());
 
         // Utils.Operator verlässt Fahrzeug
 
@@ -53,7 +53,7 @@ public class TestComplex1_UseCases {
         // Nun sind beide Türen offen, aber nicht gesperrt
         for (BusDoor bd : flf.getCabin().getDoors()) {
             assertFalse(((ComplexBusDoor) bd).isLocked());
-            assertTrue(bd.state());
+            assertTrue(bd.isOpen());
         }
 
         // Fahrer verlässt Fahrzeug
@@ -64,7 +64,7 @@ public class TestComplex1_UseCases {
         // Beide Türen sind nun geschlossen und gesperrt
         for (BusDoor bd : flf.getCabin().getDoors()) {
             assertTrue(((ComplexBusDoor) bd).isLocked());
-            assertFalse(bd.state());
+            assertFalse(bd.isOpen());
         }
     }
 
@@ -75,14 +75,14 @@ public class TestComplex1_UseCases {
             if (!((ComplexBusDoor) bd).isLocked()) {
                 ((ComplexBusDoor) bd).lock();
             }
-            if (bd.state()) {
+            if (bd.isOpen()) {
                 bd.openClose();
             }
         }
         // Das FLF ist leer, die Türen sind gesperrt und geschlossen:
         for (BusDoor bd : flf.getCabin().getDoors()) {
             assertTrue(((ComplexBusDoor) bd).isLocked());
-            assertFalse(bd.state());
+            assertFalse(bd.isOpen());
         }
 
         // Fahrer hält ID-Karte vor linken Sensor (Fahrer ist hier Red Adair)
@@ -91,7 +91,7 @@ public class TestComplex1_UseCases {
         // Beide Türen sind nun geöffnet und nicht gesperrt
         for (BusDoor bd : flf.getCabin().getDoors()) {
             assertFalse(((ComplexBusDoor) bd).isLocked());
-            assertTrue(bd.state());
+            assertTrue(bd.isOpen());
         }
 
         // Utils.Operator setzt sich und schließt von innen die rechte Bustür über Taster
@@ -99,9 +99,9 @@ public class TestComplex1_UseCases {
 
         // Somit ist die linke Tür (0) geöffnet, die rechte (1) nicht; beide sind nicht gesperrt
         assertFalse(((ComplexBusDoor) flf.getCabin().getDoors().get(0)).isLocked());
-        assertTrue(flf.getCabin().getDoors().get(0).state());
+        assertTrue(flf.getCabin().getDoors().get(0).isOpen());
         assertFalse(((ComplexBusDoor) flf.getCabin().getDoors().get(1)).isLocked());
-        assertFalse(flf.getCabin().getDoors().get(1).state());
+        assertFalse(flf.getCabin().getDoors().get(1).isOpen());
 
         // Fahrer setzt sich und schließt von innen linke Bustür über Taster
         flf.getCabin().getDoors().get(0).getButtons().stream().filter(x -> x.getPosition() == FrontRearSide.REAR).forEach(BusDoorButton::pressed);
@@ -109,7 +109,7 @@ public class TestComplex1_UseCases {
         // Nun sind beide Türen geschlossen, aber nicht gesperrt
         for (BusDoor bd : flf.getCabin().getDoors()) {
             assertFalse(((ComplexBusDoor) bd).isLocked());
-            assertFalse(bd.state());
+            assertFalse(bd.isOpen());
         }
     }
 }

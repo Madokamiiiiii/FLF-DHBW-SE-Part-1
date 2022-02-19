@@ -65,7 +65,7 @@ public class TestComplex1_Functions {
             if (((ComplexBusDoor) bd).isLocked()) {
                 ((ComplexBusDoor) bd).lock();
             }
-            if (!bd.state()) {
+            if (!bd.isOpen()) {
                 bd.openClose();
             }
         }
@@ -73,7 +73,7 @@ public class TestComplex1_Functions {
         // now the doors must be locked and closed
         for (BusDoor bd : flf.getCabin().getDoors()) {
             assertTrue(((ComplexBusDoor) bd).isLocked());
-            assertFalse(bd.state());
+            assertFalse(bd.isOpen());
         }
     }
 
@@ -121,7 +121,7 @@ public class TestComplex1_Functions {
 
         flf.getPersons().get(0).useCard((ComplexBusDoor) flf.getCabin().getDoors().get(0));
         for (BusDoor bd : flf.getCabin().getDoors()) {
-            assertFalse(bd.state());
+            assertFalse(bd.isOpen());
             assertTrue(((ComplexBusDoor) bd).isLocked());
         }
     }

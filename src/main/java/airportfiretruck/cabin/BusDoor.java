@@ -19,7 +19,7 @@ public class BusDoor {
         buttons.get(1).setBusDoor(this);
     }
 
-    public boolean state() {
+    public boolean isOpen() {
         return isOpen;
     }
 

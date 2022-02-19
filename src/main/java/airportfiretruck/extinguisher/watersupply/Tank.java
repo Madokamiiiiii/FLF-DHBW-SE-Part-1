@@ -10,13 +10,11 @@ public class Tank {
         switch (type) {
             case WATER -> {
                 capacity = new int[75][45][30];
-                pointer = new int[]{0, 0, 14};
-                fill(75 * 30 * 15);
+                pointer = new int[]{0, 0, 29};
             }
             case FOAM -> {
                 capacity = new int[75][45][10];
-                pointer = new int[]{0, 0, 4};
-                fill(75 * 30 * 5);
+                pointer = new int[]{0, 0, 9};
             }
         }
     }
@@ -84,7 +82,7 @@ public class Tank {
         return pumped;
     }
 
-    public int getAmount() {
+    public int getRemainingCapacity() {
         int total = 0;
         for (int[][] area : capacity) {
             for (int[] row : area) {

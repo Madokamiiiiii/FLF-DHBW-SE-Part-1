@@ -1,14 +1,12 @@
 package Utils;
 
-import airportfiretruck.buttons.PushButton;
+import airportfiretruck.buttons.BusDoorButton;
 import airportfiretruck.cabin.joysticks.FrontThrowerJoystick;
-import airportfiretruck.cabin.joysticks.RoofThrowerJoystick;
 import airportfiretruck.cabin.panel.ControlPanel;
-import airportfiretruck.cabin.panel.rotaryknobs.FrontThrowerKnob;
 import airportfiretruck.cabin.panel.rotaryknobs.ThrowerType;
 import airportfiretruck.cabin.pedals.Pedal;
 import airportfiretruck.cabin.pedals.PedalType;
-import airportfiretruck.position.LeftRightSide;
+import airportfiretruck.cabin.seats.FrontSeat;
 
 import java.util.List;
 
@@ -17,8 +15,8 @@ public class Driver extends Person {
 
     private final List<Pedal> pedals;
 
-    public Driver(List<Pedal> pedals, ControlPanel panel, FrontThrowerJoystick frontThrowerJoystick) {
-        super(frontThrowerJoystick, panel, ThrowerType.FRONT);
+    public Driver(List<Pedal> pedals, ControlPanel panel, FrontThrowerJoystick frontThrowerJoystick, List<BusDoorButton> doorButtons, FrontSeat seat) {
+        super(frontThrowerJoystick, panel, ThrowerType.FRONT, doorButtons, seat);
         this.pedals = pedals;
     }
 

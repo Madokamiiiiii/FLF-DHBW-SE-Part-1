@@ -98,7 +98,7 @@ public class ComplexCentralUnit extends CentralUnit implements IIdCentralUnit, I
     @Override
     public void unLockDoors() {
         for (BusDoor door : this.flf.getCabin().getDoors()) {
-            if (door.state() && !((ComplexBusDoor) door).isLocked() || !door.state() && ((ComplexBusDoor) door).isLocked()) {
+            if (door.isOpen() && !((ComplexBusDoor) door).isLocked() || !door.isOpen() && ((ComplexBusDoor) door).isLocked()) {
                 door.openClose();
             }
             ((ComplexBusDoor) door).lock();
