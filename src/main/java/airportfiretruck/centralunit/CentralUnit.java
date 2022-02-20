@@ -31,19 +31,18 @@ public class CentralUnit implements IPedalCentralUnit, ISteeringCentralUnit, ITh
         if (newVelocity < 0) { // Nicht rückwarts fahren
             return;
         }
-        flf.getCabin().getDisplays().get(1).setValue(newVelocity);
 
         for (IEngine engine : flf.getEngines()) {
             engine.setVelocity(newVelocity);
-            engine.rotate(newVelocity);
-            flf.getCabin().getDisplays().get(0).setValue(engine.getBatteryManagement().getRemainingBatteryLevel());
+            engine.rotate();
         }
+
         for (BrakeLight brakeLight : flf.getBrakeLights()) {
             if (sign < 0) {
                 brakeLight.on();
-                continue;
+            } else {
+                brakeLight.off();
             }
-            brakeLight.off();
         }
     }
 

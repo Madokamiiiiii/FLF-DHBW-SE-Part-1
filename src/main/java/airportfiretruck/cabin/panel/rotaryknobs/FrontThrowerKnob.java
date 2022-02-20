@@ -1,11 +1,14 @@
 package airportfiretruck.cabin.panel.rotaryknobs;
 
-public class FrontThrowerKnob implements IRotaryKnob {
+import airportfiretruck.cabin.panel.ControlPanel;
+
+public class FrontThrowerKnob extends RotaryKnob implements IRotaryKnob {
     private int level = 0;
 
     private final ThrowerType type;
 
-    public FrontThrowerKnob() {
+    public FrontThrowerKnob(ControlPanel controlPanel) {
+        this.controlPanel = controlPanel;
         type = ThrowerType.FRONT;
     }
 
@@ -32,6 +35,7 @@ public class FrontThrowerKnob implements IRotaryKnob {
                 // Noop
             }
         }
+        controlPanel.thrower(this);
     }
 
     @Override
@@ -48,5 +52,6 @@ public class FrontThrowerKnob implements IRotaryKnob {
                 // Noop
             }
         }
+        controlPanel.thrower(this);
     }
 }

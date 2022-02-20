@@ -16,7 +16,10 @@ public class FloorSprayNozzle extends Thrower {
     @Override
     public void spray() {
         if (isOn) {
-            tank.getLiquid(limit);
+            int actual = tank.getLiquid(limit);
+            if (actual != limit) {
+                throw new RuntimeException("Not enough water in tank");
+            }
         }
     }
 

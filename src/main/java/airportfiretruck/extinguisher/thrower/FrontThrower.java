@@ -21,17 +21,25 @@ public class FrontThrower extends ThrowerMixer {
         }
     }
 
+    public int getDegree() {
+        return degree;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
     public void setLevel(int level) {
         this.level = level;
     }
 
     @Override
     public void spray() {
-        // same here: evaluate??
-        // mixer.getLiquid(level);
-
         // Wenn die Kapazität überschritten werden würde, nimm die maximale Kapazität.
         // Nach der Spezifikation dürfte das aber nicht erreicht werden.
-        mixer.getLiquid(Math.min(level, limit), mixingRatio);
+        int output = mixer.getLiquid(Math.min(level, limit), mixingRatio);
+        if (output != Math.min(level, limit)) {
+            throw new RuntimeException("Not enough water/foam in tank");
+        }
     }
 }

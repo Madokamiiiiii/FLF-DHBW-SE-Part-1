@@ -1,7 +1,5 @@
 package airportfiretruck.engine;
 
-import airportfiretruck.engine.battery.BatteryManagement;
-
 public interface IEngine {
     void on();
 
@@ -9,11 +7,10 @@ public interface IEngine {
 
     boolean isOn();
 
-    int rotate(int kmph);
-
     int getVelocity();
 
-    BatteryManagement getBatteryManagement();
-
     void setVelocity(int velocity);
+
+    void rotate();
+
 }

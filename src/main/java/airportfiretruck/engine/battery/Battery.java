@@ -1,14 +1,12 @@
 package airportfiretruck.engine.battery;
 
 public class Battery {
-    private BatteryStatus status;
     private int pointer;
     private final int[][][] capacity;
 
     public Battery() {
         capacity = new int[100][10][100];
         pointer = 0;
-        charge(100 * 10 * 100);
     }
 
     public void charge(int amount) {

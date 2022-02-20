@@ -20,6 +20,9 @@ public class RoofThrower extends ThrowerMixer {
         this.level = level;
     }
 
+    public RoofThrowerLevel getLevel() {
+        return level;
+    }
 
     @Override
     public void spray() {
@@ -31,7 +34,10 @@ public class RoofThrower extends ThrowerMixer {
 
         // Wenn die Kapazität überschritten werden würde, nimm die maximale Kapazität.
         // Nach der Spezifikation dürfte das aber nicht erreicht werden.
-        mixer.getLiquid(Math.min(outputQuantity, limit), mixingRatio);
+        int output = mixer.getLiquid(Math.min(outputQuantity, limit), mixingRatio);
+        if (output != Math.min(outputQuantity, limit)) {
+            throw new RuntimeException("Not enough water/foam in tank");
+        }
     }
 
     public void setUpright(boolean upright) {
@@ -53,4 +59,5 @@ public class RoofThrower extends ThrowerMixer {
     public UpperSegment getUpperSegment() {
         return upperSegment;
     }
+
 }

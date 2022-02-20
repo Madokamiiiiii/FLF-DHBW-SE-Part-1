@@ -28,7 +28,7 @@ public abstract class Person {
         this.seat = seat;
     }
 
-    public void turnRoofThrower(Direction direction) {
+    public void turnThrower(Direction direction) {
         if (direction == Direction.LEFT) {
             throwerKnob.turnLeft();
         } else {
