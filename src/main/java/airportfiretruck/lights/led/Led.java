@@ -1,8 +1,13 @@
 package airportfiretruck.lights.led;
 
 public class Led {
-    private Color color;
+    private final Color color;
+
     public Led(Color color) {
         this.color = color;
+    }
+
+    public Color getColor() {
+        return color;
     }
 }

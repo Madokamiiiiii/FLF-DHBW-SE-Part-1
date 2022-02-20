@@ -59,6 +59,7 @@ class TestTruck {
     public void init() {
         // Generate FLF
         airportFireTruck = new AirportFireTruck.Builder().build();
+        airportFireTruck.getCabin().getDisplays().forEach(iDisplay -> System.out.println(iDisplay.display()));
     }
 
     private void generateHelper() {
@@ -571,15 +572,15 @@ class TestTruck {
         // s0414 + s0415
         operator.pressPushButton(LEFT);
         operator.pressPushButton(RIGHT);
-       for (int i = 0; i < 2; i++) {
-           operator.turnThrower(Direction.RIGHT);
+        for (int i = 0; i < 2; i++) {
+            operator.turnThrower(Direction.RIGHT);
         }
         for (int i = 0; i < 3; i++) {
             operator.pressJoystickButton();
         }
 
         testThrowerConfiguration(ThrowerType.ROOF, 90, 16, C, 3, 101250 - 700 - 8550 - 7275, 33750 - 450 - 225);
-   }
+    }
 
     @Test
     @Order(7)

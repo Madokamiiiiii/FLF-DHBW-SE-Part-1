@@ -116,16 +116,15 @@ public class CentralUnit implements IPedalCentralUnit, ISteeringCentralUnit, ITh
     }
 
     @Override
-    public void steer() {
-        int position = flf.getCabin().getSteeringWheel().getPosition();
-        flf.getFrontAxles().get(0).setSteeringAngle(position);
-        flf.getFrontAxles().get(1).setSteeringAngle(position);
-        if (position == 0) {
+    public void steer(int degree) {
+        flf.getFrontAxles().get(0).setSteeringAngle(degree);
+        flf.getFrontAxles().get(1).setSteeringAngle(degree);
+        if (degree == 0) {
             for (DirectionIndicatorLight directionIndicatorLight : flf.getDirectionIndicatorLights()) {
                 directionIndicatorLight.off();
             }
         }
-        if (position < 0) {
+        if (degree < 0) {
             for (DirectionIndicatorLight directionIndicatorLight : flf.getDirectionIndicatorLights()) {
                 if (directionIndicatorLight.getLeftRightSide() == LeftRightSide.LEFT) {
                     directionIndicatorLight.on();
@@ -134,7 +133,7 @@ public class CentralUnit implements IPedalCentralUnit, ISteeringCentralUnit, ITh
                 directionIndicatorLight.off();
             }
         }
-        if (position > 0) {
+        if (degree > 0) {
             for (DirectionIndicatorLight directionIndicatorLight : flf.getDirectionIndicatorLights()) {
                 if (directionIndicatorLight.getLeftRightSide() == LeftRightSide.RIGHT) {
                     directionIndicatorLight.on();

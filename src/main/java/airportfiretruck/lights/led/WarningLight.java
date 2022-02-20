@@ -3,7 +3,6 @@ package airportfiretruck.lights.led;
 import airportfiretruck.lights.Light;
 
 public class WarningLight extends Light {
-    final Color color = Color.ORANGE;
     private final Led led;
 
     // composition mit Led
@@ -12,7 +11,7 @@ public class WarningLight extends Light {
     }
 
     public Color getColor() {
-        return color;
+        return led.getColor();
     }
 
     public Led getLed() {

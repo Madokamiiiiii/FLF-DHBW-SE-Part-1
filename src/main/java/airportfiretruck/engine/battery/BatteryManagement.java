@@ -13,7 +13,6 @@ public enum BatteryManagement {
     }
 
     public int takeOut(int amount) {
-
         return batteryBox.takeOut(amount);
     }
 

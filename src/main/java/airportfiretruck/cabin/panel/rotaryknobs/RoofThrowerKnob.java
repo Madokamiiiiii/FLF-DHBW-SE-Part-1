@@ -3,7 +3,7 @@ package airportfiretruck.cabin.panel.rotaryknobs;
 import airportfiretruck.cabin.panel.ControlPanel;
 import airportfiretruck.extinguisher.thrower.roof.RoofThrowerLevel;
 
-public class RoofThrowerKnob extends RotaryKnob implements IRotaryKnob {
+public class RoofThrowerKnob extends RotaryKnob {
 
     private RoofThrowerLevel level;
     private final ThrowerType type;

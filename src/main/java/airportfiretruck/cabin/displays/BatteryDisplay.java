@@ -2,17 +2,15 @@ package airportfiretruck.cabin.displays;
 
 public class BatteryDisplay implements IDisplay {
 
-    private double value;
+    private double remainingCharge;
 
-    public BatteryDisplay() {
-        value = 100;
+    @Override
+    public void setValue(double remainingCharge) {
+        this.remainingCharge = Math.round(remainingCharge / 40.0) / 100.0;
     }
 
-    public void setValue(double value) {
-        this.value = Math.round(value / 40.0) / 100.0;
-    }
-
+    @Override
     public String display() {
-        return value + "%";
+        return remainingCharge + "%";
     }
 }

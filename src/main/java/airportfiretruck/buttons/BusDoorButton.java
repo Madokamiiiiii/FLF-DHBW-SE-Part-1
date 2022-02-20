@@ -3,7 +3,7 @@ package airportfiretruck.buttons;
 import airportfiretruck.cabin.BusDoor;
 import airportfiretruck.position.FrontRearSide;
 
-public class BusDoorButton extends Button {
+public class BusDoorButton implements IButton {
 
     private BusDoor busDoor;
     private final FrontRearSide position;

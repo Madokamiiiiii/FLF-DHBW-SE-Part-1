@@ -4,7 +4,7 @@ public abstract class Thrower implements IThrower {
 
     protected int limit;
 
-    public Thrower(int limit) {
+    protected Thrower(int limit) {
         this.limit = limit;
     }
 }

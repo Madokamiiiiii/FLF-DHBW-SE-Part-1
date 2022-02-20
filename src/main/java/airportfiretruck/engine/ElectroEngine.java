@@ -5,13 +5,14 @@ import airportfiretruck.cabin.displays.VelocityDisplay;
 import airportfiretruck.engine.battery.BatteryManagement;
 
 public class ElectroEngine extends Engine {
-    private final BatteryManagement batteryManagement = BatteryManagement.INSTANCE;
+    private final BatteryManagement batteryManagement;
     private final VelocityDisplay velocityDisplay;
     private final BatteryDisplay batteryDisplay;
 
     public ElectroEngine(VelocityDisplay velocityDisplay, BatteryDisplay batteryDisplay) {
         this.velocityDisplay = velocityDisplay;
         this.batteryDisplay = batteryDisplay;
+        batteryManagement = BatteryManagement.INSTANCE;
     }
 
     public BatteryManagement getBatteryManagement() {

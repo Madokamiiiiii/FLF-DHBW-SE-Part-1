@@ -2,7 +2,7 @@ package airportfiretruck.buttons;
 
 import airportfiretruck.cabin.joysticks.IJoystick;
 
-public class JoystickButton extends Button {
+public class JoystickButton implements IButton {
     private IJoystick joystick;
 
     public void setJoystick(IJoystick joystick) {

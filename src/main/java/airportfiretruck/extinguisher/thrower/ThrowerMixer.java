@@ -8,7 +8,7 @@ public abstract class ThrowerMixer extends Thrower implements IThrowerMixer {
     protected Mixer mixer;
     protected int mixingRatio;
 
-    public ThrowerMixer(Mixer mixer, int limit) {
+    protected ThrowerMixer(Mixer mixer, int limit) {
         super(limit);
         this.mixer = mixer;
     }

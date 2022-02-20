@@ -10,7 +10,7 @@ public abstract class Axle {
     private final FrontRearSide frontRearSide;
     private final LeftRightSide side;
 
-    public Axle(FrontRearSide frontRearSide, LeftRightSide side) {
+    protected Axle(FrontRearSide frontRearSide, LeftRightSide side) {
         this.frontRearSide = frontRearSide;
         this.side = side;
     }

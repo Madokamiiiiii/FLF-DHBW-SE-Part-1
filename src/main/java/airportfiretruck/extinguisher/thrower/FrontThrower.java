@@ -4,13 +4,15 @@ import airportfiretruck.cabin.joysticks.IJoystick;
 import airportfiretruck.extinguisher.watersupply.Mixer;
 
 public class FrontThrower extends ThrowerMixer {
-    private int degree = 0;
-    private final int maxDegree = 180;
+    private int degree;
+    private final int maxDegree;
     private int level;
 
     public FrontThrower(IJoystick joystick, Mixer mixer, int limit) {
         super(mixer, limit);
         joystick.assign(this);
+        degree = 0;
+        maxDegree = 180;
     }
 
     public void setDegree(int degree) {

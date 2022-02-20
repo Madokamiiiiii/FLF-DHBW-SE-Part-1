@@ -2,14 +2,15 @@ package airportfiretruck.cabin.panel.rotaryknobs;
 
 import airportfiretruck.cabin.panel.ControlPanel;
 
-public class FrontThrowerKnob extends RotaryKnob implements IRotaryKnob {
-    private int level = 0;
+public class FrontThrowerKnob extends RotaryKnob {
+    private int level;
 
     private final ThrowerType type;
 
     public FrontThrowerKnob(ControlPanel controlPanel) {
         this.controlPanel = controlPanel;
         type = ThrowerType.FRONT;
+        level = 0;
     }
 
     @Override

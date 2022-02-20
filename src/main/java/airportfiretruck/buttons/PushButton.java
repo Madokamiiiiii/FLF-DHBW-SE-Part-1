@@ -4,7 +4,7 @@ import airportfiretruck.cabin.joysticks.IJoystick;
 import airportfiretruck.cabin.joysticks.Joystick;
 import airportfiretruck.position.LeftRightSide;
 
-public class PushButton extends Button {
+public class PushButton implements IButton {
     private boolean active = false;
     private IJoystick joystick;
 

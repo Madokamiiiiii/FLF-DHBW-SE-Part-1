@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BusDoor {
-    private boolean isOpen;
+    private boolean isOpen = false;
 
     private final List<BusDoorButton> buttons;
 

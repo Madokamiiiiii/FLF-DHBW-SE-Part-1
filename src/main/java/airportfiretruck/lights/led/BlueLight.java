@@ -8,9 +8,7 @@ import java.util.List;
 public class BlueLight extends Light {
     private LightSize lightSize;
     private final List<Led> leds;
-
-    final Color color = Color.BLUE;
-
+    
     // composition mit led
     public BlueLight(LightSize lightSize) {
         this.leds = new ArrayList<>();
@@ -38,6 +36,6 @@ public class BlueLight extends Light {
     }
 
     public Color getColor() {
-        return color;
+        return leds.get(0).getColor();
     }
 }

@@ -9,9 +9,10 @@ import java.util.List;
 public abstract class Joystick implements IJoystick {
     protected List<PushButton> pushButtons;
     protected JoystickButton joystickButton;
-    protected int ratio = 0;
+    protected int ratio;
 
-    public Joystick(List<PushButton> pushButtons, JoystickButton joystickButton) {
+    protected Joystick(List<PushButton> pushButtons, JoystickButton joystickButton) {
+        ratio = 0;
         this.pushButtons = pushButtons;
         this.joystickButton = joystickButton;
         joystickButton.setJoystick(this);
@@ -28,8 +29,7 @@ public abstract class Joystick implements IJoystick {
         }
     }
 
-
-    protected void joystickButtonPressed(IThrowerMixer thrower) {
+    public void joystickButtonPressed(IThrowerMixer thrower) {
         if (thrower.isActive()) {
             thrower.setMixingRatio(ratio);
             thrower.spray();
