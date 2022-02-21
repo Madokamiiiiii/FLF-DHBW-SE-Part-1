@@ -7,9 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BusDoor {
-    private boolean isOpen = false;
-
     private final List<BusDoorButton> buttons;
+    private boolean isOpen = false;
 
     public BusDoor() {
         buttons = new ArrayList<>();

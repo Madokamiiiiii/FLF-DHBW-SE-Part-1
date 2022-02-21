@@ -15,6 +15,8 @@ import airportfiretruck.cabin.seats.FrontSeat;
 import airportfiretruck.cabin.seats.Respirator;
 import airportfiretruck.cabin.seats.Seat;
 import airportfiretruck.centralunit.CentralUnit;
+import airportfiretruck.extinguisher.thrower.FrontThrower;
+import airportfiretruck.extinguisher.thrower.roof.RoofThrower;
 import airportfiretruck.position.LeftRightSide;
 
 import java.util.ArrayList;
@@ -27,8 +29,8 @@ public class Cabin {
     private List<BusDoor> doors;
     private List<Seat> seats;
     private List<IDisplay> displays;
-    private IJoystick frontThrowerJoystick;
-    private IJoystick roofThrowerJoystick;
+    private IJoystick<FrontThrower> frontThrowerJoystick;
+    private IJoystick<RoofThrower> roofThrowerJoystick;
     private SteeringWheel steeringWheel;
     private ControlPanel controlPanel;
 
@@ -63,11 +65,11 @@ public class Cabin {
         return steeringWheel;
     }
 
-    public IJoystick getFrontThrowerJoystick() {
+    public IJoystick<FrontThrower> getFrontThrowerJoystick() {
         return frontThrowerJoystick;
     }
 
-    public IJoystick getRoofThrowerJoystick() {
+    public IJoystick<RoofThrower> getRoofThrowerJoystick() {
         return roofThrowerJoystick;
     }
 

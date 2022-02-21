@@ -3,8 +3,8 @@ package airportfiretruck.cabin.pedals;
 import airportfiretruck.centralunit.IPedalCentralUnit;
 
 public class Pedal implements IPedal {
-    private IPedalCentralUnit centralUnit;
     private final PedalType pedalType;
+    private IPedalCentralUnit centralUnit;
 
     public Pedal(PedalType pedalType) {
         this.pedalType = pedalType;

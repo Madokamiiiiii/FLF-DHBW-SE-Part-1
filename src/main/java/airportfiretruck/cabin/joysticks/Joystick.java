@@ -6,9 +6,10 @@ import airportfiretruck.extinguisher.thrower.IThrowerMixer;
 
 import java.util.List;
 
-public abstract class Joystick implements IJoystick {
+public abstract class Joystick<T extends IThrowerMixer> implements IJoystick<T> {
     protected List<PushButton> pushButtons;
     protected JoystickButton joystickButton;
+    protected T thrower;
     protected int ratio;
 
     protected Joystick(List<PushButton> pushButtons, JoystickButton joystickButton) {
@@ -29,11 +30,15 @@ public abstract class Joystick implements IJoystick {
         }
     }
 
-    public void joystickButtonPressed(IThrowerMixer thrower) {
+    public void joystickButtonPressed() {
         if (thrower.isActive()) {
             thrower.setMixingRatio(ratio);
             thrower.spray();
         }
+    }
+
+    public void assign(T thrower) {
+        this.thrower = thrower;
     }
 
     public List<PushButton> getPushButtons() {

@@ -59,153 +59,6 @@ class TestTruck {
     public void init() {
         // Generate FLF
         airportFireTruck = new AirportFireTruck.Builder().build();
-        airportFireTruck.getCabin().getDisplays().forEach(iDisplay -> System.out.println(iDisplay.display()));
-    }
-
-    private void generateHelper() {
-        driver = new Driver(airportFireTruck.getCabin().getPedals(),
-                airportFireTruck.getCabin().getSteeringWheel(),
-                airportFireTruck.getCabin().getControlPanel(),
-                (FrontThrowerJoystick) airportFireTruck.getCabin().getFrontThrowerJoystick(),
-                airportFireTruck.getCabin().getDoors().get(0).getButtons(),
-
-                (FrontSeat) airportFireTruck.getCabin().getSeats().stream().filter(seat -> {
-                    FrontSeat frontSeat = (FrontSeat) seat;
-                    return frontSeat.getLeftRightSide().equals(LEFT);
-                }).findFirst().orElseThrow()
-        );
-
-        operator = new Operator(airportFireTruck.getCabin().getControlPanel(),
-                (RoofThrowerJoystick) airportFireTruck.getCabin().getRoofThrowerJoystick(),
-                airportFireTruck.getCabin().getDoors().get(1).getButtons(),
-                (FrontSeat) airportFireTruck.getCabin().getSeats().stream().filter(seat -> {
-                    FrontSeat frontSeat = (FrontSeat) seat;
-                    return frontSeat.getLeftRightSide().equals(RIGHT);
-                }).findFirst().orElseThrow()
-        );
-    }
-
-    private void testCommon() {
-        generateHelper();
-        BatteryManagement.INSTANCE.charge(400000);
-
-        // s0X01
-        driver.pressDoorButton(REAR);
-        driver.sitOrGetUp();
-        operator.pressDoorButton(REAR);
-        operator.sitOrGetUp();
-
-        airportFireTruck.getCabin().getSeats().stream().filter(seat -> seat instanceof FrontSeat).forEach(seat -> assertTrue(seat.isOccupied()));
-
-        // s0X02
-        driver.pressDoorButton(REAR);
-        operator.pressDoorButton(REAR);
-        airportFireTruck.getCabin().getDoors().forEach(door -> assertFalse(door.isOpen()));
-
-        // s0X03
-        operator.useSwitch(RelatedDevice.ENGINES);
-        airportFireTruck.getEngines().forEach(engine -> assertTrue(engine.isOn()));
-    }
-
-    private void testLights(LightConfiguration lightConfiguration) {
-        // In the beginning all lights are off.
-        // If null is detected. Don't check the light because it's not specified in the scenario.
-
-        if (lightConfiguration.roofLights) {
-            operator.useSwitch(RelatedDevice.ROOF_LIGHTS);
-            airportFireTruck.getHeadLights().stream().filter(headLight -> headLight.getPosition().equals(TOP)).forEach(headLight -> assertTrue(headLight.isOn()));
-        } else {
-            airportFireTruck.getHeadLights().stream().filter(headLight -> headLight.getPosition().equals(TOP)).forEach(headLight -> assertFalse(headLight.isOn()));
-        }
-
-        if (lightConfiguration.roofLights) {
-            operator.useSwitch(RelatedDevice.SIDE_LIGHTS);
-            airportFireTruck.getSideLights().forEach(sideLight -> assertTrue(sideLight.isOn()));
-        } else {
-            airportFireTruck.getSideLights().forEach(sideLight -> assertFalse(sideLight.isOn()));
-        }
-
-        if (lightConfiguration.frontLights) {
-            operator.useSwitch(RelatedDevice.FRONT_LIGHTS);
-            airportFireTruck.getHeadLights().stream().filter(roofLight -> roofLight.getPosition().equals(BOTTOM)).forEach(roofLight -> assertTrue(roofLight.isOn()));
-        } else {
-            airportFireTruck.getHeadLights().stream().filter(roofLight -> roofLight.getPosition().equals(BOTTOM)).forEach(roofLight -> assertFalse(roofLight.isOn()));
-        }
-
-        if (lightConfiguration.warningLights) {
-            operator.useSwitch(RelatedDevice.WARNING_LIGHTS);
-            airportFireTruck.getWarningLights().forEach(warningLight -> assertTrue(warningLight.isOn()));
-        } else {
-            airportFireTruck.getWarningLights().forEach(warningLight -> assertFalse(warningLight.isOn()));
-        }
-
-        if (lightConfiguration.blueLight) {
-            operator.useSwitch(RelatedDevice.BLUE_LIGHTS);
-            airportFireTruck.getBlueLights().forEach(blueLight -> assertTrue(blueLight.isOn()));
-        } else {
-            airportFireTruck.getBlueLights().forEach(blueLight -> assertFalse(blueLight.isOn()));
-        }
-
-    }
-
-    private void testThrowerOffPosition() {
-        // RoofThrower down
-        assertEquals(0, airportFireTruck.getRoofThrower().getLowerSegment().getDegree());
-        assertEquals(0, airportFireTruck.getRoofThrower().getUpperSegment().getLength());
-
-        // FrontThrower is deactive
-        assertFalse(airportFireTruck.getFrontThrower().isActive());
-    }
-
-    private void testFullTanks() {
-        List<Tank> tanks = airportFireTruck.getRoofThrower().getMixer().getTanks();
-
-        Tank testedTank = tanks.stream().filter(tank -> tank.getType().equals(ExtinguishingAgent.WATER)).findFirst().orElseThrow();
-        testedTank.fill(101250);
-        assertEquals(101250, testedTank.getRemainingCapacity());
-
-        testedTank = tanks.stream().filter(tank -> tank.getType().equals(ExtinguishingAgent.FOAM)).findFirst().orElseThrow();
-        testedTank.fill(33750);
-        assertEquals(33750, testedTank.getRemainingCapacity());
-    }
-
-    private void testInitialThrowerKnobLevels() {
-        List<IRotaryKnob> rotaryKnobs = airportFireTruck.getCabin().getControlPanel().getKnobs();
-
-        FrontThrowerKnob frontThrowerKnob = (FrontThrowerKnob) rotaryKnobs.stream().filter(knob -> knob.getType().equals(ThrowerType.FRONT)).findFirst().orElseThrow();
-        assertEquals(0, frontThrowerKnob.getLevel());
-
-        RoofThrowerKnob roofThrowerKnob = (RoofThrowerKnob) rotaryKnobs.stream().filter(knob -> knob.getType().equals(ThrowerType.ROOF)).findFirst().orElseThrow();
-        assertEquals(RoofThrowerLevel.A, roofThrowerKnob.getLevel());
-    }
-
-    private void iterate(int numberOfIterations) {
-        for (int i = 0; i < numberOfIterations; i++) {
-            for (IEngine engine : airportFireTruck.getEngines()) {
-                engine.rotate();
-            }
-        }
-    }
-
-    private void testThrowerConfiguration(ThrowerType type, int degree, int length, Object level, int mixingRatio, int expectedRemainingWater, int expectedRemainingFoam) {
-
-        if (type.equals(ThrowerType.FRONT)) {
-            assertTrue(airportFireTruck.getFrontThrower().isActive());
-            assertEquals(degree, airportFireTruck.getFrontThrower().getDegree());
-            assertEquals(level, airportFireTruck.getFrontThrower().getLevel());
-            assertEquals(mixingRatio, airportFireTruck.getFrontThrower().getMixingRatio());
-            assertEquals(expectedRemainingWater, airportFireTruck.getFrontThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.WATER).findFirst().orElseThrow().getRemainingCapacity());
-            assertEquals(expectedRemainingFoam, airportFireTruck.getFrontThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.FOAM).findFirst().orElseThrow().getRemainingCapacity());
-
-        } else {
-            assertTrue(airportFireTruck.getRoofThrower().isActive());
-            assertEquals(degree, airportFireTruck.getRoofThrower().getLowerSegment().getDegree());
-            assertEquals(length, airportFireTruck.getRoofThrower().getUpperSegment().getLength());
-            assertEquals(level, airportFireTruck.getRoofThrower().getLevel());
-            assertEquals(mixingRatio, airportFireTruck.getRoofThrower().getMixingRatio());
-            assertEquals(expectedRemainingWater, airportFireTruck.getRoofThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.WATER).findFirst().orElseThrow().getRemainingCapacity());
-            assertEquals(expectedRemainingFoam, airportFireTruck.getRoofThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.FOAM).findFirst().orElseThrow().getRemainingCapacity());
-        }
     }
 
     @Order(1)
@@ -693,6 +546,152 @@ class TestTruck {
         }
         assertEquals(101250 - 15750 - 11250 - 11250 - 4850, airportFireTruck.getRoofThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.WATER).findFirst().orElseThrow().getRemainingCapacity());
         assertEquals(33750 - 1750 - 1250 - 1250 - 150, airportFireTruck.getRoofThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.FOAM).findFirst().orElseThrow().getRemainingCapacity());
+    }
+
+    private void generateHelper() {
+        driver = new Driver(airportFireTruck.getCabin().getPedals(),
+                airportFireTruck.getCabin().getSteeringWheel(),
+                airportFireTruck.getCabin().getControlPanel(),
+                (FrontThrowerJoystick) airportFireTruck.getCabin().getFrontThrowerJoystick(),
+                airportFireTruck.getCabin().getDoors().get(0).getButtons(),
+
+                (FrontSeat) airportFireTruck.getCabin().getSeats().stream().filter(seat -> {
+                    FrontSeat frontSeat = (FrontSeat) seat;
+                    return frontSeat.getLeftRightSide().equals(LEFT);
+                }).findFirst().orElseThrow()
+        );
+
+        operator = new Operator(airportFireTruck.getCabin().getControlPanel(),
+                (RoofThrowerJoystick) airportFireTruck.getCabin().getRoofThrowerJoystick(),
+                airportFireTruck.getCabin().getDoors().get(1).getButtons(),
+                (FrontSeat) airportFireTruck.getCabin().getSeats().stream().filter(seat -> {
+                    FrontSeat frontSeat = (FrontSeat) seat;
+                    return frontSeat.getLeftRightSide().equals(RIGHT);
+                }).findFirst().orElseThrow()
+        );
+    }
+
+    private void testCommon() {
+        generateHelper();
+        BatteryManagement.INSTANCE.charge(400000);
+
+        // s0X01
+        driver.pressDoorButton(REAR);
+        driver.sitOrGetUp();
+        operator.pressDoorButton(REAR);
+        operator.sitOrGetUp();
+
+        airportFireTruck.getCabin().getSeats().stream().filter(seat -> seat instanceof FrontSeat).forEach(seat -> assertTrue(seat.isOccupied()));
+
+        // s0X02
+        driver.pressDoorButton(REAR);
+        operator.pressDoorButton(REAR);
+        airportFireTruck.getCabin().getDoors().forEach(door -> assertFalse(door.isOpen()));
+
+        // s0X03
+        operator.useSwitch(RelatedDevice.ENGINES);
+        airportFireTruck.getEngines().forEach(engine -> assertTrue(engine.isOn()));
+    }
+
+    private void testLights(LightConfiguration lightConfiguration) {
+        // In the beginning all lights are off.
+        // If null is detected. Don't check the light because it's not specified in the scenario.
+
+        if (lightConfiguration.roofLights) {
+            operator.useSwitch(RelatedDevice.ROOF_LIGHTS);
+            airportFireTruck.getHeadLights().stream().filter(headLight -> headLight.getPosition().equals(TOP)).forEach(headLight -> assertTrue(headLight.isOn()));
+        } else {
+            airportFireTruck.getHeadLights().stream().filter(headLight -> headLight.getPosition().equals(TOP)).forEach(headLight -> assertFalse(headLight.isOn()));
+        }
+
+        if (lightConfiguration.roofLights) {
+            operator.useSwitch(RelatedDevice.SIDE_LIGHTS);
+            airportFireTruck.getSideLights().forEach(sideLight -> assertTrue(sideLight.isOn()));
+        } else {
+            airportFireTruck.getSideLights().forEach(sideLight -> assertFalse(sideLight.isOn()));
+        }
+
+        if (lightConfiguration.frontLights) {
+            operator.useSwitch(RelatedDevice.FRONT_LIGHTS);
+            airportFireTruck.getHeadLights().stream().filter(roofLight -> roofLight.getPosition().equals(BOTTOM)).forEach(roofLight -> assertTrue(roofLight.isOn()));
+        } else {
+            airportFireTruck.getHeadLights().stream().filter(roofLight -> roofLight.getPosition().equals(BOTTOM)).forEach(roofLight -> assertFalse(roofLight.isOn()));
+        }
+
+        if (lightConfiguration.warningLights) {
+            operator.useSwitch(RelatedDevice.WARNING_LIGHTS);
+            airportFireTruck.getWarningLights().forEach(warningLight -> assertTrue(warningLight.isOn()));
+        } else {
+            airportFireTruck.getWarningLights().forEach(warningLight -> assertFalse(warningLight.isOn()));
+        }
+
+        if (lightConfiguration.blueLight) {
+            operator.useSwitch(RelatedDevice.BLUE_LIGHTS);
+            airportFireTruck.getBlueLights().forEach(blueLight -> assertTrue(blueLight.isOn()));
+        } else {
+            airportFireTruck.getBlueLights().forEach(blueLight -> assertFalse(blueLight.isOn()));
+        }
+
+    }
+
+    private void testThrowerOffPosition() {
+        // RoofThrower down
+        assertEquals(0, airportFireTruck.getRoofThrower().getLowerSegment().getDegree());
+        assertEquals(0, airportFireTruck.getRoofThrower().getUpperSegment().getLength());
+
+        // FrontThrower is deactive
+        assertFalse(airportFireTruck.getFrontThrower().isActive());
+    }
+
+    private void testFullTanks() {
+        List<Tank> tanks = airportFireTruck.getRoofThrower().getMixer().getTanks();
+
+        Tank testedTank = tanks.stream().filter(tank -> tank.getType().equals(ExtinguishingAgent.WATER)).findFirst().orElseThrow();
+        testedTank.fill(101250);
+        assertEquals(101250, testedTank.getRemainingCapacity());
+
+        testedTank = tanks.stream().filter(tank -> tank.getType().equals(ExtinguishingAgent.FOAM)).findFirst().orElseThrow();
+        testedTank.fill(33750);
+        assertEquals(33750, testedTank.getRemainingCapacity());
+    }
+
+    private void testInitialThrowerKnobLevels() {
+        List<IRotaryKnob> rotaryKnobs = airportFireTruck.getCabin().getControlPanel().getKnobs();
+
+        FrontThrowerKnob frontThrowerKnob = (FrontThrowerKnob) rotaryKnobs.stream().filter(knob -> knob.getType().equals(ThrowerType.FRONT)).findFirst().orElseThrow();
+        assertEquals(0, frontThrowerKnob.getLevel());
+
+        RoofThrowerKnob roofThrowerKnob = (RoofThrowerKnob) rotaryKnobs.stream().filter(knob -> knob.getType().equals(ThrowerType.ROOF)).findFirst().orElseThrow();
+        assertEquals(RoofThrowerLevel.A, roofThrowerKnob.getLevel());
+    }
+
+    private void iterate(int numberOfIterations) {
+        for (int i = 0; i < numberOfIterations; i++) {
+            for (IEngine engine : airportFireTruck.getEngines()) {
+                engine.rotate();
+            }
+        }
+    }
+
+    private void testThrowerConfiguration(ThrowerType type, int degree, int length, Object level, int mixingRatio, int expectedRemainingWater, int expectedRemainingFoam) {
+
+        if (type.equals(ThrowerType.FRONT)) {
+            assertTrue(airportFireTruck.getFrontThrower().isActive());
+            assertEquals(degree, airportFireTruck.getFrontThrower().getDegree());
+            assertEquals(level, airportFireTruck.getFrontThrower().getLevel());
+            assertEquals(mixingRatio, airportFireTruck.getFrontThrower().getMixingRatio());
+            assertEquals(expectedRemainingWater, airportFireTruck.getFrontThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.WATER).findFirst().orElseThrow().getRemainingCapacity());
+            assertEquals(expectedRemainingFoam, airportFireTruck.getFrontThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.FOAM).findFirst().orElseThrow().getRemainingCapacity());
+
+        } else {
+            assertTrue(airportFireTruck.getRoofThrower().isActive());
+            assertEquals(degree, airportFireTruck.getRoofThrower().getLowerSegment().getDegree());
+            assertEquals(length, airportFireTruck.getRoofThrower().getUpperSegment().getLength());
+            assertEquals(level, airportFireTruck.getRoofThrower().getLevel());
+            assertEquals(mixingRatio, airportFireTruck.getRoofThrower().getMixingRatio());
+            assertEquals(expectedRemainingWater, airportFireTruck.getRoofThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.WATER).findFirst().orElseThrow().getRemainingCapacity());
+            assertEquals(expectedRemainingFoam, airportFireTruck.getRoofThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.FOAM).findFirst().orElseThrow().getRemainingCapacity());
+        }
     }
 
 }

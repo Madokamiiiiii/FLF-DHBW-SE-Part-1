@@ -5,8 +5,8 @@ import airportfiretruck.position.FrontRearSide;
 
 public class BusDoorButton implements IButton {
 
-    private BusDoor busDoor;
     private final FrontRearSide position;
+    private BusDoor busDoor;
 
     public BusDoorButton(FrontRearSide frontRearSide) {
         position = frontRearSide;

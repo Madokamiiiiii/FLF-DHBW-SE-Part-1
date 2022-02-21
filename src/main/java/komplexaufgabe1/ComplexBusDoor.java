@@ -7,12 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ComplexBusDoor extends airportfiretruck.cabin.BusDoor {
+    private final IdReader idReader;
+    private final List<BusDoorButton> buttons;
     private ICabinCentralUnit centralUnit;
     private boolean isOpen;
     private boolean isLocked;
-    private final IdReader idReader;
-
-    private final List<BusDoorButton> buttons;
 
     public ComplexBusDoor() {
         isLocked = false;

@@ -48,6 +48,26 @@ public class AirportFireTruck {
     private final List<BlueLight> blueLights;
     private final List<WarningLight> warningLights;
 
+    public AirportFireTruck(Builder builder) {
+        centralUnit = builder.centralUnit;
+        centralUnit.setFlf(this);
+
+        cabin = builder.cabin;
+        cabin.connectToCentralUnit(centralUnit);
+        engines = builder.engines;
+        roofThrower = builder.roofThrower;
+        frontThrower = builder.frontThrower;
+        floorSprayNozzles = builder.floorSprayNozzles;
+        rearAxles = builder.rearAxles;
+        frontAxles = builder.frontAxles;
+        directionIndicatorLights = builder.directionIndicatorLights;
+        sideLights = builder.sideLights;
+        warningLights = builder.warningLights;
+        blueLights = builder.blueLights;
+        brakeLights = builder.brakeLights;
+        headLights = builder.headLights;
+    }
+
     public Cabin getCabin() {
         return cabin;
     }
@@ -100,26 +120,6 @@ public class AirportFireTruck {
         return warningLights;
     }
 
-    public AirportFireTruck(Builder builder) {
-        centralUnit = builder.centralUnit;
-        centralUnit.setFlf(this);
-
-        cabin = builder.cabin;
-        cabin.connectToCentralUnit(centralUnit);
-        engines = builder.engines;
-        roofThrower = builder.roofThrower;
-        frontThrower = builder.frontThrower;
-        floorSprayNozzles = builder.floorSprayNozzles;
-        rearAxles = builder.rearAxles;
-        frontAxles = builder.frontAxles;
-        directionIndicatorLights = builder.directionIndicatorLights;
-        sideLights = builder.sideLights;
-        warningLights = builder.warningLights;
-        blueLights = builder.blueLights;
-        brakeLights = builder.brakeLights;
-        headLights = builder.headLights;
-    }
-
     public List<FloorSprayNozzle> getFloorSprayNozzles() {
         return floorSprayNozzles;
     }
@@ -162,7 +162,7 @@ public class AirportFireTruck {
             List<IDisplay> displays = cabin.getDisplays();
             for (int i = 0; i < 2; i++) {
                 engines.add(i, new ElectroEngine((VelocityDisplay) displays.stream().filter(iDisplay -> iDisplay instanceof VelocityDisplay).findFirst().orElseThrow(),
-                        (BatteryDisplay) displays.stream().filter(iDisplay -> iDisplay instanceof BatteryDisplay).findFirst().orElseThrow()));
+                        (BatteryDisplay) displays.stream().filter(BatteryDisplay.class::isInstance).findFirst().orElseThrow()));
                 blueLights.add(i, new BlueLight(LightSize.SMALL));
                 blueLights.get(i).setPosition(Position.BOTTOM);
                 blueLights.get(i).setFrontRearSide(FrontRearSide.FRONT);

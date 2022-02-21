@@ -3,8 +3,8 @@ package komplexaufgabe1;
 import airportfiretruck.cabin.BusDoor;
 
 public class IdReader {
-    private IIdCentralUnit centralUnit;
     private final BusDoor busDoor;
+    private IIdCentralUnit centralUnit;
 
     public IdReader(BusDoor busDoor) {
         this.busDoor = busDoor;

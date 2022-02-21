@@ -1,21 +1,19 @@
 package airportfiretruck.buttons;
 
 import airportfiretruck.cabin.joysticks.IJoystick;
-import airportfiretruck.cabin.joysticks.Joystick;
 import airportfiretruck.position.LeftRightSide;
 
 public class PushButton implements IButton {
+    private final LeftRightSide position;
     private boolean active = false;
     private IJoystick joystick;
 
-    private final LeftRightSide position;
-
-    public void setJoystick(Joystick joystick) {
-        this.joystick = joystick;
-    }
-
     public PushButton(LeftRightSide leftRightSide) {
         position = leftRightSide;
+    }
+
+    public void setJoystick(IJoystick joystick) {
+        this.joystick = joystick;
     }
 
     @Override

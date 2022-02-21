@@ -3,9 +3,8 @@ package airportfiretruck.cabin.panel.rotaryknobs;
 import airportfiretruck.cabin.panel.ControlPanel;
 
 public class FrontThrowerKnob extends RotaryKnob {
-    private int level;
-
     private final ThrowerType type;
+    private int level;
 
     public FrontThrowerKnob(ControlPanel controlPanel) {
         this.controlPanel = controlPanel;

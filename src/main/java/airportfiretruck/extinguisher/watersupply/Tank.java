@@ -1,8 +1,8 @@
 package airportfiretruck.extinguisher.watersupply;
 
 public class Tank {
-    private int[][][] capacity;
     private final ExtinguishingAgent type;
+    private int[][][] capacity;
     private int pointer = 0;
 
     public Tank(ExtinguishingAgent type) {

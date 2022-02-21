@@ -23,15 +23,15 @@ public class FloorSprayNozzle extends Thrower {
         }
     }
 
-    public void setOn(boolean on) {
-        isOn = on;
-    }
-
     public Tank getTank() {
         return tank;
     }
 
     public boolean isOn() {
         return isOn;
+    }
+
+    public void setOn(boolean on) {
+        isOn = on;
     }
 }

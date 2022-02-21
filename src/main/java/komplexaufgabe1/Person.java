@@ -4,20 +4,20 @@ public class Person {
     private String name;
     private IdCard idCard;
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getName() {
         return name;
     }
 
-    public void setIdCard(IdCard idCard) {
-        this.idCard = idCard;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public IdCard getIdCard() {
         return this.idCard;
+    }
+
+    public void setIdCard(IdCard idCard) {
+        this.idCard = idCard;
     }
 
     public void useCard(ComplexBusDoor targetDoor) {

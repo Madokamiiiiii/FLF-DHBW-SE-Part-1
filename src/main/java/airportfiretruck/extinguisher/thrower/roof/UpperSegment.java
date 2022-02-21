@@ -11,6 +11,14 @@ public class UpperSegment {
                 new SegmentPart(5));
     }
 
+    public int getLength() {
+        int total = 0;
+        for (SegmentPart segmentPart : segmentParts) {
+            total += segmentPart.getLength();
+        }
+        return total;
+    }
+
     public void setLength(int length) {
         if (length == 0) {
             for (SegmentPart segmentPart : segmentParts) {
@@ -24,14 +32,6 @@ public class UpperSegment {
                 }
             }
         }
-    }
-
-    public int getLength() {
-        int total = 0;
-        for (SegmentPart segmentPart : segmentParts) {
-            total += segmentPart.getLength();
-        }
-        return total;
     }
 
     public List<SegmentPart> getSegmentParts() {

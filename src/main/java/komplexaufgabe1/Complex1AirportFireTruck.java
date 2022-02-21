@@ -48,6 +48,29 @@ public class Complex1AirportFireTruck extends AirportFireTruck {
     private final List<WarningLight> warningLights;
     private final List<Person> persons;
 
+    public Complex1AirportFireTruck(Builder builder) {
+        super(new AirportFireTruck.Builder());
+        centralUnit = builder.centralUnit;
+
+        cabin = builder.cabin;
+        cabin.connectToCentralUnit(centralUnit);
+        engines = builder.engines;
+        roofThrower = builder.roofThrower;
+        frontThrower = builder.frontThrower;
+        floorSprayNozzles = builder.floorSprayNozzles;
+        rearAxles = builder.rearAxles;
+        frontAxles = builder.frontAxles;
+        directionIndicatorLights = builder.directionIndicatorLights;
+        sideLights = builder.sideLights;
+        warningLights = builder.warningLights;
+        blueLights = builder.blueLights;
+        brakeLights = builder.brakeLights;
+        headLights = builder.headLights;
+        persons = builder.persons;
+
+        centralUnit.setFlf(this);
+    }
+
     public Cabin getCabin() {
         return cabin;
     }
@@ -102,29 +125,6 @@ public class Complex1AirportFireTruck extends AirportFireTruck {
 
     public List<Person> getPersons() {
         return persons;
-    }
-
-    public Complex1AirportFireTruck(Builder builder) {
-        super(new AirportFireTruck.Builder());
-        centralUnit = builder.centralUnit;
-
-        cabin = builder.cabin;
-        cabin.connectToCentralUnit(centralUnit);
-        engines = builder.engines;
-        roofThrower = builder.roofThrower;
-        frontThrower = builder.frontThrower;
-        floorSprayNozzles = builder.floorSprayNozzles;
-        rearAxles = builder.rearAxles;
-        frontAxles = builder.frontAxles;
-        directionIndicatorLights = builder.directionIndicatorLights;
-        sideLights = builder.sideLights;
-        warningLights = builder.warningLights;
-        blueLights = builder.blueLights;
-        brakeLights = builder.brakeLights;
-        headLights = builder.headLights;
-        persons = builder.persons;
-
-        centralUnit.setFlf(this);
     }
 
     public List<FloorSprayNozzle> getFloorSprayNozzles() {

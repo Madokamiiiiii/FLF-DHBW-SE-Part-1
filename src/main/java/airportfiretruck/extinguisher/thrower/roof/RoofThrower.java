@@ -5,9 +5,9 @@ import airportfiretruck.extinguisher.thrower.ThrowerMixer;
 import airportfiretruck.extinguisher.watersupply.Mixer;
 
 public class RoofThrower extends ThrowerMixer {
-    private RoofThrowerLevel level;
     private final UpperSegment upperSegment;
     private final LowerSegment lowerSegment;
+    private RoofThrowerLevel level;
 
     public RoofThrower(IJoystick joystick, Mixer mixer, int limit, UpperSegment upperSegment, LowerSegment lowerSegment) {
         super(mixer, limit);
@@ -16,12 +16,12 @@ public class RoofThrower extends ThrowerMixer {
         joystick.assign(this);
     }
 
-    public void setLevel(RoofThrowerLevel level) {
-        this.level = level;
-    }
-
     public RoofThrowerLevel getLevel() {
         return level;
+    }
+
+    public void setLevel(RoofThrowerLevel level) {
+        this.level = level;
     }
 
     @Override

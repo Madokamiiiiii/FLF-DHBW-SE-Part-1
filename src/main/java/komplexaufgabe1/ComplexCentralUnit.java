@@ -13,13 +13,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ComplexCentralUnit extends CentralUnit implements IIdCentralUnit, ICabinCentralUnit {
-    private AirportFireTruck flf;
     private final String code = "6072";
     private final String identifier = "DUS | FLF-5";
     private final List<Person> attached = new ArrayList<>() {
     };
     SecretKey secretKey;
     Cipher ecipher, dcipher;
+    private AirportFireTruck flf;
 
     public ComplexCentralUnit() {
         super();

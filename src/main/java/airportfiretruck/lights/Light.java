@@ -6,30 +6,29 @@ import airportfiretruck.position.Position;
 
 public abstract class Light {
 
-    private boolean isOn;
-
     protected Position position;
     protected FrontRearSide frontRearSide;
     protected LeftRightSide leftRightSide;
+    private boolean isOn;
 
     public LeftRightSide getLeftRightSide() {
         return leftRightSide;
+    }
+
+    public void setLeftRightSide(LeftRightSide leftRightSide) {
+        this.leftRightSide = leftRightSide;
     }
 
     public FrontRearSide getFrontRearSide() {
         return frontRearSide;
     }
 
-    public Position getPosition() {
-        return position;
-    }
-
     public void setFrontRearSide(FrontRearSide frontRearSide) {
         this.frontRearSide = frontRearSide;
     }
 
-    public void setLeftRightSide(LeftRightSide leftRightSide) {
-        this.leftRightSide = leftRightSide;
+    public Position getPosition() {
+        return position;
     }
 
     public void setPosition(Position position) {

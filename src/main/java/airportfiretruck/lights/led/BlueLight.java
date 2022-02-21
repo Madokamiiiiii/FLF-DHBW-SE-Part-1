@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BlueLight extends Light {
-    private LightSize lightSize;
     private final List<Led> leds;
-    
+    private LightSize lightSize;
+
     // composition mit led
     public BlueLight(LightSize lightSize) {
         this.leds = new ArrayList<>();

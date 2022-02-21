@@ -5,8 +5,14 @@ import airportfiretruck.extinguisher.thrower.roof.RoofThrowerLevel;
 
 public class RoofThrowerKnob extends RotaryKnob {
 
-    private RoofThrowerLevel level;
     private final ThrowerType type;
+    private RoofThrowerLevel level;
+
+    public RoofThrowerKnob(ControlPanel controlPanel) {
+        this.controlPanel = controlPanel;
+        type = ThrowerType.ROOF;
+        level = RoofThrowerLevel.A;
+    }
 
     @Override
     public ThrowerType getType() {
@@ -15,12 +21,6 @@ public class RoofThrowerKnob extends RotaryKnob {
 
     public RoofThrowerLevel getLevel() {
         return level;
-    }
-
-    public RoofThrowerKnob(ControlPanel controlPanel) {
-        this.controlPanel = controlPanel;
-        type = ThrowerType.ROOF;
-        level = RoofThrowerLevel.A;
     }
 
     @Override

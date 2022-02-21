@@ -11,11 +11,11 @@ public class FrontAxle extends Axle {
         steeringAngle = 0;
     }
 
-    public void setSteeringAngle(int steeringAngle) {
-        this.steeringAngle = steeringAngle;
-    }
-
     public int getSteeringAngle() {
         return steeringAngle;
+    }
+
+    public void setSteeringAngle(int steeringAngle) {
+        this.steeringAngle = steeringAngle;
     }
 }

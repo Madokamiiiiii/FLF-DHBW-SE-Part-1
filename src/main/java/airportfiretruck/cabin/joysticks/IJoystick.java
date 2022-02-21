@@ -3,11 +3,11 @@ package airportfiretruck.cabin.joysticks;
 import airportfiretruck.buttons.PushButton;
 import airportfiretruck.extinguisher.thrower.IThrowerMixer;
 
-public interface IJoystick {
+public interface IJoystick<T extends IThrowerMixer> {
 
     void pushButtonPressed(PushButton pushButton);
 
     void joystickButtonPressed();
 
-    void assign(IThrowerMixer thrower);
+    void assign(T thrower);
 }

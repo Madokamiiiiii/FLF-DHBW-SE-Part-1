@@ -21,12 +21,12 @@ public abstract class ThrowerMixer extends Thrower implements IThrowerMixer {
         this.active = active;
     }
 
-    public void setMixingRatio(int ratio) {
-        this.mixingRatio = ratio;
-    }
-
     public int getMixingRatio() {
         return mixingRatio;
+    }
+
+    public void setMixingRatio(int ratio) {
+        this.mixingRatio = ratio;
     }
 
     public Mixer getMixer() {
