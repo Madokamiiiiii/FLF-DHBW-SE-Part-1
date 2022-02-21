@@ -1,9 +1,11 @@
 package komplexaufgabe2;
 
+import airportfiretruck.extinguisher.thrower.IThrowerMixer;
+
 public class Mix5 extends State {
     private final int ratio = 5;
 
-    public Mix5(IntelligentJoystick intelligentJoystick) {
+    public Mix5(IntelligentJoystick<? extends IThrowerMixer> intelligentJoystick) {
         super(intelligentJoystick);
     }
 

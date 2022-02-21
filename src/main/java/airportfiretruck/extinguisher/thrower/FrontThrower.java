@@ -8,7 +8,7 @@ public class FrontThrower extends ThrowerMixer {
     private int degree;
     private int level;
 
-    public FrontThrower(IJoystick joystick, Mixer mixer, int limit) {
+    public FrontThrower(IJoystick<FrontThrower> joystick, Mixer mixer, int limit) {
         super(mixer, limit);
         joystick.assign(this);
         degree = 0;

@@ -5,7 +5,7 @@ import airportfiretruck.extinguisher.watersupply.Mixer;
 public abstract class ThrowerMixer extends Thrower implements IThrowerMixer {
 
     protected boolean active;
-    protected Mixer mixer;
+    protected final Mixer mixer;
     protected int mixingRatio;
 
     protected ThrowerMixer(Mixer mixer, int limit) {

@@ -9,7 +9,7 @@ public class RoofThrower extends ThrowerMixer {
     private final LowerSegment lowerSegment;
     private RoofThrowerLevel level;
 
-    public RoofThrower(IJoystick joystick, Mixer mixer, int limit, UpperSegment upperSegment, LowerSegment lowerSegment) {
+    public RoofThrower(IJoystick<RoofThrower> joystick, Mixer mixer, int limit, UpperSegment upperSegment, LowerSegment lowerSegment) {
         super(mixer, limit);
         this.upperSegment = upperSegment;
         this.lowerSegment = lowerSegment;

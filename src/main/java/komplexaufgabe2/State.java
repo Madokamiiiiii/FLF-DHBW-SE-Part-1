@@ -1,9 +1,11 @@
 package komplexaufgabe2;
 
-public abstract class State {
-    protected final IntelligentJoystick intelligentJoystick;
+import airportfiretruck.extinguisher.thrower.IThrowerMixer;
 
-    public State(IntelligentJoystick intelligentJoystick) {
+public abstract class State {
+    protected final IntelligentJoystick<IThrowerMixer> intelligentJoystick;
+
+    protected State(IntelligentJoystick<IThrowerMixer> intelligentJoystick) {
         this.intelligentJoystick = intelligentJoystick;
     }
 

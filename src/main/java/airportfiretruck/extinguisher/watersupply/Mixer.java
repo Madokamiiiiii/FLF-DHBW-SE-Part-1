@@ -22,8 +22,7 @@ public class Mixer {
         }
 
         // This simulates the mixing process
-        int output = foam + water;
-        return output;
+        return foam + water;
     }
 
     public List<Tank> getTanks() {

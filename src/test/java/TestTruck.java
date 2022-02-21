@@ -120,17 +120,17 @@ class TestTruck {
         assertEquals(2, seats.stream().filter(seat -> seat instanceof FrontSeat).count());
         seats.forEach(seat -> assertNotNull(seat.getRespirator()));
 
-        IJoystick joystick = cabin.getFrontThrowerJoystick();
-        assertNotNull(joystick);
-        assertTrue(joystick instanceof FrontThrowerJoystick);
-        FrontThrowerJoystick frontThrowerJoystick = (FrontThrowerJoystick) joystick;
+        IJoystick<FrontThrower> fJoystick = cabin.getFrontThrowerJoystick();
+        assertNotNull(fJoystick);
+        assertTrue(fJoystick instanceof FrontThrowerJoystick);
+        FrontThrowerJoystick frontThrowerJoystick = (FrontThrowerJoystick) fJoystick;
         assertNotNull(frontThrowerJoystick.getJoystickButton());
         assertEquals(2, frontThrowerJoystick.getPushButtons().size());
 
-        joystick = cabin.getRoofThrowerJoystick();
-        assertNotNull(joystick);
-        assertTrue(joystick instanceof RoofThrowerJoystick);
-        RoofThrowerJoystick roofThrowerJoystick = (RoofThrowerJoystick) joystick;
+        IJoystick<RoofThrower> rJoystick = cabin.getRoofThrowerJoystick();
+        assertNotNull(rJoystick);
+        assertTrue(rJoystick instanceof RoofThrowerJoystick);
+        RoofThrowerJoystick roofThrowerJoystick = (RoofThrowerJoystick) rJoystick;
         assertNotNull(roofThrowerJoystick.getJoystickButton());
         assertEquals(2, roofThrowerJoystick.getPushButtons().size());
 
@@ -420,7 +420,7 @@ class TestTruck {
             driver.pressJoystickButton();
         }
 
-        testThrowerConfiguration(ThrowerType.FRONT, 90, 0, 3000, 5, 101250 - 700 - 8550, 33750 - 450);
+        testThrowerConfiguration(ThrowerType.FRONT, 0, 3000, 5, 101250 - 700 - 8550, 33750 - 450);
 
         // s0414 + s0415
         operator.pressPushButton(LEFT);
@@ -432,7 +432,7 @@ class TestTruck {
             operator.pressJoystickButton();
         }
 
-        testThrowerConfiguration(ThrowerType.ROOF, 90, 16, C, 3, 101250 - 700 - 8550 - 7275, 33750 - 450 - 225);
+        testThrowerConfiguration(ThrowerType.ROOF, 16, C, 3, 101250 - 700 - 8550 - 7275, 33750 - 450 - 225);
     }
 
     @Test
@@ -460,7 +460,7 @@ class TestTruck {
             driver.pressJoystickButton();
         }
 
-        testThrowerConfiguration(ThrowerType.FRONT, 90, 0, 3500, 10, 101250 - 9450, 33750 - 1050);
+        testThrowerConfiguration(ThrowerType.FRONT, 0, 3500, 10, 101250 - 9450, 33750 - 1050);
 
         // s0513 + s0514
         operator.pressPushButton(LEFT);
@@ -472,7 +472,7 @@ class TestTruck {
             operator.pressJoystickButton();
         }
 
-        testThrowerConfiguration(ThrowerType.ROOF, 90, 16, C, 5, 101250 - 9450 - 11875, 33750 - 1050 - 625);
+        testThrowerConfiguration(ThrowerType.ROOF, 16, C, 5, 101250 - 9450 - 11875, 33750 - 1050 - 625);
 
         for (int i = 0; i < 2; i++) {
             driver.pressPushButton(RIGHT);
@@ -484,7 +484,7 @@ class TestTruck {
             driver.pressJoystickButton();
         }
 
-        testThrowerConfiguration(ThrowerType.FRONT, 90, 0, 1000, 3, 101250 - 9450 - 11875 - 2910, 33750 - 1050 - 625 - 90);
+        testThrowerConfiguration(ThrowerType.FRONT, 0, 1000, 3, 101250 - 9450 - 11875 - 2910, 33750 - 1050 - 625 - 90);
 
         assertTrue(airportFireTruck.getFrontThrower().isActive());
     }
@@ -513,7 +513,7 @@ class TestTruck {
         for (int i = 0; i < 5; i++) {
             driver.pressJoystickButton();
         }
-        testThrowerConfiguration(ThrowerType.FRONT, 90, 0, 3500, 10, 101250 - 15750, 33750 - 1750);
+        testThrowerConfiguration(ThrowerType.FRONT, 0, 3500, 10, 101250 - 15750, 33750 - 1750);
 
         // s0613 + s0614
         operator.pressPushButton(LEFT);
@@ -527,7 +527,7 @@ class TestTruck {
             operator.pressJoystickButton();
         }
 
-        testThrowerConfiguration(ThrowerType.ROOF, 90, 16, C, 10, 101250 - 15750 - 11250, 33750 - 1750 - 1250);
+        testThrowerConfiguration(ThrowerType.ROOF, 16, C, 10, 101250 - 15750 - 11250, 33750 - 1750 - 1250);
 
         for (int i = 0; i < 5; i++) {
             operator.pressJoystickButton();
@@ -673,11 +673,11 @@ class TestTruck {
         }
     }
 
-    private void testThrowerConfiguration(ThrowerType type, int degree, int length, Object level, int mixingRatio, int expectedRemainingWater, int expectedRemainingFoam) {
+    private void testThrowerConfiguration(ThrowerType type, int length, Object level, int mixingRatio, int expectedRemainingWater, int expectedRemainingFoam) {
 
         if (type.equals(ThrowerType.FRONT)) {
             assertTrue(airportFireTruck.getFrontThrower().isActive());
-            assertEquals(degree, airportFireTruck.getFrontThrower().getDegree());
+            assertEquals(90, airportFireTruck.getFrontThrower().getDegree());
             assertEquals(level, airportFireTruck.getFrontThrower().getLevel());
             assertEquals(mixingRatio, airportFireTruck.getFrontThrower().getMixingRatio());
             assertEquals(expectedRemainingWater, airportFireTruck.getFrontThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.WATER).findFirst().orElseThrow().getRemainingCapacity());
@@ -685,7 +685,7 @@ class TestTruck {
 
         } else {
             assertTrue(airportFireTruck.getRoofThrower().isActive());
-            assertEquals(degree, airportFireTruck.getRoofThrower().getLowerSegment().getDegree());
+            assertEquals(90, airportFireTruck.getRoofThrower().getLowerSegment().getDegree());
             assertEquals(length, airportFireTruck.getRoofThrower().getUpperSegment().getLength());
             assertEquals(level, airportFireTruck.getRoofThrower().getLevel());
             assertEquals(mixingRatio, airportFireTruck.getRoofThrower().getMixingRatio());

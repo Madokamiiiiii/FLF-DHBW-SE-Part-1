@@ -7,8 +7,8 @@ import airportfiretruck.extinguisher.thrower.IThrowerMixer;
 import java.util.List;
 
 public abstract class Joystick<T extends IThrowerMixer> implements IJoystick<T> {
-    protected List<PushButton> pushButtons;
-    protected JoystickButton joystickButton;
+    protected final List<PushButton> pushButtons;
+    protected final JoystickButton joystickButton;
     protected T thrower;
     protected int ratio;
 
@@ -27,6 +27,7 @@ public abstract class Joystick<T extends IThrowerMixer> implements IJoystick<T> 
             case 3 -> ratio = 5;
             case 5 -> ratio = 10;
             case 10 -> ratio = 0;
+            default -> throw new IllegalStateException("Unexpected value: " + ratio);
         }
     }
 

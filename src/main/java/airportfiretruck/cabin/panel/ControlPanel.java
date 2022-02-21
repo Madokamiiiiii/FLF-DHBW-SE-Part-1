@@ -5,7 +5,6 @@ import airportfiretruck.cabin.panel.rotaryknobs.IRotaryKnob;
 import airportfiretruck.cabin.panel.rotaryknobs.RoofThrowerKnob;
 import airportfiretruck.cabin.panel.switches.PanelSwitch;
 import airportfiretruck.cabin.panel.switches.RelatedDevice;
-import airportfiretruck.cabin.panel.switches.Switch;
 import airportfiretruck.centralunit.IControlPanelCentralUnit;
 
 import java.util.ArrayList;
@@ -37,8 +36,8 @@ public class ControlPanel {
         switches.add(4, new PanelSwitch(RelatedDevice.ROOF_LIGHTS));
         switches.add(5, new PanelSwitch(RelatedDevice.SIDE_LIGHTS));
         switches.add(6, new PanelSwitch(RelatedDevice.SELF_PROTECTION));
-        for (Switch panelSwitch : switches) {
-            ((PanelSwitch) panelSwitch).connectToPanel(this);
+        for (PanelSwitch panelSwitch : switches) {
+            panelSwitch.connectToPanel(this);
         }
     }
 

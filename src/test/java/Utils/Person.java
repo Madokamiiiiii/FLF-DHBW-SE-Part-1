@@ -7,6 +7,7 @@ import airportfiretruck.cabin.panel.ControlPanel;
 import airportfiretruck.cabin.panel.rotaryknobs.IRotaryKnob;
 import airportfiretruck.cabin.panel.rotaryknobs.ThrowerType;
 import airportfiretruck.cabin.seats.FrontSeat;
+import airportfiretruck.extinguisher.thrower.ThrowerMixer;
 import airportfiretruck.position.FrontRearSide;
 import airportfiretruck.position.LeftRightSide;
 
@@ -15,12 +16,12 @@ import java.util.List;
 public abstract class Person {
 
     private final IRotaryKnob throwerKnob;
-    private final Joystick joystick;
+    private final Joystick<ThrowerMixer> joystick;
     private final List<PushButton> joystickPushButtons;
     private final List<BusDoorButton> doorButtons;
     private final FrontSeat seat;
 
-    public Person(Joystick joystick, ControlPanel panel, ThrowerType type, List<BusDoorButton> doorButtons, FrontSeat seat) {
+    public Person(Joystick<ThrowerMixer> joystick, ControlPanel panel, ThrowerType type, List<BusDoorButton> doorButtons, FrontSeat seat) {
         this.joystick = joystick;
         throwerKnob = panel.getKnobs().stream().filter(knob -> knob.getType() == type).findFirst().orElseThrow();
         joystickPushButtons = joystick.getPushButtons();
