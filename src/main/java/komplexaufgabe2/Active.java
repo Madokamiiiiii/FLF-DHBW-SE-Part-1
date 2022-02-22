@@ -1,9 +1,9 @@
 package komplexaufgabe2;
 
-import airportfiretruck.extinguisher.thrower.ThrowerMixer;
+import airportfiretruck.extinguisher.thrower.IThrowerMixer;
 
 public class Active extends State {
-    public Active(IntelligentJoystick<ThrowerMixer> intelligentJoystick) {
+    public Active(IntelligentJoystick<? extends IThrowerMixer> intelligentJoystick) {
         super(intelligentJoystick);
         intelligentJoystick.setActive(true);
     }

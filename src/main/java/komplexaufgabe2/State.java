@@ -3,9 +3,9 @@ package komplexaufgabe2;
 import airportfiretruck.extinguisher.thrower.IThrowerMixer;
 
 public abstract class State {
-    protected final IntelligentJoystick<IThrowerMixer> intelligentJoystick;
+    protected final IntelligentJoystick<? extends IThrowerMixer> intelligentJoystick;
 
-    protected State(IntelligentJoystick<IThrowerMixer> intelligentJoystick) {
+    protected State(IntelligentJoystick<? extends IThrowerMixer> intelligentJoystick) {
         this.intelligentJoystick = intelligentJoystick;
     }
 

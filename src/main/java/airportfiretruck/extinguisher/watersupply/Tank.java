@@ -23,7 +23,6 @@ public class Tank {
     public void fill(int amount) {
         int pointerMax = 75 * 45 * capacity[0][0].length - 1;
         int[] index = pointerAsIndex();
-        System.out.println(index[0] + "." + index[1] + "." + index[2]);
         for (; amount > 0; amount--) {
             // tank is full
             if (pointer > pointerMax) {
