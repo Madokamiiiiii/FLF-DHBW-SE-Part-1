@@ -8,8 +8,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-// Small test class for Komplexaufgabe 2.
-public class TestComplex2 {
+// Small bonus test class for Komplexaufgabe 2.
+class TestComplex2 {
 
     private AirportFireTruck airportFireTruck;
 
