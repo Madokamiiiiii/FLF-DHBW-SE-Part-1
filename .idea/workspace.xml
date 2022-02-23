@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d81c2fcd-6860-40c3-a4bd-03e47c36c420" name="Default Changelist" comment="FINALLY FUCK YES FUCK YES">
+    <list default="true" id="d81c2fcd-6860-40c3-a4bd-03e47c36c420" name="Default Changelist" comment="when the minus is wrong">
+      <change afterPath="$PROJECT_DIR$/01_rm_diagramm/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -12,7 +13,7 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/engine/battery/BatteryBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/engine/battery/BatteryBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_rm_diagramm/current (1).vpp" beforeDir="false" afterPath="$PROJECT_DIR$/01_rm_diagramm/current (1).vpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -366,7 +367,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645296960471</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="when the minus is wrong">
+      <created>1645311653892</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1645311653892</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -412,14 +420,15 @@
     <MESSAGE value="Tanks do tank now --&gt; prolly gonna be gen'ralized as its just counting in an alternate system" />
     <MESSAGE value="this is so POG -- all tests till now DO run" />
     <MESSAGE value="FINALLY FUCK YES FUCK YES" />
-    <option name="LAST_COMMIT_MESSAGE" value="FINALLY FUCK YES FUCK YES" />
+    <MESSAGE value="when the minus is wrong" />
+    <option name="LAST_COMMIT_MESSAGE" value="when the minus is wrong" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/TestTruck.java</url>
-          <line>266</line>
+          <line>120</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
