@@ -49,4 +49,8 @@ public abstract class Joystick<T extends IThrowerMixer> implements IJoystick<T> 
     public JoystickButton getJoystickButton() {
         return joystickButton;
     }
+
+    public T getThrower() {
+        return thrower;
+    }
 }

@@ -27,12 +27,12 @@ public abstract class IntelligentJoystick<T extends IThrowerMixer> implements IJ
         state.joystickButtonPressed();
     }
 
-    public void setState(State state) {
-        this.state = state;
-    }
-
     public State getState() {
         return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
     }
 
     public abstract void setActive(boolean active);

@@ -31,8 +31,4 @@ public class RoofThrowerJoystick extends Joystick<RoofThrower> {
             }                                   // Ansonsten tue nichts
         }
     }
-
-    public RoofThrower getThrower() {
-        return thrower;
-    }
 }

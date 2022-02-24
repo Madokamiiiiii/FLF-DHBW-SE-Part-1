@@ -17,7 +17,7 @@ import airportfiretruck.lights.led.WarningLight;
 import airportfiretruck.position.LeftRightSide;
 import airportfiretruck.position.Position;
 
-public class CentralUnit implements IPedalCentralUnit, ISteeringCentralUnit, IThrowerCentralUnit, IControlPanelCentralUnit {
+public class CentralUnit implements IPedalCentralUnit, ISteeringCentralUnit, IControlPanelCentralUnit {
     private AirportFireTruck flf;
 
     @Override

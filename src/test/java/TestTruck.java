@@ -183,8 +183,14 @@ class TestTruck {
         // Test Axles
         List<FrontAxle> frontAxles = airportFireTruck.getFrontAxles();
         assertEquals(2, frontAxles.size());
+        assertEquals(2, frontAxles.stream().filter(frontAxle -> frontAxle.getFrontRearSide() == FRONT).count());
+        assertEquals(1, frontAxles.stream().filter(frontAxle -> frontAxle.getSide() == LEFT).count());
+        assertEquals(1, frontAxles.stream().filter(frontAxle -> frontAxle.getSide() == RIGHT).count());
         List<RearAxle> rearAxles = airportFireTruck.getRearAxles();
         assertEquals(2, rearAxles.size());
+        assertEquals(2, rearAxles.stream().filter(rearAxle -> rearAxle.getFrontRearSide() == REAR).count());
+        assertEquals(1, rearAxles.stream().filter(rearAxle -> rearAxle.getSide() == LEFT).count());
+        assertEquals(1, rearAxles.stream().filter(rearAxle -> rearAxle.getSide() == RIGHT).count());
 
         List<? extends Axle> axles = Stream.concat(frontAxles.stream(), rearAxles.stream()).toList();
         axles.forEach(axle -> {

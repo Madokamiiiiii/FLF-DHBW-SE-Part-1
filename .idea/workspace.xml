@@ -4,16 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d81c2fcd-6860-40c3-a4bd-03e47c36c420" name="Default Changelist" comment="when the minus is wrong">
-      <change afterPath="$PROJECT_DIR$/01_rm_diagramm/README.md" afterDir="false" />
+    <list default="true" id="d81c2fcd-6860-40c3-a4bd-03e47c36c420" name="Default Changelist" comment="Adjust uml again.">
+      <change afterPath="$PROJECT_DIR$/01_rm_diagram/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/01_rm_diagram/diagram.vpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/01_rm_diagramm/current (1).vpp" beforeDir="false" afterPath="$PROJECT_DIR$/01_rm_diagramm/current (1).vpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_rm_diagramm/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_rm_diagramm/current (1).vpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/joysticks/FrontThrowerJoystick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/joysticks/FrontThrowerJoystick.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/joysticks/Joystick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/joysticks/Joystick.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/joysticks/RoofThrowerJoystick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/cabin/joysticks/RoofThrowerJoystick.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/centralunit/CentralUnit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/centralunit/CentralUnit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/centralunit/IThrowerCentralUnit.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/airportfiretruck/extinguisher/thrower/ThrowerMixer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/airportfiretruck/extinguisher/thrower/ThrowerMixer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/komplexaufgabe2/IntelligentJoystick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/komplexaufgabe2/IntelligentJoystick.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/TestTruck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TestTruck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Utils/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Utils/Driver.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +81,9 @@
       </list>
     </option>
   </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -81,6 +94,9 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="OptimizeOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
   </component>
   <component name="ProjectId" id="21d2htfIqwhlgdTVT5C9oo0HAy1" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -96,20 +112,20 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="code.cleanup.on.save" value="true" />
     <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="format.on.save" value="true" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/9495107/airplane01" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="optimize.imports.on.save" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="CodeWithMe" />
   </component>
   <component name="RecentsManager">
@@ -124,7 +140,7 @@
       <recent name="airportfiretruck.wheels" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.TestTruck">
+  <component name="RunManager" selected="Gradle.TestTruck.buildComplete">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -157,18 +173,20 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="TestTruck.handleAirplaneEngineFire" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="TestTruck.buildComplete" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;TestTruck.handleAirplaneEngineFire&quot;" />
+        <option name="scriptParameters" value="" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
           <list>
             <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;TestTruck.buildComplete&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -243,11 +261,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.TestTruck.buildComplete" />
         <item itemvalue="Gradle.TestTruck" />
         <item itemvalue="Gradle.TestTruck.handleParking" />
         <item itemvalue="Gradle.TestTruck.handleFuelTruckOnFire" />
         <item itemvalue="Gradle.TestTruck.handlePushbackVehicleOnFire" />
-        <item itemvalue="Gradle.TestTruck.handleAirplaneEngineFire" />
       </list>
     </recent_temporary>
   </component>
@@ -402,7 +420,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -421,21 +438,14 @@
     <MESSAGE value="this is so POG -- all tests till now DO run" />
     <MESSAGE value="FINALLY FUCK YES FUCK YES" />
     <MESSAGE value="when the minus is wrong" />
-    <option name="LAST_COMMIT_MESSAGE" value="when the minus is wrong" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/TestTruck.java</url>
-          <line>120</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Adjust uml again." />
+    <option name="LAST_COMMIT_MESSAGE" value="Adjust uml again." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
     <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/implementation$TestTruck_buildComplete.ic" NAME="TestTruck.buildComplete Coverage Results" MODIFIED="1645364149581" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

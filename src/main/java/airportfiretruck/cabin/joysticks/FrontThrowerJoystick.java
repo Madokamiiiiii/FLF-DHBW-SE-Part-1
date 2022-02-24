@@ -29,8 +29,4 @@ public class FrontThrowerJoystick extends Joystick<FrontThrower> {
             }                                   // Ansonsten tue nichts
         }
     }
-
-    public FrontThrower getThrower() {
-        return thrower;
-    }
 }

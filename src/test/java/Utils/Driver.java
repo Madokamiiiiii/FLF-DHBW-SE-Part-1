@@ -25,7 +25,7 @@ public class Driver extends Person {
     }
 
     public void pressPedal(PedalType type) {
-       pedals.stream().filter(pedal -> pedal.getPedalType().equals(type)).findFirst().orElseThrow().pressed();
+        pedals.stream().filter(pedal -> pedal.getPedalType().equals(type)).findFirst().orElseThrow().pressed();
     }
 
     public void turnSteeringWheel(LeftRightSide side, int degree) {
