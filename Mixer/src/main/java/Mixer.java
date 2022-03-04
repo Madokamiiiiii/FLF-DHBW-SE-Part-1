@@ -5,10 +5,15 @@ public class Mixer {
     private static final Mixer instance = new Mixer();
     public Port port;
 
-    private List<ITank> tanks = new ArrayList<>();
+    public final List<ITank> tanks = new ArrayList<>();
 
     private Mixer() {
         port = new Port();
+
+        tanks.add(new Tank(ExtinguishingAgent.WATER));
+        tanks.add(new Tank(ExtinguishingAgent.FOAM));
+
+        System.out.println(tanks);
     }
 
     public int innerGetMix(int amount, int foamRatio) {
@@ -30,10 +35,6 @@ public class Mixer {
         return tanks;
     }
 
-    public void innerSetTanks(List<ITank> tanks) {
-        this.tanks = tanks;
-    }
-
     public static Mixer getInstance() {
         return instance;
     }
@@ -48,11 +49,6 @@ public class Mixer {
         @Override
         public List<ITank> getTanks() {
             return innerGetTanks();
-        }
-
-        @Override
-        public void setTanks(List<ITank> tanks) {
-            innerSetTanks(tanks);
         }
     }
 }

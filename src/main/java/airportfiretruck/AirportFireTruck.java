@@ -13,7 +13,6 @@ import airportfiretruck.extinguisher.roof.LowerSegment;
 import airportfiretruck.extinguisher.roof.UpperSegment;
 import airportfiretruck.extinguisher.tank.ExtinguishingAgent;
 import airportfiretruck.extinguisher.tank.ITank;
-import airportfiretruck.extinguisher.tank.Tank;
 import airportfiretruck.extinguisher.task01.FloorSprayNozzle;
 import airportfiretruck.extinguisher.task01.FrontThrower;
 import airportfiretruck.extinguisher.task01.MixerReflectionUtil;
@@ -148,14 +147,12 @@ public class AirportFireTruck {
             cabin.connectToCentralUnit(centralUnit);
 
             // Thrower
-            ITank waterTank = new Tank(ExtinguishingAgent.WATER);
-            ITank foamTank = new Tank(ExtinguishingAgent.FOAM);
             MixerReflectionUtil reflectionUtil = new MixerReflectionUtil();
-            reflectionUtil.setTanks(List.of(waterTank, foamTank));
+            List<ITank> tanks = reflectionUtil.getTanks();
             roofThrower = new RoofThrower(cabin.getRoofThrowerJoystick(), reflectionUtil, 10000, new UpperSegment(), new LowerSegment());
             frontThrower = new FrontThrower(cabin.getFrontThrowerJoystick(), reflectionUtil, 3500);
             for (int i = 0; i < 7; i++) {
-                floorSprayNozzles.add(i, new FloorSprayNozzle(100, waterTank));
+                floorSprayNozzles.add(i, new FloorSprayNozzle(100, tanks.stream().filter(tank -> tank.getType().equals(ExtinguishingAgent.WATER)).findFirst().orElseThrow()));
             }
 
             rearAxles.addAll(List.of(new RearAxle(LeftRightSide.LEFT), new RearAxle(LeftRightSide.RIGHT)));

@@ -1,5 +1,3 @@
-package airportfiretruck.extinguisher.tank;
-
 public class Tank implements ITank {
     private final ExtinguishingAgent type;
     private int[][][] capacity;
@@ -55,7 +53,7 @@ public class Tank implements ITank {
             }
             return;
         }
-        // Fertig/airportfiretruck.extinguisher.thrower.tank.airportfiretruck.extinguisher.tank.Tank voll
+        // Fertig/airportfiretruck.extinguisher.thrower.tank.Tank voll
     }
 
     public int getLiquid(int amount) {
@@ -64,7 +62,7 @@ public class Tank implements ITank {
         int[] index = pointerAsIndex();
         pointer++;
         for (; amount > 0; amount--) {
-            // airportfiretruck.extinguisher.thrower.tank.airportfiretruck.extinguisher.tank.Tank ist leer
+            // airportfiretruck.extinguisher.thrower.tank.Tank ist leer
             if (pointer < 1) {
                 return pumped;
             }

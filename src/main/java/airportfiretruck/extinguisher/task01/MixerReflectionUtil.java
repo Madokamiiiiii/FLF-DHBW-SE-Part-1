@@ -38,16 +38,6 @@ public class MixerReflectionUtil {
         return null;
     }
 
-    public void setTanks(List<ITank> tanks) {
-        try {
-            Method method = port.getClass().getDeclaredMethod("setTanks", List.class);
-            method.invoke(port, tanks);
-        } catch (Exception e) {
-            e.getCause();
-            e.printStackTrace();
-        }
-    }
-
     private Object getMixerPort() {
 
         try {
