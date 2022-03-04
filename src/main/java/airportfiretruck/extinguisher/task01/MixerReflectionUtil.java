@@ -18,8 +18,6 @@ public class MixerReflectionUtil {
     public int getLiquid(int amount, int ratio) {
         try {
             Method method = port.getClass().getDeclaredMethod("getMix", Integer.class, Integer.class);
-            // DAS MÜSSTE GAR NICHT NÖTIG SEIN. HÄÄÄÄÄH?
-            method.setAccessible(true);
             return (int) method.invoke(port, amount, ratio);
         } catch (Exception e) {
             e.getCause();
@@ -32,8 +30,6 @@ public class MixerReflectionUtil {
     public List<ITank> getTanks() {
         try {
             Method method = port.getClass().getDeclaredMethod("getTanks");
-            // DAS MÜSSTE GAR NICHT NÖTIG SEIN. HÄÄÄÄÄH?
-            method.setAccessible(true);
             return (List<ITank>) method.invoke(port);
         } catch (Exception e) {
             e.printStackTrace();
@@ -45,8 +41,6 @@ public class MixerReflectionUtil {
     public void setTanks(List<ITank> tanks) {
         try {
             Method method = port.getClass().getDeclaredMethod("setTanks", List.class);
-            // DAS MÜSSTE GAR NICHT NÖTIG SEIN. HÄÄÄÄÄH?
-            method.setAccessible(true);
             method.invoke(port, tanks);
         } catch (Exception e) {
             e.getCause();

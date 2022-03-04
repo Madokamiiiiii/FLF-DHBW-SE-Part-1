@@ -38,7 +38,7 @@ public class Mixer {
         return instance;
     }
 
-    class Port implements IMixer {
+    public class Port implements IMixer {
 
         @Override
         public int getMix(Integer amount, Integer foamRatio) {
