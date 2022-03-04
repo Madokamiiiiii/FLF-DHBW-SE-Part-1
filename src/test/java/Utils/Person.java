@@ -7,7 +7,7 @@ import airportfiretruck.cabin.panel.ControlPanel;
 import airportfiretruck.cabin.panel.rotaryknobs.IRotaryKnob;
 import airportfiretruck.cabin.panel.rotaryknobs.ThrowerType;
 import airportfiretruck.cabin.seats.FrontSeat;
-import airportfiretruck.extinguisher.thrower.IThrowerMixer;
+import airportfiretruck.extinguisher.IThrowerMixer;
 import airportfiretruck.position.FrontRearSide;
 import airportfiretruck.position.LeftRightSide;
 

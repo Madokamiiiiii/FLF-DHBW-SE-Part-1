@@ -2,7 +2,7 @@ package komplexaufgabe2;
 
 import airportfiretruck.buttons.JoystickButton;
 import airportfiretruck.buttons.PushButton;
-import airportfiretruck.extinguisher.thrower.FrontThrower;
+import airportfiretruck.extinguisher.task01.FrontThrower;
 
 public class IntelligentFrontThrowerJoystick extends IntelligentJoystick<FrontThrower> {
 

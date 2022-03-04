@@ -1,4 +1,4 @@
-package airportfiretruck.extinguisher.thrower.roof;
+package airportfiretruck.extinguisher.roof;
 
 public class SegmentPart {
     private final int maxLength;

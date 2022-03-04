@@ -1,7 +1,7 @@
 import airportfiretruck.AirportFireTruck;
 import airportfiretruck.buttons.JoystickButton;
 import airportfiretruck.buttons.PushButton;
-import airportfiretruck.extinguisher.thrower.FrontThrower;
+import airportfiretruck.extinguisher.task01.FrontThrower;
 import airportfiretruck.position.LeftRightSide;
 import komplexaufgabe2.*;
 import org.junit.jupiter.api.Assertions;

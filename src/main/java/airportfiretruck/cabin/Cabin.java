@@ -15,8 +15,8 @@ import airportfiretruck.cabin.seats.FrontSeat;
 import airportfiretruck.cabin.seats.Respirator;
 import airportfiretruck.cabin.seats.Seat;
 import airportfiretruck.centralunit.CentralUnit;
-import airportfiretruck.extinguisher.thrower.FrontThrower;
-import airportfiretruck.extinguisher.thrower.roof.RoofThrower;
+import airportfiretruck.extinguisher.task01.FrontThrower;
+import airportfiretruck.extinguisher.task01.RoofThrower;
 import airportfiretruck.position.LeftRightSide;
 
 import java.util.ArrayList;

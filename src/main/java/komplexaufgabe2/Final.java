@@ -1,6 +1,6 @@
 package komplexaufgabe2;
 
-import airportfiretruck.extinguisher.thrower.IThrowerMixer;
+import airportfiretruck.extinguisher.IThrowerMixer;
 
 public class Final extends State {
     private final int ratio;

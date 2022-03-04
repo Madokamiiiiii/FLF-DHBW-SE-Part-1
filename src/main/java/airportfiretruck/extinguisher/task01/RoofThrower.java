@@ -1,15 +1,16 @@
-package airportfiretruck.extinguisher.thrower.roof;
+package airportfiretruck.extinguisher.task01;
 
 import airportfiretruck.cabin.joysticks.IJoystick;
-import airportfiretruck.extinguisher.thrower.ThrowerMixer;
-import airportfiretruck.extinguisher.watersupply.Mixer;
+import airportfiretruck.extinguisher.roof.LowerSegment;
+import airportfiretruck.extinguisher.roof.RoofThrowerLevel;
+import airportfiretruck.extinguisher.roof.UpperSegment;
 
 public class RoofThrower extends ThrowerMixer {
     private final UpperSegment upperSegment;
     private final LowerSegment lowerSegment;
     private RoofThrowerLevel level;
 
-    public RoofThrower(IJoystick<RoofThrower> joystick, Mixer mixer, int limit, UpperSegment upperSegment, LowerSegment lowerSegment) {
+    public RoofThrower(IJoystick<RoofThrower> joystick, MixerReflectionUtil mixer, int limit, UpperSegment upperSegment, LowerSegment lowerSegment) {
         super(mixer, limit);
         this.upperSegment = upperSegment;
         this.lowerSegment = lowerSegment;
@@ -34,7 +35,7 @@ public class RoofThrower extends ThrowerMixer {
 
         // Wenn die Kapazität überschritten werden würde, nimm die maximale Kapazität.
         // Nach der Spezifikation dürfte das aber nicht erreicht werden.
-        int output = mixer.getLiquid(Math.min(outputQuantity, limit), mixingRatio);
+        int output = mixerReflectionUtil.getLiquid(Math.min(outputQuantity, limit), mixingRatio);
         if (output != Math.min(outputQuantity, limit)) {
             throw new RuntimeException("Not enough water/foam in tank");
         }

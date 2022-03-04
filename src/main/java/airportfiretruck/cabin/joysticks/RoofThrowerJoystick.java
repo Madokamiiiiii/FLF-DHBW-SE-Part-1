@@ -2,7 +2,7 @@ package airportfiretruck.cabin.joysticks;
 
 import airportfiretruck.buttons.JoystickButton;
 import airportfiretruck.buttons.PushButton;
-import airportfiretruck.extinguisher.thrower.roof.RoofThrower;
+import airportfiretruck.extinguisher.task01.RoofThrower;
 import airportfiretruck.position.LeftRightSide;
 
 import java.util.List;

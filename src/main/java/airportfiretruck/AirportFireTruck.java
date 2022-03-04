@@ -9,14 +9,15 @@ import airportfiretruck.engine.ElectroEngine;
 import airportfiretruck.engine.IEngine;
 import airportfiretruck.engine.battery.BatteryBox;
 import airportfiretruck.engine.battery.BatteryManagement;
-import airportfiretruck.extinguisher.thrower.FloorSprayNozzle;
-import airportfiretruck.extinguisher.thrower.FrontThrower;
-import airportfiretruck.extinguisher.thrower.roof.LowerSegment;
-import airportfiretruck.extinguisher.thrower.roof.RoofThrower;
-import airportfiretruck.extinguisher.thrower.roof.UpperSegment;
-import airportfiretruck.extinguisher.watersupply.ExtinguishingAgent;
-import airportfiretruck.extinguisher.watersupply.Mixer;
-import airportfiretruck.extinguisher.watersupply.Tank;
+import airportfiretruck.extinguisher.roof.LowerSegment;
+import airportfiretruck.extinguisher.roof.UpperSegment;
+import airportfiretruck.extinguisher.tank.ExtinguishingAgent;
+import airportfiretruck.extinguisher.tank.ITank;
+import airportfiretruck.extinguisher.tank.Tank;
+import airportfiretruck.extinguisher.task01.FloorSprayNozzle;
+import airportfiretruck.extinguisher.task01.FrontThrower;
+import airportfiretruck.extinguisher.task01.MixerReflectionUtil;
+import airportfiretruck.extinguisher.task01.RoofThrower;
 import airportfiretruck.lights.BrakeLight;
 import airportfiretruck.lights.DirectionIndicatorLight;
 import airportfiretruck.lights.HeadLight;
@@ -147,11 +148,12 @@ public class AirportFireTruck {
             cabin.connectToCentralUnit(centralUnit);
 
             // Thrower
-            Tank waterTank = new Tank(ExtinguishingAgent.WATER);
-            Tank foamTank = new Tank(ExtinguishingAgent.FOAM);
-            Mixer mixer = new Mixer(List.of(waterTank, foamTank));
-            roofThrower = new RoofThrower(cabin.getRoofThrowerJoystick(), mixer, 10000, new UpperSegment(), new LowerSegment());
-            frontThrower = new FrontThrower(cabin.getFrontThrowerJoystick(), mixer, 3500);
+            ITank waterTank = new Tank(ExtinguishingAgent.WATER);
+            ITank foamTank = new Tank(ExtinguishingAgent.FOAM);
+            MixerReflectionUtil reflectionUtil = new MixerReflectionUtil();
+            reflectionUtil.setTanks(List.of(waterTank, foamTank));
+            roofThrower = new RoofThrower(cabin.getRoofThrowerJoystick(), reflectionUtil, 10000, new UpperSegment(), new LowerSegment());
+            frontThrower = new FrontThrower(cabin.getFrontThrowerJoystick(), reflectionUtil, 3500);
             for (int i = 0; i < 7; i++) {
                 floorSprayNozzles.add(i, new FloorSprayNozzle(100, waterTank));
             }

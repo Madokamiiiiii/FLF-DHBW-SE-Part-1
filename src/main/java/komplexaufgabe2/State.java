@@ -1,6 +1,6 @@
 package komplexaufgabe2;
 
-import airportfiretruck.extinguisher.thrower.IThrowerMixer;
+import airportfiretruck.extinguisher.IThrowerMixer;
 
 public abstract class State {
     protected final IntelligentJoystick<? extends IThrowerMixer> intelligentJoystick;

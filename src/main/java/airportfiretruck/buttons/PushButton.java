@@ -1,7 +1,7 @@
 package airportfiretruck.buttons;
 
 import airportfiretruck.cabin.joysticks.IJoystick;
-import airportfiretruck.extinguisher.thrower.IThrowerMixer;
+import airportfiretruck.extinguisher.IThrowerMixer;
 import airportfiretruck.position.LeftRightSide;
 
 public class PushButton implements IButton {

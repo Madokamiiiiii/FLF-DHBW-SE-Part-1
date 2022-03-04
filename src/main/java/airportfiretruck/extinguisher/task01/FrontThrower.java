@@ -1,14 +1,13 @@
-package airportfiretruck.extinguisher.thrower;
+package airportfiretruck.extinguisher.task01;
 
 import airportfiretruck.cabin.joysticks.IJoystick;
-import airportfiretruck.extinguisher.watersupply.Mixer;
 
 public class FrontThrower extends ThrowerMixer {
     private final int maxDegree;
     private int degree;
     private int level;
 
-    public FrontThrower(IJoystick<FrontThrower> joystick, Mixer mixer, int limit) {
+    public FrontThrower(IJoystick<FrontThrower> joystick, MixerReflectionUtil mixer, int limit) {
         super(mixer, limit);
         joystick.assign(this);
         degree = 0;
@@ -39,7 +38,7 @@ public class FrontThrower extends ThrowerMixer {
     public void spray() {
         // Wenn die Kapazität überschritten werden würde, nimm die maximale Kapazität.
         // Nach der Spezifikation dürfte das aber nicht erreicht werden.
-        int output = mixer.getLiquid(Math.min(level, limit), mixingRatio);
+        int output = mixerReflectionUtil.getLiquid(Math.min(level, limit), mixingRatio);
         if (output != Math.min(level, limit)) {
             throw new RuntimeException("Not enough water/foam in tank");
         }

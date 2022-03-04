@@ -1,4 +1,4 @@
-package airportfiretruck.extinguisher.thrower;
+package airportfiretruck.extinguisher;
 
 public interface IThrowerMixer extends IThrower {
 

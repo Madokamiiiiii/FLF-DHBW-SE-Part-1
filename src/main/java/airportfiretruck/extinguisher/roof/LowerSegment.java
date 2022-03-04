@@ -1,4 +1,4 @@
-package airportfiretruck.extinguisher.thrower.roof;
+package airportfiretruck.extinguisher.roof;
 
 public class LowerSegment {
     private int degree;

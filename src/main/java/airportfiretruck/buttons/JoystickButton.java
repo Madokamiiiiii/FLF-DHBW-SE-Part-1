@@ -1,7 +1,7 @@
 package airportfiretruck.buttons;
 
 import airportfiretruck.cabin.joysticks.IJoystick;
-import airportfiretruck.extinguisher.thrower.IThrowerMixer;
+import airportfiretruck.extinguisher.IThrowerMixer;
 
 public class JoystickButton implements IButton {
     private IJoystick<? extends IThrowerMixer> joystick;

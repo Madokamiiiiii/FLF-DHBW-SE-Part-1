@@ -1,4 +1,4 @@
-package airportfiretruck.extinguisher.thrower;
+package airportfiretruck.extinguisher;
 
 public abstract class Thrower implements IThrower {
 

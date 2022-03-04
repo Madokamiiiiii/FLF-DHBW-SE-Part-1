@@ -1,14 +1,15 @@
-package airportfiretruck.extinguisher.thrower;
+package airportfiretruck.extinguisher.task01;
 
-import airportfiretruck.extinguisher.watersupply.Tank;
+import airportfiretruck.extinguisher.Thrower;
+import airportfiretruck.extinguisher.tank.ITank;
 
 public class FloorSprayNozzle extends Thrower {
 
-    private final Tank tank;
+    private final ITank tank;
 
     private boolean isOn = false;
 
-    public FloorSprayNozzle(int limit, Tank tank) {
+    public FloorSprayNozzle(int limit, ITank tank) {
         super(limit);
         this.tank = tank;
     }
@@ -23,15 +24,15 @@ public class FloorSprayNozzle extends Thrower {
         }
     }
 
-    public Tank getTank() {
-        return tank;
-    }
-
     public boolean isOn() {
         return isOn;
     }
 
     public void setOn(boolean on) {
         isOn = on;
+    }
+
+    public ITank getTank() {
+        return tank;
     }
 }

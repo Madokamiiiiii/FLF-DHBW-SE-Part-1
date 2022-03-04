@@ -1,4 +1,4 @@
-package airportfiretruck.extinguisher.watersupply;
+package airportfiretruck.extinguisher.tank;
 
 public enum ExtinguishingAgent {
     WATER,

@@ -1,16 +1,17 @@
-package airportfiretruck.extinguisher.thrower;
+package airportfiretruck.extinguisher.task01;
 
-import airportfiretruck.extinguisher.watersupply.Mixer;
+import airportfiretruck.extinguisher.IThrowerMixer;
+import airportfiretruck.extinguisher.Thrower;
 
 public abstract class ThrowerMixer extends Thrower implements IThrowerMixer {
 
-    protected final Mixer mixer;
+    protected final MixerReflectionUtil mixerReflectionUtil;
     protected boolean active;
     protected int mixingRatio;
 
-    protected ThrowerMixer(Mixer mixer, int limit) {
+    protected ThrowerMixer(MixerReflectionUtil mixer, int limit) {
         super(limit);
-        this.mixer = mixer;
+        this.mixerReflectionUtil = mixer;
     }
 
     public boolean isActive() {
@@ -29,7 +30,7 @@ public abstract class ThrowerMixer extends Thrower implements IThrowerMixer {
         this.mixingRatio = ratio;
     }
 
-    public Mixer getMixer() {
-        return mixer;
+    public MixerReflectionUtil getMixer() {
+        return mixerReflectionUtil;
     }
 }

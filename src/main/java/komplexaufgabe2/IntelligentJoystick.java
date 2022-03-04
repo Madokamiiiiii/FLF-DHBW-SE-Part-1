@@ -3,7 +3,7 @@ package komplexaufgabe2;
 import airportfiretruck.buttons.JoystickButton;
 import airportfiretruck.buttons.PushButton;
 import airportfiretruck.cabin.joysticks.IJoystick;
-import airportfiretruck.extinguisher.thrower.IThrowerMixer;
+import airportfiretruck.extinguisher.IThrowerMixer;
 
 public abstract class IntelligentJoystick<T extends IThrowerMixer> implements IJoystick<T> {
 

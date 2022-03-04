@@ -2,7 +2,7 @@ package komplexaufgabe2;
 
 import airportfiretruck.buttons.JoystickButton;
 import airportfiretruck.buttons.PushButton;
-import airportfiretruck.extinguisher.thrower.roof.RoofThrower;
+import airportfiretruck.extinguisher.task01.RoofThrower;
 
 public class IntelligentRoofThrowerJoystick extends IntelligentJoystick<RoofThrower> {
 

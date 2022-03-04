@@ -7,7 +7,7 @@ import airportfiretruck.cabin.panel.rotaryknobs.RoofThrowerKnob;
 import airportfiretruck.cabin.panel.switches.RelatedDevice;
 import airportfiretruck.cabin.pedals.PedalType;
 import airportfiretruck.engine.IEngine;
-import airportfiretruck.extinguisher.thrower.FloorSprayNozzle;
+import airportfiretruck.extinguisher.task01.FloorSprayNozzle;
 import airportfiretruck.lights.BrakeLight;
 import airportfiretruck.lights.DirectionIndicatorLight;
 import airportfiretruck.lights.HeadLight;

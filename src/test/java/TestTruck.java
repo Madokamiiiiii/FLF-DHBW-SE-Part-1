@@ -18,12 +18,13 @@ import airportfiretruck.cabin.seats.Seat;
 import airportfiretruck.engine.ElectroEngine;
 import airportfiretruck.engine.IEngine;
 import airportfiretruck.engine.battery.BatteryManagement;
-import airportfiretruck.extinguisher.thrower.FloorSprayNozzle;
-import airportfiretruck.extinguisher.thrower.FrontThrower;
-import airportfiretruck.extinguisher.thrower.roof.RoofThrower;
-import airportfiretruck.extinguisher.thrower.roof.RoofThrowerLevel;
-import airportfiretruck.extinguisher.watersupply.ExtinguishingAgent;
-import airportfiretruck.extinguisher.watersupply.Tank;
+import airportfiretruck.extinguisher.roof.RoofThrowerLevel;
+import airportfiretruck.extinguisher.tank.ExtinguishingAgent;
+import airportfiretruck.extinguisher.tank.ITank;
+import airportfiretruck.extinguisher.tank.Tank;
+import airportfiretruck.extinguisher.task01.FloorSprayNozzle;
+import airportfiretruck.extinguisher.task01.FrontThrower;
+import airportfiretruck.extinguisher.task01.RoofThrower;
 import airportfiretruck.lights.BrakeLight;
 import airportfiretruck.lights.DirectionIndicatorLight;
 import airportfiretruck.lights.HeadLight;
@@ -40,7 +41,7 @@ import org.junit.jupiter.api.*;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static airportfiretruck.extinguisher.thrower.roof.RoofThrowerLevel.C;
+import static airportfiretruck.extinguisher.roof.RoofThrowerLevel.C;
 import static airportfiretruck.position.FrontRearSide.FRONT;
 import static airportfiretruck.position.FrontRearSide.REAR;
 import static airportfiretruck.position.LeftRightSide.*;
@@ -175,7 +176,7 @@ class TestTruck {
         floorSprayNozzles.forEach(floorSprayNozzle -> assertNotNull(floorSprayNozzle.getTank()));
 
         // Test Water supply
-        List<Tank> tanks = roofThrower.getMixer().getTanks(); // It's not important if from roofThrower or frontThrower. They share the same tanks.
+        List<ITank> tanks = roofThrower.getMixer().getTanks(); // It's not important if from roofThrower or frontThrower. They share the same tanks.
         assertEquals(2, tanks.size());
         assertEquals(1, tanks.stream().filter(tank -> tank.getType() == ExtinguishingAgent.WATER).count());
         assertEquals(1, tanks.stream().filter(tank -> tank.getType() == ExtinguishingAgent.FOAM).count());
@@ -412,7 +413,8 @@ class TestTruck {
         operator.useSwitch(RelatedDevice.SELF_PROTECTION);
         airportFireTruck.getFloorSprayNozzles().forEach(FloorSprayNozzle::spray);
 
-        assertEquals(101250 - 700, airportFireTruck.getRoofThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.WATER).findFirst().orElseThrow().getRemainingCapacity());
+        Tank waterTank = (Tank) (airportFireTruck.getRoofThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.WATER).findFirst().orElseThrow());
+        assertEquals(101250 - 700, waterTank.getRemainingCapacity());
 
         // s0412 + s0413
         driver.pressPushButton(LEFT);
@@ -538,8 +540,11 @@ class TestTruck {
         for (int i = 0; i < 5; i++) {
             operator.pressJoystickButton();
         }
-        assertEquals(101250 - 15750 - 11250 - 11250, airportFireTruck.getRoofThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.WATER).findFirst().orElseThrow().getRemainingCapacity());
-        assertEquals(33750 - 1750 - 1250 - 1250, airportFireTruck.getRoofThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.FOAM).findFirst().orElseThrow().getRemainingCapacity());
+
+        Tank foamTank = (Tank) (airportFireTruck.getRoofThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.FOAM).findFirst().orElseThrow());
+        Tank waterTank = (Tank) (airportFireTruck.getRoofThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.WATER).findFirst().orElseThrow());
+        assertEquals(101250 - 15750 - 11250 - 11250, waterTank.getRemainingCapacity());
+        assertEquals(33750 - 1750 - 1250 - 1250, foamTank.getRemainingCapacity());
 
         for (int i = 0; i < 2; i++) {
             driver.pressPushButton(RIGHT);
@@ -550,8 +555,10 @@ class TestTruck {
         for (int i = 0; i < 5; i++) {
             driver.pressJoystickButton();
         }
-        assertEquals(101250 - 15750 - 11250 - 11250 - 4850, airportFireTruck.getRoofThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.WATER).findFirst().orElseThrow().getRemainingCapacity());
-        assertEquals(33750 - 1750 - 1250 - 1250 - 150, airportFireTruck.getRoofThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.FOAM).findFirst().orElseThrow().getRemainingCapacity());
+        foamTank = (Tank) (airportFireTruck.getRoofThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.FOAM).findFirst().orElseThrow());
+        waterTank = (Tank) (airportFireTruck.getRoofThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.WATER).findFirst().orElseThrow());
+        assertEquals(101250 - 15750 - 11250 - 11250 - 4850, waterTank.getRemainingCapacity());
+        assertEquals(33750 - 1750 - 1250 - 1250 - 150, foamTank.getRemainingCapacity());
     }
 
     private void generateHelper() {
@@ -650,13 +657,13 @@ class TestTruck {
     }
 
     private void testFullTanks() {
-        List<Tank> tanks = airportFireTruck.getRoofThrower().getMixer().getTanks();
+        List<ITank> tanks = airportFireTruck.getRoofThrower().getMixer().getTanks();
 
-        Tank testedTank = tanks.stream().filter(tank -> tank.getType().equals(ExtinguishingAgent.WATER)).findFirst().orElseThrow();
+        Tank testedTank = (Tank) tanks.stream().filter(tank -> tank.getType().equals(ExtinguishingAgent.WATER)).findFirst().orElseThrow();
         testedTank.fill(101250);
         assertEquals(101250, testedTank.getRemainingCapacity());
 
-        testedTank = tanks.stream().filter(tank -> tank.getType().equals(ExtinguishingAgent.FOAM)).findFirst().orElseThrow();
+        testedTank = (Tank) tanks.stream().filter(tank -> tank.getType().equals(ExtinguishingAgent.FOAM)).findFirst().orElseThrow();
         testedTank.fill(33750);
         assertEquals(33750, testedTank.getRemainingCapacity());
     }
@@ -686,8 +693,10 @@ class TestTruck {
             assertEquals(90, airportFireTruck.getFrontThrower().getDegree());
             assertEquals(level, airportFireTruck.getFrontThrower().getLevel());
             assertEquals(mixingRatio, airportFireTruck.getFrontThrower().getMixingRatio());
-            assertEquals(expectedRemainingWater, airportFireTruck.getFrontThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.WATER).findFirst().orElseThrow().getRemainingCapacity());
-            assertEquals(expectedRemainingFoam, airportFireTruck.getFrontThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.FOAM).findFirst().orElseThrow().getRemainingCapacity());
+            Tank foamTank = (Tank) (airportFireTruck.getRoofThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.FOAM).findFirst().orElseThrow());
+            Tank waterTank = (Tank) (airportFireTruck.getRoofThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.WATER).findFirst().orElseThrow());
+            assertEquals(expectedRemainingWater, waterTank.getRemainingCapacity());
+            assertEquals(expectedRemainingFoam, foamTank.getRemainingCapacity());
 
         } else {
             assertTrue(airportFireTruck.getRoofThrower().isActive());
@@ -695,8 +704,10 @@ class TestTruck {
             assertEquals(length, airportFireTruck.getRoofThrower().getUpperSegment().getLength());
             assertEquals(level, airportFireTruck.getRoofThrower().getLevel());
             assertEquals(mixingRatio, airportFireTruck.getRoofThrower().getMixingRatio());
-            assertEquals(expectedRemainingWater, airportFireTruck.getRoofThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.WATER).findFirst().orElseThrow().getRemainingCapacity());
-            assertEquals(expectedRemainingFoam, airportFireTruck.getRoofThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.FOAM).findFirst().orElseThrow().getRemainingCapacity());
+            Tank foamTank = (Tank) (airportFireTruck.getRoofThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.FOAM).findFirst().orElseThrow());
+            Tank waterTank = (Tank) (airportFireTruck.getRoofThrower().getMixer().getTanks().stream().filter(tank -> tank.getType() == ExtinguishingAgent.WATER).findFirst().orElseThrow());
+            assertEquals(expectedRemainingWater, waterTank.getRemainingCapacity());
+            assertEquals(expectedRemainingFoam, foamTank.getRemainingCapacity());
         }
     }
 

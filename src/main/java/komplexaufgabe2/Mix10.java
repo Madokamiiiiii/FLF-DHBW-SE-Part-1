@@ -1,6 +1,6 @@
 package komplexaufgabe2;
 
-import airportfiretruck.extinguisher.thrower.IThrowerMixer;
+import airportfiretruck.extinguisher.IThrowerMixer;
 
 public class Mix10 extends State {
     private final int ratio = 10;
